@@ -34,14 +34,6 @@ AgentDev Suite provides a complete set of tools and workflows for software devel
 /plugin install https://github.com/gongxh13/agentdev-suite
 ```
 
-### Method 3: Install from local source
-
-```bash
-git clone https://github.com/gongxh13/agentdev-suite.git
-cd agentdev-suite
-/plugin link .
-```
-
 ### Uninstallation
 
 To uninstall the plugin:

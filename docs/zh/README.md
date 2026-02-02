@@ -34,14 +34,6 @@ AgentDev Suite提供了一套完整的工具和工作流，用于使用智能体
 /plugin install https://github.com/gongxh13/agentdev-suite
 ```
 
-### 方法3：从本地源码安装
-
-```bash
-git clone https://github.com/gongxh13/agentdev-suite.git
-cd agentdev-suite
-/plugin link .
-```
-
 ### 卸载
 
 卸载插件：
