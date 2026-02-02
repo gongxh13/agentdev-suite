@@ -1,0 +1,13 @@
+{
+  "name": "agentdev-suite",
+  "description": "Agent development suite for Claude Code: Full software development lifecycle with agent collaboration, requirement analysis, development, and testing",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Team Name",
+    "email": "team@example.com"
+  },
+  "homepage": "https://github.com/your-username/agentdev-suite",
+  "repository": "https://github.com/your-username/agentdev-suite",
+  "license": "MIT",
+  "keywords": ["agents", "development", "lifecycle", "requirements", "testing", "collaboration", "workflows"]
+}

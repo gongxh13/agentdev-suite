@@ -1,0 +1,53 @@
+{
+  "name": "agentdev-suite",
+  "version": "1.0.0",
+  "description": "Agent development suite for Claude Code: Full software development lifecycle with agent collaboration",
+  "main": "commands/agentdev.js",
+  "bin": {
+    "agentdev": "./commands/agentdev.js"
+  },
+  "scripts": {
+    "test": "node tests/run.js",
+    "start": "node commands/agentdev.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "claude",
+    "agent",
+    "development",
+    "lifecycle",
+    "requirements",
+    "testing",
+    "code-generation"
+  ],
+  "author": "Your Team Name <team@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/agentdev-suite.git"
+  },
+  "homepage": "https://github.com/your-username/agentdev-suite",
+  "bugs": {
+    "url": "https://github.com/your-username/agentdev-suite/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "glob": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "files": [
+    "agents/",
+    "commands/",
+    "lib/",
+    "skills/",
+    ".claude-plugin/",
+    ".codex/",
+    ".opencode/"
+  ]
+}
