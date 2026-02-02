@@ -62,28 +62,28 @@ Once the plugin is installed, you can use the `/agent-dev` command in Claude to 
 
 1. **Start a new agent development session**:
    ```
-   /agent-dev 我需要开发一个用户管理系统，请帮我分析需求
+   /agent-dev I need to develop a user management system, please help me analyze requirements
    ```
 
 2. **Generate code from specifications**:
    ```
-   /agent-dev 根据以下规格生成用户注册功能的代码：[规格描述]
+   /agent-dev Generate code for user registration functionality based on the following specifications: [specification description]
    ```
 
 3. **Create tests for existing code**:
    ```
-   /agent-dev 为这个用户登录函数生成测试用例：[代码片段]
+   /agent-dev Generate test cases for this user login function: [code snippet]
    ```
 
 4. **Review code quality**:
    ```
-   /agent-dev 请审查这段代码的质量并提出改进建议：[代码片段]
+   /agent-dev Please review the quality of this code and provide improvement suggestions: [code snippet]
    ```
 
 ### Complete Workflow Example
 
 ```
-/agent-dev 我需要开发一个REST API服务，包含用户注册、登录和资料管理功能。请帮我进行完整的开发工作流程。
+/agent-dev I need to develop a REST API service with user registration, login, and profile management features. Please help me with a complete development workflow.
 ```
 
 The agent will guide you through:
@@ -126,6 +126,13 @@ To contribute to AgentDev Suite:
 2. Create a feature branch
 3. Make your changes
 4. Submit a pull request
+
+## Multilingual Support
+
+AgentDev Suite provides documentation in multiple languages:
+
+- **English**: This document (primary)
+- **中文 (Chinese)**: [docs/zh/README.md](docs/zh/README.md)
 
 ## License
 
