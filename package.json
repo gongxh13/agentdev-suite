@@ -25,11 +25,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/agentdev-suite.git"
+    "url": "https://github.com/gongxh13/agentdev-suite.git"
   },
-  "homepage": "https://github.com/your-username/agentdev-suite",
+  "homepage": "https://github.com/gongxh13/agentdev-suite",
   "bugs": {
-    "url": "https://github.com/your-username/agentdev-suite/issues"
+    "url": "https://github.com/gongxh13/agentdev-suite/issues"
   },
   "engines": {
     "node": ">=14.0.0"

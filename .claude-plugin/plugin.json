@@ -6,8 +6,8 @@
     "name": "Your Team Name",
     "email": "team@example.com"
   },
-  "homepage": "https://github.com/your-username/agentdev-suite",
-  "repository": "https://github.com/your-username/agentdev-suite",
+  "homepage": "https://github.com/gongxh13/agentdev-suite",
+  "repository": "https://github.com/gongxh13/agentdev-suite",
   "license": "MIT",
   "keywords": ["agents", "development", "lifecycle", "requirements", "testing", "collaboration", "workflows"]
 }

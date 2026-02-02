@@ -25,7 +25,7 @@ AgentDev Suite provides a complete set of tools and workflows for software devel
 
 2. Or manually install from source:
    ```bash
-   git clone https://github.com/your-username/agentdev-suite.git
+   git clone https://github.com/gongxh13/agentdev-suite.git
    cd agentdev-suite
    claude plugins link .
    ```

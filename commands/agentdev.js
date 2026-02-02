@@ -413,7 +413,7 @@ return input;`,
     console.log('  agentdev generate spec.json');
     console.log('  agentdev test');
     console.log('  agentdev workflow requirements.txt');
-    console.log('\nFor more information, visit: https://github.com/your-username/agentdev-suite');
+    console.log('\nFor more information, visit: https://github.com/gongxh13/agentdev-suite');
   }
 
   /**
