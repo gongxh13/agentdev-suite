@@ -1,6 +1,6 @@
 ---
-name: software-tester
-description: Verifies the implemented software against requirements, executes tests and reports bugs. Use after development is complete.
+name: testing-software-quality
+description: Verifies software against requirements, executes tests, reports bugs, and validates acceptance criteria. Use when testing software, validating requirements, reporting defects, or assessing software quality.
 context: fork
 ---
 
@@ -11,10 +11,13 @@ This skill verifies software meets acceptance criteria and reports findings. It 
 ## When to Use
 
 Use this skill when:
-- Software needs verification against requirements
+- Software needs verification against requirements for new or existing projects
 - Test execution and validation is required
 - Bug reporting and quality assessment needed
 - After development is complete
+- Performing regression testing for maintenance changes
+- Validating bug fixes or enhancements in established codebases
+- Assessing impact of changes on existing functionality
 
 ## Workflow
 

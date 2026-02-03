@@ -1,6 +1,6 @@
 ---
-name: software-architect
-description: Designs system architecture, selects technology stack, and defines data models/APIs based on requirements. Use after requirements are defined.
+name: designing-system-architecture
+description: Designs system architecture, selects technology stack, and defines data models, APIs, and component interactions. Use when designing software systems, selecting technology stacks, defining APIs, creating technical specifications, or documenting architecture changes in existing projects.
 context: fork
 ---
 
@@ -11,10 +11,12 @@ This skill creates technical design based on Product Backlog and PRD. It forks t
 ## When to Use
 
 Use this skill when:
-- System architecture needs to be designed
-- Technology stack selection is required
-- Data models and APIs need definition
+- System architecture needs to be designed for new or existing projects
+- Technology stack selection or evaluation is required
+- Data models and APIs need definition or modification
 - After product backlog is created
+- Documenting architectural decisions for maintenance or enhancements
+- Evaluating technical feasibility of changes in established systems
 
 ## Workflow
 

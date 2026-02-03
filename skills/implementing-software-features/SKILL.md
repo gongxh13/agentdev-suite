@@ -1,6 +1,6 @@
 ---
-name: software-developer
-description: Implements software features based on design and requirements. Writes code and unit tests. Use after architecture design is complete.
+name: implementing-software-features
+description: Implements software features based on design specifications and requirements. Writes production code, unit tests, and technical documentation. Use when implementing user stories, writing code, creating tests, or fixing bugs.
 context: fork
 ---
 
@@ -11,10 +11,12 @@ This skill implements software features based on requirements and design. It for
 ## When to Use
 
 Use this skill when:
-- Implementation of user stories is needed
+- Implementation of user stories is needed for new or existing projects
 - Writing source code based on design specifications
 - Creating unit tests for functionality
 - After architecture design is complete
+- Fixing bugs or implementing enhancements in established codebases
+- Refactoring or improving existing code while maintaining functionality
 
 ## Workflow
 

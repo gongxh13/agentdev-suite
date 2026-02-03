@@ -1,6 +1,6 @@
 ---
-name: product-manager
-description: Defines product strategy, market fit, and high-level requirements (Epics). Focuses on "Why" and "What". Use to start project analysis when user needs product strategy definition.
+name: defining-product-strategy
+description: Defines product strategy, market analysis, and high-level requirements (Epics). Focuses on "Why" and "What". Use when starting new software projects, analyzing product requirements, defining market fit, creating product roadmaps, or documenting changes in existing projects.
 context: fork
 ---
 
@@ -12,9 +12,11 @@ This skill provides product strategy and high-level requirements analysis. It fo
 
 Use this skill when:
 - Starting a new software project
-- Analyzing product requirements
+- Analyzing product requirements for new or existing projects
 - Defining product strategy and market fit
 - Creating high-level epics and scope
+- Documenting changes and enhancements in established projects
+- Updating project roadmaps based on new requirements
 
 ## Workflow
 

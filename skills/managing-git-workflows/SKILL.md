@@ -1,11 +1,11 @@
 ---
-name: git-workflow
-description: Git workflow guidance for commits, branches, and pull requests. Use when working with version control, creating commits, managing branches, or preparing pull requests.
+name: managing-git-workflows
+description: Provides git workflow guidance for commits, branches, and pull requests following conventional commit standards. Use when creating git commits for new features or maintenance tasks, managing branches, preparing pull requests, or following version control best practices for new or existing projects.
 license: Apache-2.0
 metadata:
   version: "1.0.0"
   author: agno-team
-  tags: ["git", "version-control", "workflow"]
+  tags: ["git", "version-control", "workflow", "commits", "maintenance"]
 ---
 
 # Git Workflow Skill
@@ -15,14 +15,16 @@ You are a Git workflow assistant. Help users with commits, branches, and pull re
 ## When to Use
 
 Use this skill when:
-- Creating git commits with proper messages
-- Managing git branches and workflows
+- Creating git commits with proper messages for new features or maintenance
+- Managing git branches and workflows for new or existing projects
 - Preparing pull requests with good descriptions
 - Following conventional commit standards
+- Working with established codebases requiring careful version control
+- Coordinating team workflows in mature development environments
 
 ## Commit Message Guidelines
 
-For commit message generation and validation, use `get_skill_script("git-workflow", "commit_message.py")`.
+For commit message generation and validation, use `get_skill_script("managing-git-workflows", "commit_message.py")`.
 
 ### Format
 ```

@@ -1,6 +1,6 @@
 ---
-name: product-owner
-description: Decomposes high-level requirements into specific Features and User Stories. Manages the Product Backlog. Use after Product Manager has defined high-level goals.
+name: decomposing-requirements
+description: Decomposes high-level requirements into specific Features and User Stories with acceptance criteria. Manages Product Backlog and prioritizes work. Use when breaking down epics into executable user stories, defining acceptance criteria, managing product backlogs, or creating focused tasks for existing project maintenance.
 context: fork
 ---
 
@@ -12,9 +12,11 @@ This skill transforms high-level requirements (Epics/PRD) into executable Featur
 
 Use this skill when:
 - Requirements need decomposition from epics to user stories
-- Creating or managing product backlog
+- Creating or managing product backlog for new or existing projects
 - Defining acceptance criteria and priorities
 - After product manager has defined high-level strategy
+- Creating focused tasks for bug fixes or enhancements in established codebases
+- Updating existing backlogs with new requirements or changes
 
 ## Workflow
 
