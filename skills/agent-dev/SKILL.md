@@ -1,7 +1,6 @@
 ---
 name: agent-dev
 description: Complete agent-driven software development lifecycle coordination with specialized roles (PM, PO, Architect, Developer, Tester). Use when developing software features or projects end-to-end with agent collaboration.
-context: fork
 ---
 
 # Agent Development Suite
