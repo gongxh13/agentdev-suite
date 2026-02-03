@@ -1,7 +1,6 @@
 ---
 name: git-workflow
 description: Git workflow guidance for commits, branches, and pull requests. Use when working with version control, creating commits, managing branches, or preparing pull requests.
-context: fork
 license: Apache-2.0
 metadata:
   version: "1.0.0"
