@@ -1,5 +1,5 @@
 ---
-description: Start agent-driven development workflow for software features, bug fixes, or complete dev lifecycle
+description: Coordinate complete software development lifecycle with specialized agent roles (PM, PO, Architect, Developer, Tester) using 6-phase workflow
 disable-model-invocation: true
 ---
 

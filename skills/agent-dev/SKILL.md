@@ -1,49 +1,102 @@
-# Agent Development Skill
+---
+name: agent-dev
+description: Complete agent-driven software development lifecycle coordination with specialized roles (PM, PO, Architect, Developer, Tester). Use when developing software features or projects end-to-end with agent collaboration.
+context: fork
+---
+
+# Agent Development Suite
 
 ## Overview
 
-This skill provides best practices and workflows for agent-driven software development using the AgentDev Suite. It covers the full software development lifecycle with intelligent agent collaboration.
+This skill provides complete end-to-end software development lifecycle coordination using specialized agent roles. It combines theoretical best practices with concrete implementation workflows for developing software features or projects with agent collaboration.
+
+## When to Use
+
+Use this skill when:
+- Developing complete software features or projects end-to-end
+- Coordinating multiple specialized agents (PM, PO, Architect, Developer, Tester)
+- Following a structured software development process
+- Managing complex development tasks with iterative approach
 
 ## Core Principles
 
-1. **Agent-First Development**: All development tasks should leverage appropriate agents for analysis, generation, and validation
-2. **Lifecycle Coverage**: Address requirements, development, testing, and deployment phases
-3. **Collaborative Intelligence**: Multiple agents should work together, sharing context and knowledge
+1. **Agent-First Development**: Leverage appropriate specialized agents for each development phase
+2. **Lifecycle Coverage**: Complete coverage from requirements to deployment
+3. **Collaborative Intelligence**: Multiple agents work together through standardized workspace
 4. **Quality Assurance**: Automated validation and testing at every stage
+5. **Iterative Development**: Manage complexity with incremental feature implementation
 
-## Workflow Patterns
+## Workspace Structure
 
-### 1. Requirement Analysis Phase
-```
-Agent Sequence: RequirementAnalyzer → SpecificationValidator → PriorityRanker
-```
-- **RequirementAnalyzer**: Extracts and structures requirements from natural language
-- **SpecificationValidator**: Ensures requirements are complete and unambiguous
-- **PriorityRanker**: Prioritizes requirements based on business value and complexity
+We use a standardized directory structure for collaboration. Ensure agents save their outputs to these specific folders:
 
-### 2. Development Phase
-```
-Agent Sequence: ArchitectureDesigner → CodeGenerator → CodeReviewer
-```
-- **ArchitectureDesigner**: Creates system architecture and component design
-- **CodeGenerator**: Generates implementation code based on specifications
-- **CodeReviewer**: Performs automated code reviews and suggests improvements
+- **PM Workspace**: `docs/01_product_strategy/`
+- **PO Workspace**: `docs/02_product_backlog/`
+- **Architect Workspace**: `docs/03_system_design/`
+- **Dev Workspace**: `src/` (Code), `tests/` (Tests), `docs/04_development/` (Tech Notes)
+- **QA Workspace**: `docs/05_qa_reports/`
 
-### 3. Testing Phase
-```
-Agent Sequence: TestGenerator → TestExecutor → QualityAnalyzer
-```
-- **TestGenerator**: Creates comprehensive test cases
-- **TestExecutor**: Runs tests and captures results
-- **QualityAnalyzer**: Analyzes test coverage and quality metrics
+## Complete Development Workflow
 
-### 4. Deployment Phase
-```
-Agent Sequence: DeploymentPlanner → ConfigurationManager → MonitoringAgent
-```
-- **DeploymentPlanner**: Creates deployment strategy and rollback plans
-- **ConfigurationManager**: Handles environment configuration
-- **MonitoringAgent**: Sets up monitoring and alerting
+### Phase 1: Product Definition (Product Manager)
+- **Action**: Analyze user request for product strategy
+- **Context**: Pass the user's initial request
+- **Instruction**: "Analyze this request. Create or update the Product Requirements Document (PRD) and other strategy docs in `docs/01_product_strategy/`. Ensure the directory exists."
+- **Output**: `docs/01_product_strategy/prd.md`, `market_analysis.md`, `roadmap.md`
+
+### Phase 2: Requirement Decomposition (Product Owner)
+- **Action**: Break down high-level requirements into user stories
+- **Context**: Read `docs/01_product_strategy/`
+- **Instruction**: "Read the strategy docs in `docs/01_product_strategy/`. Create or update the detailed Product Backlog and User Stories in `docs/02_product_backlog/`. Ensure the directory exists."
+- **Output**: `docs/02_product_backlog/backlog.md`, `features/*.md`
+
+### Phase 3: Architecture Design (Software Architect)
+- **Action**: Design system architecture based on requirements
+- **Context**: Read `docs/01_product_strategy/` and `docs/02_product_backlog/`
+- **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `docs/03_system_design/`. Ensure the directory exists."
+- **Output**: `docs/03_system_design/architecture.md`, `api_spec.md`, `database_schema.md`
+
+### Phase 4: Iterative Development (Developer & Tester)
+
+**Strategy**: For large projects or complex features, **DO NOT** attempt to build everything in one go. Use an iterative approach to manage context window and complexity.
+
+**Action Loop**:
+1. **Plan**: Review the Backlog (`docs/02_product_backlog/`) and Design (`docs/03_system_design/`) to identify a list of distinct Features or Modules to implement.
+2. **Iterate**: For each Feature/Module in the list:
+   - **Develop**: Implement **ONLY** the specific feature
+     - **Instruction**: "Implement **ONLY** the [Feature Name] defined in [Specific File Path]. Read `docs/03_system_design/` for architectural guidance. Save code to `src/`."
+   - **Verify**: Test the specific feature
+     - **Instruction**: "Verify **ONLY** the [Feature Name]. Run tests and save the report to `docs/05_qa_reports/`."
+   - **Handle Bugs**: If bugs are found, fix them immediately before moving to next feature
+   - **Commit (Optional)**: Use `git-workflow` skill to commit this specific feature if it passes tests
+
+### Phase 5: Final Integration & Acceptance
+- **Action**: Once all features are implemented and verified individually
+- **Instruction**: Run full regression test suite to ensure no regressions were introduced
+- **Output**: Final test report in `docs/05_qa_reports/`
+
+### Phase 6: Delivery & Version Control
+- **Condition**: Only proceed if Final Integration Testing is successful
+- **Action**: Use the `git-workflow` skill to commit the final artifacts
+- **Instruction**:
+  1. "Stage all changes in the workspace (`git add .`)."
+  2. "Consult the `git-workflow` skill to generate a Semantic Commit Message based on the features implemented."
+  3. "Execute `git commit -m '...'` with the generated message."
+
+## Handling Feedback Loops (Bugs)
+
+- **Monitor**: Check the latest report in `docs/05_qa_reports/`
+- **If Bugs Found**:
+  1. Call developer to fix identified bugs
+  2. **Instruction**: "Read the latest report in `docs/05_qa_reports/` and fix identified bugs in `src/`."
+  3. After fixes, call tester again for verification
+- **Success**: When tests pass, proceed to next step
+
+## Data Passing Strategy
+
+- **Directory-Based**: Agents read from upstream directories and write to their own dedicated workspace directories
+- **Persistence**: Check for existing files and update/append when continuing ongoing tasks
+- **Consistency**: Maintain standardized directory structure across all agents
 
 ## Best Practices
 
@@ -52,80 +105,107 @@ Agent Sequence: DeploymentPlanner → ConfigurationManager → MonitoringAgent
 - Validate requirements against existing system constraints
 - Prioritize using MoSCoW method (Must have, Should have, Could have, Won't have)
 
-### For Code Generation
+### For Code Implementation
 - Follow existing project patterns and conventions
 - Include appropriate error handling and logging
 - Generate corresponding test files
 - Document public APIs and interfaces
 
 ### For Testing
-- Aim for minimum 80% test coverage
+- Aim for comprehensive test coverage
 - Include unit, integration, and end-to-end tests
 - Test edge cases and error conditions
 - Validate performance requirements
 
 ### For Collaboration
-- Maintain shared context between agents
+- Maintain shared context through directory-based workspace
 - Use standardized communication formats
 - Document agent decisions and rationale
-- Implement fallback mechanisms for agent failures
+- Implement feedback loops for quality-critical tasks
+
+## Checklist for Project Coordination
+
+Copy this checklist when coordinating a software development project:
+
+```
+Software Development Progress:
+- [ ] Phase 1: Product Definition (Product Manager)
+- [ ] Phase 2: Requirement Decomposition (Product Owner)
+- [ ] Phase 3: Architecture Design (Software Architect)
+- [ ] Phase 4: Iterative Development:
+  - [ ] Feature 1: Development & Testing
+  - [ ] Feature 2: Development & Testing
+  - [ ] Feature 3: Development & Testing
+- [ ] Phase 5: Final Integration Testing
+- [ ] Phase 6: Delivery & Version Control
+```
+
+## Available Specialized Skills
+
+This suite coordinates these specialized skills:
+- `product-manager`: Product strategy and high-level requirements
+- `product-owner`: Backlog management and user stories
+- `software-architect`: System architecture design
+- `software-developer`: Code implementation
+- `software-tester`: Testing and quality verification
+- `git-workflow`: Git operations and commit guidelines
 
 ## Common Use Cases
 
 ### New Feature Development
-1. Analyze feature requirements using RequirementAnalyzer
-2. Design architecture with ArchitectureDesigner
-3. Generate implementation code with CodeGenerator
-4. Create and run tests with TestGenerator/Executor
-5. Perform code review with CodeReviewer
-6. Deploy with DeploymentPlanner
+1. Analyze requirements with Product Manager
+2. Decompose into user stories with Product Owner
+3. Design architecture with Software Architect
+4. Implement features iteratively with Developer
+5. Verify with Tester
+6. Final integration and delivery
 
 ### Bug Fix Workflow
-1. Reproduce and analyze bug with DebugAgent
-2. Identify root cause with RootCauseAnalyzer
-3. Generate fix with CodeGenerator
-4. Test fix with TestExecutor
-5. Validate fix doesn't introduce regressions
+1. Reproduce and analyze bug
+2. Identify root cause
+3. Generate fix with Developer
+4. Test fix with Tester
+5. Validate no regressions introduced
 
 ### Refactoring Process
-1. Analyze code quality with CodeQualityAnalyzer
-2. Design refactoring strategy with ArchitectureDesigner
-3. Execute refactoring with CodeGenerator
-4. Validate with TestExecutor
+1. Analyze code quality
+2. Design refactoring strategy
+3. Execute refactoring
+4. Validate with tests
 5. Ensure backward compatibility
 
 ## Configuration
 
 Agents can be configured through:
-- Environment variables for API keys and endpoints
-- Configuration files in `config/` directory
-- Command-line arguments for specific behaviors
+- Directory-based workspace structure
+- Standardized file formats and templates
+- Project-specific conventions in `docs/` directories
 
 ## Troubleshooting
 
 ### Common Issues
-- **Agent communication failures**: Check network connectivity and API endpoints
-- **Poor quality output**: Verify input quality and agent configuration
-- **Performance issues**: Monitor resource usage and adjust concurrency settings
+- **Agent coordination failures**: Check directory structure and file permissions
+- **Missing context**: Verify upstream directories contain required documents
+- **Workspace issues**: Ensure directories exist with `mkdir -p` before writing
 
 ### Debugging Tips
-- Enable verbose logging with `DEBUG=agentdev:*`
-- Check agent logs in `logs/` directory
-- Use the `agentdev status` command to monitor agent health
+- Check agent outputs in respective workspace directories
+- Verify file formats and naming conventions
+- Review test reports in `docs/05_qa_reports/`
 
 ## Integration
 
 AgentDev Suite integrates with:
-- Version control systems (Git)
-- CI/CD pipelines
-- Project management tools
-- Monitoring systems
+- Version control systems through `git-workflow` skill
+- CI/CD pipelines through standardized test outputs
+- Project management through structured documentation
 
-## Extension
+## Using the `/agent-dev` Command
 
-To add new agents:
-1. Create agent implementation in `agents/` directory
-2. Define agent interface and capabilities
-3. Register agent in `agents/registry.json`
-4. Update skill documentation
-5. Add corresponding tests
+The `/agent-dev` command activates this skill for complete software development coordination:
+
+```
+/agent-dev I need to develop a [project description] - please coordinate the full team
+```
+
+This will initiate the complete 6-phase development workflow with specialized agent coordination.
