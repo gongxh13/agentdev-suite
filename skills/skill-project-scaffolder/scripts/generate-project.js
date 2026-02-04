@@ -569,12 +569,14 @@ ln -s ~/.config/opencode/${PROJECT_NAME}/skills ~/.config/opencode/skills/${PROJ
 
 ## Using Skills
 
-Once installed, use the \`Skill\` tool (or platform equivalent) to load ${PROJECT_NAME} skills:
+Once installed, use the \`Skill\` tool to load the core workflow skill:
 
 \`\`\`bash
 # In Claude Code conversation
-Skill: ${PROJECT_NAME}/using-${PROJECT_NAME}
+Skill: using-${PROJECT_NAME}
 \`\`\`
+
+This skill establishes mandatory skill discipline for using ${PROJECT_NAME} and provides access to all other skills in the library.
 
 ## The Core Workflow Skill
 
@@ -881,6 +883,8 @@ When instructed to install ${PROJECT_NAME}, fetch this file and follow these ins
 \`\`\`
 
 You should see skill listings and bootstrap instructions.
+
+**Note:** After installation, you may need to restart your Codex application for changes to take effect.
 `);
 
 // 8. Codex bootstrap script
@@ -1037,6 +1041,8 @@ ls -la ~/.config/opencode/plugins/${PROJECT_NAME}.js
 ls -la ~/.config/opencode/skills/${PROJECT_NAME}
 \`\`\`
 
+**Note:** After installation, you may need to restart OpenCode for changes to take effect.
+
 ## Tool Mapping for OpenCode
 - \`TodoWrite\` → \`update_plan\`
 - \`Task\` tool with subagents → Use OpenCode's subagent system (@mention)
@@ -1088,17 +1094,8 @@ claude plugin list | grep ${PROJECT_NAME}
 
 Should show ${PROJECT_NAME} in the list.
 
-## Plugin Configuration
-The following files are included:
-- \`.claude-plugin/plugin.json\`: Plugin metadata
-- \`.claude-plugin/marketplace.json\`: Marketplace listing (complete format)
+**Note:** After installation, you may need to restart Claude Code for changes to take effect.
 
-## Skills Usage
-Once installed, use the \`Skill\` tool to load ${PROJECT_NAME} skills:
-\`\`\`bash
-# In Claude Code conversation
-Skill: ${PROJECT_NAME}/using-${PROJECT_NAME}
-\`\`\`
 
 ## Troubleshooting
 

@@ -21,17 +21,7 @@ claude plugin list | grep agentdev-suite
 
 Should show agentdev-suite in the list.
 
-## Plugin Configuration
-The following files are included:
-- `.claude-plugin/plugin.json`: Plugin metadata
-- `.claude-plugin/marketplace.json`: Marketplace listing (complete format)
-
-## Skills Usage
-Once installed, use the `Skill` tool to load agentdev-suite skills:
-```bash
-# In Claude Code conversation
-Skill: agentdev-suite/using-agentdev-suite
-```
+**Note:** After installation, you may need to restart Claude Code for changes to take effect.
 
 ## Troubleshooting
 

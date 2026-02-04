@@ -116,6 +116,17 @@ mkdir -p ~/.config/opencode/skills
 ln -s ~/.config/opencode/agentdev-suite/skills ~/.config/opencode/skills/agentdev-suite
 ```
 
+## Using Skills
+
+Once installed, use the `Skill` tool to load the core workflow skill:
+
+```bash
+# In Claude Code conversation
+Skill: using-agentdev-suite
+```
+
+This skill establishes mandatory skill discipline for using agentdev-suite and provides access to all other skills in the library.
+
 ## Quick Start
 
 Once the plugin is installed, you can use the `/agent-dev` command in Claude to access agent development capabilities:

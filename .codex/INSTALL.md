@@ -28,3 +28,5 @@ When instructed to install agentdev-suite, fetch this file and follow these inst
 ```
 
 You should see skill listings and bootstrap instructions.
+
+**Note:** After installation, you may need to restart your Codex application for changes to take effect.

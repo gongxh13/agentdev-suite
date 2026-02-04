@@ -30,6 +30,8 @@ ls -la ~/.config/opencode/plugins/agentdev-suite.js
 ls -la ~/.config/opencode/skills/agentdev-suite
 ```
 
+**Note:** After installation, you may need to restart OpenCode for changes to take effect.
+
 ## Tool Mapping for OpenCode
 - `TodoWrite` → `update_plan`
 - `Task` tool with subagents → Use OpenCode's subagent system (@mention)
