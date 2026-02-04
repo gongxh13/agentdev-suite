@@ -114,10 +114,13 @@ function parseGitRemoteUrl(remoteUrl) {
   cleanUrl = cleanUrl.replace(/^(https?:\/\/|git@)/, '');
   cleanUrl = cleanUrl.replace(/:/, '/'); // Convert git@github.com:user/repo to github.com/user/repo
 
-  // Extract owner and repo from URL
-  const match = cleanUrl.match(/(?:[^\/]+\/){2}([^\/]+)\/([^\/]+)$/);
-  if (match) {
-    return { owner: match[1], repo: match[2] };
+  // Extract owner and repo from URL - simpler approach
+  const parts = cleanUrl.split('/');
+  if (parts.length >= 2) {
+    // Last part is repo, second last is owner
+    const repo = parts.pop(); // Remove and get last element
+    const owner = parts.pop(); // Remove and get second last element
+    return { owner, repo };
   }
 
   return { owner: null, repo: null };
