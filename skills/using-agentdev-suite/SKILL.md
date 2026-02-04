@@ -197,7 +197,8 @@ AgentDev Suite is a comprehensive agent development suite for Claude Code that c
 - **Requirements & Strategy Skills** (defining-product-strategy, decomposing-requirements): Define product vision and break down requirements
 - **Architecture & Implementation Skills** (designing-system-architecture, implementing-software-features): Design systems and implement features
 - **Quality Assurance Skills** (testing-software-quality): Ensure software quality through testing
-- **Project Management Skills** (skill-project-scaffolder): Create and manage multi-platform skill projects
+- **Project Management Skills** (skill-project-scaffolder): Create and manage multi-platform skill project structures (entire projects with platform configurations)
+- **Skill Development Skills** (skill-creator): Create individual skills following Claude's best practices (creates SKILL.md and associated resources within a skills/ directory)
 
 ## Platform Support
 
@@ -210,4 +211,5 @@ AgentDev Suite is a comprehensive agent development suite for Claude Code that c
 - "I need to develop a REST API service with user management" → defining-product-strategy → decomposing-requirements → designing-system-architecture → implementing-software-features → testing-software-quality
 - "Help me coordinate a development team for a new feature" → coordinating-agent-development → managing-git-workflows
 - "Create a multi-platform skill project" → skill-project-scaffolder
+- "Create a new skill following best practices" → skill-creator
 - "Fix a bug in the authentication module" → testing-software-quality → implementing-software-features

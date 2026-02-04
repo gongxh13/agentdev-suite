@@ -17,7 +17,7 @@ Generate or restructure skill projects following multi-platform architecture for
 - ✅ **DOES**: Generate platform configs, directory structure, testing framework
 - ✅ **DOES**: Create proper multi-platform architecture
 - ✅ **DOES**: Support new projects and migration of existing projects
-- ❌ **DOES NOT**: Teach skill writing (see `writing-skills` skill)
+- ❌ **DOES NOT**: Teach skill writing (see `skill-creator` skill)
 - ❌ **DOES NOT**: Create skill content
 
 ## When to Use
@@ -435,7 +435,7 @@ Remember: The generated structure is a starting point. Customize it to fit your 
 
 ## Related Skills
 
-- `writing-skills`: How to write effective SKILL.md files
+- `skill-creator`: How to write effective SKILL.md files following Claude's best practices
 - `using-{PROJECT_NAME}`: Understanding multi-platform skill architecture
 - `test-driven-development`: Testing methodology for skills
 
