@@ -1,0 +1,28 @@
+{
+  "name": "agentdev-suite",
+  "version": "1.0.0",
+  "description": "Agent development suite for Claude Code: Full software development lifecycle with agent collaboration, requirement analysis, development, and testing",
+  "main": "lib/skills-core.js",
+  "scripts": {
+    "test": "node tests/structure.test.js",
+    "test:structure": "node tests/structure.test.js",
+    "test:platforms": "node tests/platform-validation.js",
+    "validate": "npm test"
+  },
+  "keywords": [
+    "skills",
+    "claude-code",
+    "opencode",
+    "codex",
+    "ai-assistants"
+  ],
+  "author": "gongxh13 <2250244225@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gongxh13/agentdev-suite.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

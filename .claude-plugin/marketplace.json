@@ -2,8 +2,8 @@
   "name": "agentdev-suite-dev",
   "description": "Development marketplace for AgentDev Suite - agent development lifecycle tools",
   "owner": {
-    "name": "Your Team Name",
-    "email": "team@example.com"
+    "name": "gongxh13",
+    "email": "2250244225@qq.com"
   },
   "plugins": [
     {
@@ -12,8 +12,8 @@
       "version": "1.0.0",
       "source": "./",
       "author": {
-        "name": "Your Team Name",
-        "email": "team@example.com"
+        "name": "gongxh13",
+        "email": "2250244225@qq.com"
       }
     }
   ]

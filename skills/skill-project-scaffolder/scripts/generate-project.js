@@ -303,11 +303,115 @@ directories.forEach(dir => {
   }
 });
 
+// Helper function to merge README.md content in update mode
+function mergeReadme(existingContent, newContent, projectName) {
+  // If no existing content, return new content
+  if (!existingContent || existingContent.trim() === '') {
+    return newContent;
+  }
+
+  // Extract installation section from new README content
+  const newLines = newContent.split('\n');
+  let installStart = -1;
+  let installEnd = -1;
+
+  // Find "## Installation" section in new content
+  for (let i = 0; i < newLines.length; i++) {
+    if (newLines[i].match(/^##\s+Installation/)) {
+      installStart = i;
+      // Find end of installation section (next ## section or end)
+      for (let j = i + 1; j < newLines.length; j++) {
+        if (newLines[j].match(/^##\s+/) && !newLines[j].match(/^##\s+Installation/)) {
+          installEnd = j;
+          break;
+        }
+      }
+      if (installEnd === -1) {
+        installEnd = newLines.length;
+      }
+      break;
+    }
+  }
+
+  // If no installation section found in new content, return existing
+  if (installStart === -1) {
+    return existingContent;
+  }
+
+  const newInstallContent = newLines.slice(installStart, installEnd).join('\n');
+
+  // Process existing content - replace or add installation section
+  const lines = existingContent.split('\n');
+  let existingInstallStart = -1;
+  let existingInstallEnd = -1;
+
+  // Find "## Installation" or "## 安装" section in existing content
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].match(/^##\s+(Installation|安装)/)) {
+      existingInstallStart = i;
+      // Find end of this section
+      for (let j = i + 1; j < lines.length; j++) {
+        if (lines[j].match(/^##\s+/)) {
+          existingInstallEnd = j;
+          break;
+        }
+      }
+      if (existingInstallEnd === -1) {
+        existingInstallEnd = lines.length;
+      }
+      break;
+    }
+  }
+
+  // Check if existing README already has multi-platform content
+  const hasMultiPlatform = existingContent.includes('OpenCode') || existingContent.includes('Codex') || existingContent.includes('Multi-Platform Support');
+
+  if (hasMultiPlatform) {
+    // Already has multi-platform content, keep existing
+    console.log(`  Existing README.md already has multi-platform content, keeping as-is`);
+    return existingContent;
+  }
+
+  if (existingInstallStart !== -1) {
+    // Replace existing installation section with new one
+    lines.splice(existingInstallStart, existingInstallEnd - existingInstallStart, newInstallContent);
+    return lines.join('\n');
+  } else {
+    // No installation section found, add it before "## Quick Start" or at the end
+    let insertionPoint = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].match(/^##\s+Quick Start/)) {
+        insertionPoint = i;
+        break;
+      }
+    }
+    if (insertionPoint === -1) {
+      insertionPoint = lines.length;
+    }
+
+    lines.splice(insertionPoint, 0, '', newInstallContent);
+    return lines.join('\n');
+  }
+}
+
 // Helper function to write files with proper line endings
 function writeFile(filePath, content) {
   const fullPath = path.join(projectDir, filePath);
   if (UPDATE_MODE && fs.existsSync(fullPath)) {
-    console.log(`  File already exists, skipping: ${filePath}`);
+    // Special handling for README.md in update mode - merge content
+    if (filePath === 'README.md') {
+      try {
+        const existingContent = fs.readFileSync(fullPath, 'utf8');
+        const mergedContent = mergeReadme(existingContent, content, PROJECT_NAME);
+        fs.writeFileSync(fullPath, mergedContent, 'utf8');
+        console.log(`  Merged content into existing: ${filePath}`);
+      } catch (error) {
+        console.log(`  Error merging ${filePath}, skipping: ${error.message}`);
+        return;
+      }
+    } else {
+      console.log(`  File already exists, skipping: ${filePath}`);
+    }
     return;
   }
   // Ensure parent directory exists

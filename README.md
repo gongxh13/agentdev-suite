@@ -16,34 +16,104 @@ AgentDev Suite provides a complete set of tools and workflows for software devel
 
 ## Installation
 
-### Method 1: Install via Marketplace (Recommended)
+**Note:** Installation differs by platform and user type (AI assistant vs human).
 
-1. First, add the AgentDev Suite marketplace:
-   ```bash
-   /plugin marketplace add https://github.com/gongxh13/agentdev-suite
-   ```
+### For AI Assistants
 
-2. Then install the plugin from the marketplace:
-   ```bash
-   /plugin install agentdev-suite@agentdev-suite-dev
-   ```
+AI assistants can directly fetch installation instructions:
 
-### Method 2: Install directly from GitHub
-
-```bash
-/plugin install https://github.com/gongxh13/agentdev-suite
+#### Codex
+Tell Codex:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.codex/INSTALL.md
 ```
 
-### Uninstallation
-
-To uninstall the plugin:
-```bash
-/plugin uninstall agentdev-suite
+#### OpenCode
+Tell OpenCode:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.opencode/INSTALL.md
 ```
 
-To remove the marketplace:
+#### Claude Code
+Tell Claude Code:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.claude-plugin/INSTALL.md
+```
+
+### For Human Users
+
+#### Remote Installation (from Git repository)
+Currently only Claude Code supports remote installation from Git repositories:
+
+##### Claude Code
+
+**Command Line:**
 ```bash
-/plugin marketplace remove agentdev-suite-dev
+# Add Git repository as a marketplace
+claude plugin marketplace add https://github.com/gongxh13/agentdev-suite.git
+# Install the plugin from the added marketplace
+claude plugin install agentdev-suite
+```
+
+**In Claude Code (slash commands):**
+First, register the marketplace from the Git repository:
+```
+/plugin marketplace add https://github.com/gongxh13/agentdev-suite.git
+```
+
+Then install the plugin from this marketplace. Check the marketplace name with `/plugin marketplace list`:
+```
+/plugin install agentdev-suite@<marketplace-name>
+```
+
+*Example (if marketplace is named "agentdev-suite-marketplace"):*
+```
+/plugin install agentdev-suite@agentdev-suite-marketplace
+```
+
+#### Source Code Installation
+Install from local source code:
+
+##### Claude Code
+
+**Command Line:**
+```bash
+# Add local directory as a marketplace
+claude plugin marketplace add ./
+# Install the plugin from the local marketplace
+claude plugin install agentdev-suite
+```
+
+**In Claude Code (slash commands):**
+First, register the local directory as a marketplace (with a name):
+```
+/plugin marketplace add ./ --name agentdev-suite-dev
+```
+
+Then install the plugin from this marketplace:
+```
+/plugin install agentdev-suite@agentdev-suite-dev
+```
+
+*If you don't specify a name, check the marketplace name with `/plugin marketplace list` and use `@<marketplace-name>` suffix.*
+
+##### Codex
+```bash
+cp -r . ~/.codex/agentdev-suite
+# Update ~/.codex/AGENTS.md with:
+# ## agentdev-suite
+# <EXTREMELY_IMPORTANT>
+# You have access to agentdev-suite. RIGHT NOW run: ~/.codex/agentdev-suite/.codex/agentdev-suite-codex bootstrap
+# </EXTREMELY_IMPORTANT>
+```
+
+##### OpenCode
+```bash
+git clone https://github.com/gongxh13/agentdev-suite.git ~/.config/opencode/agentdev-suite
+mkdir -p ~/.config/opencode/plugins
+ln -s ~/.config/opencode/agentdev-suite/.opencode/plugins/agentdev-suite.js ~/.config/opencode/plugins/agentdev-suite.js
+mkdir -p ~/.config/opencode/skills
+ln -s ~/.config/opencode/agentdev-suite/skills ~/.config/opencode/skills/agentdev-suite
 ```
 
 ## Quick Start
