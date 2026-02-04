@@ -1,6 +1,7 @@
 ---
 name: skill-project-scaffolder
-description: Use when creating or restructuring skill projects to support multiple AI platforms (Claude Code, OpenCode, Codex) with Superpowers-style architecture
+description: Use when creating or restructuring skill projects to support multiple AI platforms (Claude Code, OpenCode, Codex) with Superpowers-style architecture.
+context: fork
 ---
 
 # Skill Project Scaffolder
