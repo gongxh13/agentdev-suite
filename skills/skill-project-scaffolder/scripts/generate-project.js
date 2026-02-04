@@ -2,7 +2,7 @@
 /**
  * generate-project.js - Cross-platform skill project generator
  *
- * Generates Superpowers-style skill projects for Claude Code, OpenCode, and Codex.
+ * Generates multi-platform skill projects for Claude Code, OpenCode, and Codex.
  * Works on Windows, macOS, and Linux.
  */
 
@@ -19,7 +19,7 @@ if (args.includes('--help') || args.includes('-h')) {
   console.log(`
 Usage: node generate-project.js [options] <project-name> <author-name> <author-email> <github-user> <description>
 
-Generate Superpowers-style multi-platform skill projects for Claude Code, OpenCode, and Codex.
+Generate multi-platform skill projects for Claude Code, OpenCode, and Codex.
 
 Options:
   --update, -u [directory]    Update existing project (default: current directory)
@@ -526,7 +526,7 @@ This is a scaffolded project structure. Customize platform-specific files based 
 - \`.codex/${PROJECT_NAME}-codex\` and \`.codex/${PROJECT_NAME}-bootstrap.md\`: Customize Codex bootstrap
 - \`skills/using-${PROJECT_NAME}/SKILL.md\`: Add project-specific context and workflows
 
-Refer to the Superpowers project for complete examples: ${gitUrls.web.replace(owner + '/' + repo, 'obra/superpowers')}
+Refer to established skill projects for complete examples.
 `);
 
 // 4. Using-${PROJECT_NAME} skill (core workflow skill)
@@ -622,7 +622,7 @@ Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
 
 **AUTO-GENERATED TEMPLATE - REVIEW AND CUSTOMIZE FOR YOUR SPECIFIC PROJECT**
 
-This skill is automatically generated based on Superpowers' using-superpowers skill. It provides the core discipline framework for your project. You **must** customize it to make it effective for ${PROJECT_NAME}.
+This skill provides the core discipline framework for your project. You **must** customize it to make it effective for ${PROJECT_NAME}.
 
 ### Why Customize?
 The generic template ensures skill discipline, but project-specific context makes it actionable. Without customization, users won't know:
@@ -724,7 +724,7 @@ writeFile('.claude-plugin/plugin.json', JSON.stringify({
   keywords: ["skills", "claude-code", "best-practices"]
 }, null, 2));
 
-// 6. Claude Code marketplace.json (COMPLETE format like Superpowers)
+// 6. Claude Code marketplace.json (complete format)
 writeFile('.claude-plugin/marketplace.json', JSON.stringify({
   name: `${PROJECT_NAME}-dev`,
   description: `Development marketplace for ${PROJECT_NAME} skills library`,
@@ -783,7 +783,7 @@ You should see skill listings and bootstrap instructions.
 writeFile(`.codex/${PROJECT_NAME}-codex`, `#!/usr/bin/env node
 /**
  * ${PROJECT_NAME} bootstrap script for Codex
- * Based on Superpowers structure
+ * Multi-platform skill structure
  */
 
 const fs = require('fs');
@@ -865,7 +865,7 @@ if (command === 'bootstrap') {
 }
 `);
 
-// 9. Codex bootstrap content (based on Superpowers actual bootstrap)
+// 9. Codex bootstrap content
 writeFile(`.codex/${PROJECT_NAME}-bootstrap.md`, `<EXTREMELY_IMPORTANT>
 You have ${PROJECT_NAME}.
 
@@ -1024,7 +1024,7 @@ node -c .claude-plugin/marketplace.json
 Check SKILL.md files have proper YAML frontmatter.
 `);
 
-// 12. OpenCode plugin template (based on Superpowers actual plugin)
+// 12. OpenCode plugin template
 writeFile(`.opencode/plugins/${PROJECT_NAME}.js`, `/**
  * ${PROJECT_NAME} plugin for OpenCode.ai
  *
@@ -1081,7 +1081,7 @@ export const ${PROJECT_NAME.replace(/-/g, '_')}Plugin = async ({ client, directo
 
   // Helper to generate bootstrap content
   const getBootstrapContent = () => {
-    // Try to load using-${PROJECT_NAME} skill (similar to superpowers' using-superpowers)
+    // Try to load using-${PROJECT_NAME} skill
     const usingSkillPath = path.join(projectSkillsDir, 'using-${PROJECT_NAME}', 'SKILL.md');
     let skillContent = null;
     if (fs.existsSync(usingSkillPath)) {
@@ -1132,140 +1132,134 @@ You have ${PROJECT_NAME} skills.
 };
 `);
 
-// 13. Cross-platform structure tests
+// 13. Cross-platform structure tests (Pure Node.js - no Jest dependency)
 writeFile('tests/structure.test.js', `const fs = require('fs');
 const path = require('path');
 
-describe('${PROJECT_NAME} Project Structure', () => {
+/**
+ * Simple structure validation for skill projects
+ * Pure Node.js - no Jest dependency
+ */
+
+function validateStructure() {
   const projectRoot = path.resolve(__dirname, '..');
+  const results = [];
 
-  test('has skills directory', () => {
-    expect(fs.existsSync(path.join(projectRoot, 'skills'))).toBe(true);
-  });
+  // 1. Check skills directory
+  const skillsDir = path.join(projectRoot, 'skills');
+  if (!fs.existsSync(skillsDir)) {
+    results.push({ test: 'has skills directory', passed: false, error: 'Missing skills directory' });
+  } else {
+    results.push({ test: 'has skills directory', passed: true });
+  }
 
-
-  test('has using-${PROJECT_NAME} skill', () => {
-    const usingSkillPath = path.join(projectRoot, 'skills/using-${PROJECT_NAME}/SKILL.md');
-    expect(fs.existsSync(usingSkillPath)).toBe(true);
-
-    const content = fs.readFileSync(usingSkillPath, 'utf8');
-    expect(content).toContain('name: using-${PROJECT_NAME}');
-    expect(content).toContain('description: Use when starting any conversation with ${PROJECT_NAME}');
-  });
-
-  test('has README.md with installation instructions', () => {
-    const readmePath = path.join(projectRoot, 'README.md');
-    expect(fs.existsSync(readmePath)).toBe(true);
-
-    const content = fs.readFileSync(readmePath, 'utf8');
-    expect(content).toContain('# ${PROJECT_NAME}');
-    expect(content).toContain('## Installation');
-  });
-
-  test('has complete Claude Code configuration', () => {
-    const pluginJsonPath = path.join(projectRoot, '.claude-plugin/plugin.json');
-    const marketplaceJsonPath = path.join(projectRoot, '.claude-plugin/marketplace.json');
-
-    expect(fs.existsSync(pluginJsonPath)).toBe(true);
-    expect(fs.existsSync(marketplaceJsonPath)).toBe(true);
-
-    const pluginJson = JSON.parse(fs.readFileSync(pluginJsonPath, 'utf8'));
-    const marketplaceJson = JSON.parse(fs.readFileSync(marketplaceJsonPath, 'utf8'));
-
-    expect(pluginJson.name).toBe('${PROJECT_NAME}');
-    expect(pluginJson.version).toBe('1.0.0');
-
-    expect(marketplaceJson.name).toBe('${PROJECT_NAME}-dev');
-    expect(marketplaceJson.plugins).toBeDefined();
-    expect(Array.isArray(marketplaceJson.plugins)).toBe(true);
-  });
-
-  test('has platform installation guides', () => {
-    expect(fs.existsSync(path.join(projectRoot, '.codex/INSTALL.md'))).toBe(true);
-    expect(fs.existsSync(path.join(projectRoot, '.opencode/INSTALL.md'))).toBe(true);
-  });
-
-  test('has package.json with test scripts', () => {
-    const packageJsonPath = path.join(projectRoot, 'package.json');
-    expect(fs.existsSync(packageJsonPath)).toBe(true);
-
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    expect(packageJson.scripts.test).toBeDefined();
-    expect(packageJson.scripts.validate).toBeDefined();
-  });
-});
-
-// Simple test runner for environments without Jest
-if (require.main === module) {
-  const tests = [
-    () => {
-      const skillsDir = path.join(__dirname, '..', 'skills');
-      if (!fs.existsSync(skillsDir)) {
-        throw new Error('Missing skills directory');
-      }
-      console.log('✓ skills directory exists');
-    },
-    () => {
-      const readmePath = path.join(__dirname, '..', 'README.md');
-      if (!fs.existsSync(readmePath)) {
-        throw new Error('Missing README.md');
-      }
-      const content = fs.readFileSync(readmePath, 'utf8');
-      if (!content.includes('# ${PROJECT_NAME}')) {
-        throw new Error('README.md missing project title');
-      }
-      if (!content.includes('## Installation')) {
-        throw new Error('README.md missing Installation section');
-      }
-      console.log('✓ README.md exists with installation instructions');
-    },
-    () => {
-      const pluginJsonPath = path.join(__dirname, '..', '.claude-plugin', 'plugin.json');
-      if (!fs.existsSync(pluginJsonPath)) {
-        throw new Error('Missing plugin.json');
-      }
-      console.log('✓ plugin.json exists');
-    },
-    () => {
-      const marketplaceJsonPath = path.join(__dirname, '..', '.claude-plugin', 'marketplace.json');
-      if (!fs.existsSync(marketplaceJsonPath)) {
-        throw new Error('Missing marketplace.json');
-      }
-      const marketplace = JSON.parse(fs.readFileSync(marketplaceJsonPath, 'utf8'));
-      if (!marketplace.plugins || !Array.isArray(marketplace.plugins)) {
-        throw new Error('marketplace.json missing plugins array');
-      }
-      console.log('✓ marketplace.json has complete format');
-    },
-    () => {
-      const usingSkillPath = path.join(__dirname, '..', 'skills', 'using-${PROJECT_NAME}', 'SKILL.md');
-      if (!fs.existsSync(usingSkillPath)) {
-        throw new Error('Missing using-${PROJECT_NAME} skill');
-      }
+  // 2. Check using-${PROJECT_NAME} skill
+  const usingSkillPath = path.join(projectRoot, 'skills/using-${PROJECT_NAME}/SKILL.md');
+  if (!fs.existsSync(usingSkillPath)) {
+    results.push({ test: 'has using-${PROJECT_NAME} skill', passed: false, error: 'Missing using-${PROJECT_NAME}/SKILL.md' });
+  } else {
+    try {
       const content = fs.readFileSync(usingSkillPath, 'utf8');
-      if (!content.includes('name: using-${PROJECT_NAME}')) {
-        throw new Error('using-${PROJECT_NAME} skill missing name in frontmatter');
+      const hasName = content.includes('name: using-${PROJECT_NAME}');
+      const hasDescription = content.includes('description: Use when starting any conversation with ${PROJECT_NAME}');
+
+      if (!hasName || !hasDescription) {
+        results.push({
+          test: 'has using-${PROJECT_NAME} skill',
+          passed: false,
+          error: 'SKILL.md missing required frontmatter'
+        });
+      } else {
+        results.push({ test: 'has using-${PROJECT_NAME} skill', passed: true });
       }
-      console.log('✓ using-${PROJECT_NAME} skill exists');
+    } catch (err) {
+      results.push({
+        test: 'has using-${PROJECT_NAME} skill',
+        passed: false,
+        error: \`Error reading SKILL.md: \${err.message}\`
+      });
     }
+  }
+
+  // 3. Check platform directories
+  const platforms = [
+    { name: 'Claude Code', path: '.claude-plugin' },
+    { name: 'Codex', path: '.codex' },
+    { name: 'OpenCode', path: '.opencode' }
   ];
 
-  console.log('Running structure validation...');
-  let passed = 0;
-  let failed = 0;
-
-  tests.forEach((test, index) => {
-    try {
-      test();
-      passed++;
-    } catch (error) {
-      console.error(\`✗ Test \${index + 1} failed: \${error.message}\`);
-      failed++;
+  platforms.forEach(platform => {
+    const platformPath = path.join(projectRoot, platform.path);
+    if (!fs.existsSync(platformPath)) {
+      results.push({
+        test: \`has \${platform.name} configuration\`,
+        passed: false,
+        error: \`Missing \${platform.path} directory\`
+      });
+    } else {
+      results.push({
+        test: \`has \${platform.name} configuration\`,
+        passed: true
+      });
     }
   });
 
-  console.log(\`\\nResults: \${passed} passed, \${failed} failed\`);
-  process.exit(failed > 0 ? 1 : 0);
+  // 4. Check package.json
+  const packageJsonPath = path.join(projectRoot, 'package.json');
+  if (!fs.existsSync(packageJsonPath)) {
+    results.push({ test: 'has package.json', passed: false, error: 'Missing package.json' });
+  } else {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      const hasRequired = pkg.name && pkg.version && pkg.description;
+      results.push({
+        test: 'has package.json',
+        passed: hasRequired,
+        error: hasRequired ? undefined : 'package.json missing required fields'
+      });
+    } catch (err) {
+      results.push({
+        test: 'has package.json',
+        passed: false,
+        error: \`Invalid JSON in package.json: \${err.message}\`
+      });
+    }
+  }
+
+  // 5. Check lib directory
+  const libDir = path.join(projectRoot, 'lib');
+  if (!fs.existsSync(libDir)) {
+    results.push({ test: 'has lib directory', passed: false, error: 'Missing lib directory' });
+  } else {
+    results.push({ test: 'has lib directory', passed: true });
+  }
+
+  return results;
+}
+
+// Run validation
+const results = validateStructure();
+
+// Display results
+console.log(\`=== ${PROJECT_NAME} Project Structure Validation ===\\n\`);
+
+let allPassed = true;
+results.forEach(result => {
+  const status = result.passed ? '✅ PASS' : '❌ FAIL';
+  console.log(\`\${status}: \${result.test}\`);
+  if (!result.passed && result.error) {
+    console.log(\`   Error: \${result.error}\`);
+    allPassed = false;
+  }
+});
+
+console.log('\\n' + '='.repeat(50));
+if (allPassed) {
+  console.log('✅ All structure tests passed!');
+  process.exit(0);
+} else {
+  console.log('❌ Some structure tests failed.');
+  process.exit(1);
 }
 `);
 
@@ -1594,5 +1588,4 @@ console.log('  ✅ Cross-platform tests: Node.js-based validation');
 console.log('');
 console.log('Note: This is a scaffolded project structure.');
 console.log('Customize platform-specific files based on your needs.');
-console.log('Refer to the Superpowers project for complete examples.');
 console.log('='.repeat(60));

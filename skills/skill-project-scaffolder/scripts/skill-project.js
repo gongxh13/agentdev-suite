@@ -331,7 +331,7 @@ function main() {
     console.log(`
 Usage: node skill-project.js <project-path> <expected-project-name>
 
-Validate Superpowers-style multi-platform skill project structure for Claude Code, OpenCode, and Codex.
+Validate multi-platform skill project structure for Claude Code, OpenCode, and Codex.
 
 Arguments:
   project-path         Path to the skill project to validate (absolute or relative)
@@ -361,7 +361,7 @@ Exit codes:
   0 - Project structure is valid
   1 - Project structure has errors or missing required files
 
-Note: This validation is based on Superpowers project structure standards.
+Note: This validation is based on multi-platform project structure standards.
 `);
     process.exit(0);
   }

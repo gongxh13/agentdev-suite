@@ -1,6 +1,6 @@
 ---
 name: skill-project-scaffolder
-description: Use when creating or restructuring skill projects to support multiple AI platforms (Claude Code, OpenCode, Codex) with Superpowers-style architecture.
+description: Use when creating or restructuring skill projects to support multiple AI platforms (Claude Code, OpenCode, Codex) with multi-platform architecture.
 context: fork
 ---
 
@@ -8,14 +8,14 @@ context: fork
 
 ## Overview
 
-Generate or restructure skill projects following Superpowers-style architecture for Claude Code, OpenCode, and Codex platforms. Creates proper directory structure, platform configurations, and testing framework.
+Generate or restructure skill projects following multi-platform architecture for Claude Code, OpenCode, and Codex platforms. Creates proper directory structure, platform configurations, and testing framework.
 
 ## Scope & Responsibility
 
 **This skill ONLY creates project structure and configuration.** It does NOT teach how to write skills.
 
 - ✅ **DOES**: Generate platform configs, directory structure, testing framework
-- ✅ **DOES**: Create proper Superpowers-style architecture
+- ✅ **DOES**: Create proper multi-platform architecture
 - ✅ **DOES**: Support new projects and migration of existing projects
 - ❌ **DOES NOT**: Teach skill writing (see `writing-skills` skill)
 - ❌ **DOES NOT**: Create skill content
@@ -29,7 +29,7 @@ Generate or restructure skill projects following Superpowers-style architecture 
 
 ### Existing Project Migration
 - Adding multi-platform support to single-platform projects
-- Restructuring projects to follow Superpowers conventions
+- Restructuring projects to follow multi-platform conventions
 - Fixing incomplete or incorrect platform configurations
 
 ### Platform Expansion
@@ -49,8 +49,8 @@ project-name/
 │   └── marketplace.json     # Marketplace listing (complete format)
 ├── .codex/                   # Codex platform support
 │   ├── INSTALL.md           # Codex installation instructions
-│   ├── superpowers-bootstrap.md
-│   └── superpowers-codex    # Bootstrap script template
+│   ├── project-name-bootstrap.md
+│   └── project-name-codex    # Bootstrap script template
 ├── .opencode/                # OpenCode platform support
 │   ├── INSTALL.md           # OpenCode installation instructions
 │   └── plugins/             # OpenCode plugin
@@ -178,7 +178,7 @@ Guide user through these next steps:
 ## Using-{PROJECT_NAME} Core Skill
 
 ### Purpose
-A `using-{PROJECT_NAME}` skill is automatically generated based on Superpowers' `using-superpowers` skill. This establishes mandatory skill discipline for your project:
+A `using-{PROJECT_NAME}` skill is automatically generated as a core workflow skill. This establishes mandatory skill discipline for your project:
 
 - **1% rule**: If any skill has 1% chance of applying, it MUST be invoked
 - **Precedence**: Skill check happens BEFORE any response or action
@@ -187,7 +187,7 @@ A `using-{PROJECT_NAME}` skill is automatically generated based on Superpowers' 
 
 ### Auto-Generated Template
 The generated `using-{PROJECT_NAME}/SKILL.md` contains:
-1. **Core rules** from `using-superpowers` (adapted for your project name)
+1. **Core rules** for skill discipline (adapted for your project name)
 2. **Skill workflow diagram** with decision flow
 3. **Red flag table** of common rationalizations to avoid
 4. **Skill priority** guidance (process skills before implementation)
@@ -436,12 +436,12 @@ Remember: The generated structure is a starting point. Customize it to fit your 
 ## Related Skills
 
 - `writing-skills`: How to write effective SKILL.md files
-- `using-superpowers`: Understanding the Superpowers architecture
+- `using-{PROJECT_NAME}`: Understanding multi-platform skill architecture
 - `test-driven-development`: Testing methodology for skills
 
 ## Notes
 
 - No shell script dependencies - works on Windows, macOS, Linux
-- Generated files match Superpowers project standards
+- Generated files match multi-platform project standards
 - Includes migration guidance for existing projects
 - Platform-agnostic tests and utilities
