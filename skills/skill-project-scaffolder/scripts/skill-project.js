@@ -326,8 +326,49 @@ function printResults(results) {
 function main() {
   const args = process.argv.slice(2);
 
+  // Check for --help or -h flag
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`
+Usage: node skill-project.js <project-path> <expected-project-name>
+
+Validate Superpowers-style multi-platform skill project structure for Claude Code, OpenCode, and Codex.
+
+Arguments:
+  project-path         Path to the skill project to validate (absolute or relative)
+  expected-project-name Expected project name in kebab-case (e.g., my-skill-library)
+
+Options:
+  --help, -h           Show this help message
+
+What this validates:
+  1. Basic project structure (skills directory, using-{project} skill)
+  2. Claude Code configuration (.claude-plugin/plugin.json, marketplace.json)
+  3. Codex platform support (.codex/INSTALL.md, bootstrap files)
+  4. OpenCode platform support (.opencode/INSTALL.md, plugin)
+  5. Package.json configuration with test scripts
+  6. Test files (structure.test.js, platform-validation.js)
+  7. Shared libraries (lib/skills-core.js)
+  8. README.md platform URLs and installation instructions
+
+Examples:
+  # Validate a generated project
+  node skill-project.js ./my-generated-project my-generated-project
+
+  # Validate current directory
+  node skill-project.js . my-skill-library
+
+Exit codes:
+  0 - Project structure is valid
+  1 - Project structure has errors or missing required files
+
+Note: This validation is based on Superpowers project structure standards.
+`);
+    process.exit(0);
+  }
+
   if (args.length < 2) {
     console.error('Usage: node skill-project.js <project-path> <expected-project-name>');
+    console.error('Use --help for detailed usage information');
     console.error('Example: node skill-project.js ./my-test-project my-test-project');
     process.exit(1);
   }

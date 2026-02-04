@@ -14,6 +14,47 @@ const { execSync } = require('child_process');
 // Parse command line arguments
 const args = process.argv.slice(2);
 
+// Check for --help or -h flag
+if (args.includes('--help') || args.includes('-h')) {
+  console.log(`
+Usage: node generate-project.js [options] <project-name> <author-name> <author-email> <github-user> <description>
+
+Generate Superpowers-style multi-platform skill projects for Claude Code, OpenCode, and Codex.
+
+Options:
+  --update, -u [directory]    Update existing project (default: current directory)
+  --platform <platform>        Git platform: github, gitcode, gitlab, gitee, bitbucket (default: github)
+  --repo <repository>          Repository name (default: project-name)
+  --branch <branch>            Branch name (default: master)
+  --help, -h                   Show this help message
+
+Positional arguments:
+  project-name                 Project name in kebab-case (e.g., my-skill-library)
+  author-name                  Author full name
+  author-email                 Author email address
+  github-user                  GitHub/GitLab username
+  description                  Project description
+
+Examples:
+  # New project with GitHub defaults
+  node generate-project.js "my-project" "John Doe" "john@example.com" "johndoe" "My skill library"
+
+  # New project with specific platform
+  node generate-project.js "my-project" "John Doe" "john@example.com" "johndoe" "My skill library" --platform gitcode
+
+  # Update existing project
+  node generate-project.js --update . "my-project" "John Doe" "john@example.com" "johndoe" "My skill library"
+
+  # Update with specific platform
+  node generate-project.js --update . "my-project" "John Doe" "john@example.com" "johndoe" "My skill library" --platform gitcode
+
+Platform detection:
+  If in a Git repository, script will automatically detect platform, owner, and repository.
+  You will be prompted to confirm detected values before generation.
+`);
+  process.exit(0);
+}
+
 // Platform URL patterns mapping
 const PLATFORM_URL_PATTERNS = {
   github: {
