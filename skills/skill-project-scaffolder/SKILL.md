@@ -37,34 +37,6 @@ Generate or restructure skill projects following multi-platform architecture for
 - Adding OpenCode support to Claude Code/Codex projects
 - Adding Codex support to Claude Code/OpenCode projects
 
-## Generated Project Structure
-
-```
-project-name/
-├── skills/                    # Your skills (add SKILL.md files here)
-│   └── using-project-name/   # Core workflow skill (auto-generated)
-│       └── SKILL.md          # Skill usage discipline template
-├── .claude-plugin/           # Claude Code configuration
-│   ├── plugin.json          # Plugin metadata (complete format)
-│   └── marketplace.json     # Marketplace listing (complete format)
-├── .codex/                   # Codex platform support
-│   ├── INSTALL.md           # Codex installation instructions
-│   ├── project-name-bootstrap.md
-│   └── project-name-codex    # Bootstrap script template
-├── .opencode/                # OpenCode platform support
-│   ├── INSTALL.md           # OpenCode installation instructions
-│   └── plugins/             # OpenCode plugin
-│       └── project-name.js  # Plugin template
-├── tests/                    # Cross-platform test framework
-│   ├── structure.test.js    # Node.js-based structure tests
-│   ├── platform-validation.js
-│   └── claude-code/         # Platform-specific tests
-├── lib/                      # Shared utilities
-├── hooks/                    # Session hooks
-├── package.json             # Cross-platform package config
-└── README.md                # Complete documentation with installation
-```
-
 ## Detailed Workflow
 
 Copy this checklist and check off items as you complete them:
@@ -174,6 +146,34 @@ Guide user through these next steps:
 3. **Customize the `using-{project}` skill** with project-specific context
 4. **Test on all target platforms** (Claude Code, OpenCode, Codex)
 5. **Share with team** via Git repository
+
+## Generated Project Structure
+
+```
+project-name/
+├── skills/                    # Your skills (add SKILL.md files here)
+│   └── using-project-name/   # Core workflow skill (auto-generated)
+│       └── SKILL.md          # Skill usage discipline template
+├── .claude-plugin/           # Claude Code configuration
+│   ├── plugin.json          # Plugin metadata (complete format)
+│   └── marketplace.json     # Marketplace listing (complete format)
+├── .codex/                   # Codex platform support
+│   ├── INSTALL.md           # Codex installation instructions
+│   ├── project-name-bootstrap.md
+│   └── project-name-codex    # Bootstrap script template
+├── .opencode/                # OpenCode platform support
+│   ├── INSTALL.md           # OpenCode installation instructions
+│   └── plugins/             # OpenCode plugin
+│       └── project-name.js  # Plugin template
+├── tests/                    # Cross-platform test framework
+│   ├── structure.test.js    # Node.js-based structure tests
+│   ├── platform-validation.js
+│   └── claude-code/         # Platform-specific tests
+├── lib/                      # Shared utilities
+├── hooks/                    # Session hooks
+├── package.json             # Cross-platform package config
+└── README.md                # Complete documentation with installation
+```
 
 ## Using-{PROJECT_NAME} Core Skill
 
