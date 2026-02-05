@@ -193,12 +193,11 @@ AgentDev Suite is a comprehensive agent development suite for Claude Code that c
 
 ## Skill Categories
 
-- **Process Coordination Skills** (coordinating-agent-development, managing-git-workflows): Coordinate agent roles and development workflows
-- **Requirements & Strategy Skills** (defining-product-strategy, decomposing-requirements): Define product vision and break down requirements
-- **Architecture & Implementation Skills** (designing-system-architecture, implementing-software-features): Design systems and implement features
-- **Quality Assurance Skills** (testing-software-quality): Ensure software quality through testing
-- **Project Management Skills** (skill-project-scaffolder): Create and manage multi-platform skill project structures (entire projects with platform configurations)
-- **Skill Development Skills** (skill-creator): Create individual skills following Claude's best practices (creates SKILL.md and associated resources within a skills/ directory)
+- **Development Coordination Skills** (coordinating-agent-development, traditional-development-coordination, skill-development-coordination): Route and coordinate development workflows based on project type
+- **Traditional Development Agents** (product-manager, product-owner, software-architect, software-developer, software-tester): Complete traditional software development lifecycle
+- **Skill-Specific Development Agents** (skill-requirements-analyst, skill-architect, skill-tester): Specialized agents for skill-based project development
+- **Core Skill Development Tools** (skill-creator, skill-project-scaffolder): Create individual skills and multi-platform project structures
+- **Supporting Skills** (managing-git-workflows, skill-development-methodology, traditional-development-methodology): Version control and methodology references
 
 ## Platform Support
 
@@ -208,8 +207,11 @@ AgentDev Suite is a comprehensive agent development suite for Claude Code that c
 
 ## Common Use Cases
 
-- "I need to develop a REST API service with user management" → defining-product-strategy → decomposing-requirements → designing-system-architecture → implementing-software-features → testing-software-quality
-- "Help me coordinate a development team for a new feature" → coordinating-agent-development → managing-git-workflows
-- "Create a multi-platform skill project" → skill-project-scaffolder
-- "Create a new skill following best practices" → skill-creator
-- "Fix a bug in the authentication module" → testing-software-quality → implementing-software-features
+- "I need to develop a REST API service with user management" → coordinating-agent-development (routes to traditional) → product-manager → product-owner → software-architect → software-developer → software-tester
+- "Create a skill project for financial analysis workflows" → coordinating-agent-development (routes to skill) → skill-requirements-analyst → skill-architect → skill-creator → skill-tester
+- "Help me coordinate a development team for a new feature" → coordinating-agent-development (auto-routes based on context)
+- "Create a multi-platform skill project" → skill-project-scaffolder → skill-requirements-analyst → skill-architect
+- "Create a new skill following best practices" → skill-creator (within existing skill project)
+- "Fix a bug in the authentication module" → software-tester → software-developer
+- "Test skill platform compatibility" → skill-tester
+- "Design skill architecture for multi-platform distribution" → skill-architect
