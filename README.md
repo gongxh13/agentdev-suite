@@ -303,8 +303,8 @@ agentdev-suite/
 │   ├── skill-development-methodology/ # Skill design principles
 │   ├── traditional-development-methodology/ # Development patterns
 │   └── managing-git-workflows/        # Version control
-├── commands/               # Command definitions (legacy)
-│   └── dev.md             # Legacy command reference
+├── commands/               # Command definitions
+│   └── dev.md             # Development coordination command
 ├── lib/                   # Core utilities
 │   ├── skills-core.js     # Skill management tools
 │   └── utils.js           # General utilities

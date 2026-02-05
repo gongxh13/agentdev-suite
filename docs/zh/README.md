@@ -303,8 +303,8 @@ agentdev-suite/
 │   ├── skill-development-methodology/ # 技能设计原则
 │   ├── traditional-development-methodology/ # 开发模式
 │   └── managing-git-workflows/        # 版本控制
-├── commands/               # 命令定义（遗留）
-│   └── dev.md             # 遗留命令参考
+├── commands/               # 命令定义
+│   └── dev.md             # 开发协调命令
 ├── lib/                   # 核心工具
 │   ├── skills-core.js     # 技能管理工具
 │   └── utils.js           # 通用工具
