@@ -34,16 +34,24 @@ Routes development requests based on project context and request keywords to the
 
 ## Usage
 
-### Automatic Routing
-Use when starting any development task:
-```
-/agent-dev [development request]
-```
+### Starting Development Coordination
+This skill is automatically triggered when you:
+1. First load the `using-agentdev-suite` discipline skill
+2. Describe a development request in your conversation
+3. The `using-agentdev-suite` skill enforces invocation of relevant skills based on the 1% rule
 
-### Manual Selection
-If automatic routing fails:
+### Manual Invocation
+If automatic routing doesn't occur (e.g., in specific development contexts):
 - Traditional development: `Skill: traditional-development-coordination`
 - Skill-based development: `Skill: skill-development-coordination`
+
+### Example Workflow
+```
+User: "I need to build a REST API for user management"
+Using-agentdev-suite: Enforces skill discipline
+Coordinating-agent-development: Analyzes request, detects traditional indicators
+Traditional-development-coordination: Routes to, performs task analysis and dynamic orchestration
+```
 
 ## Notes
 - Detailed workflows with intelligent task analysis are in the specialized coordination skills

@@ -249,40 +249,41 @@ Skill: using-agentdev-suite
 
 此技能强制执行"1%规则"：即使只有1%的可能性某个技能适用，也必须调用它。它提供对库中所有其他技能的访问权限。
 
-### 2. 使用 `/agent-dev` 命令
+### 2. 通过 `using-agentdev-suite` 启动开发协调
 
-`/agent-dev` 命令触发完整的开发协调系统：
+加载核心纪律技能后，您可以通过 `using-agentdev-suite` 框架使用适当的技能来启动开发协调：
 
 #### 传统软件开发示例
+在您的 Claude Code 对话中，描述您的开发请求：
 ```
-/agent-dev 我需要开发一个包含用户管理功能的REST API服务，包括注册、认证和资料管理
+我需要开发一个包含用户管理功能的REST API服务，包括注册、认证和资料管理
 ```
 
 **工作流：**
-1. `coordinating-agent-development` 检测传统指示器（`src/`、`tests/`、"API"、"service"）
-2. 路由到 `traditional-development-coordination`
-3. 使用专门智能体协调6阶段工作流：
-   - Product Manager 在 `docs/01_product_strategy/` 中创建PRD
-   - Product Owner 在 `docs/02_product_backlog/` 中分解为用户故事
-   - Software Architect 在 `docs/03_system_design/` 中设计系统
-   - Developer 在 `src/` 中增量实现功能
-   - Tester 在 `docs/05_qa_reports/` 中验证每个功能
-   - 最终集成测试和Git提交
+1. `using-agentdev-suite` 技能强制执行 1% 规则，要求调用相关技能
+2. `coordinating-agent-development` 根据任务上下文自动触发
+3. `coordinating-agent-development` 检测传统指示器（`src/`、`tests/`、"API"、"service"）
+4. 路由到 `traditional-development-coordination`
+5. 协调具备动态智能体编排的智能工作流：
+   - 分析任务类型（完整项目开发）
+   - 选择最优智能体序列：PM → PO → Architect → Developer → Tester
+   - 根据项目成熟度执行上下文适配的工作流
 
 #### 技能项目开发示例
+描述您的技能开发请求：
 ```
-/agent-dev 创建一个用于财务分析工作流的技能项目，支持多个AI平台
+创建一个用于财务分析工作流的技能项目，支持多个AI平台
 ```
 
 **工作流：**
-1. `coordinating-agent-development` 检测技能指示器（`skills/`、"skill project"、"multi-platform"）
-2. 路由到 `skill-development-coordination`
-3. 协调技能开发工作流：
-   - Skill Requirements Analyst 在 `docs/01_product_strategy/` 中定义技能生态系统
-   - Skill Architect 在 `docs/03_system_design/` 中设计多平台配置
-   - Skill Project Scaffolder 创建包含 `.claude-plugin/`、`.codex/`、`.opencode/` 的项目结构
-   - Skill Creator 按照最佳实践开发各个技能
-   - Skill Tester 验证平台兼容性
+1. `using-agentdev-suite` 确保遵循正确的技能纪律
+2. `coordinating-agent-development` 根据技能相关关键词触发
+3. `coordinating-agent-development` 检测技能指示器（`skills/`、"skill project"、"multi-platform"）
+4. 路由到 `skill-development-coordination`
+5. 协调智能技能开发工作流：
+   - 分析技能任务类型（完整技能项目）
+   - 选择最优智能体/技能序列：Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester
+   - 执行具备渐进式披露优化的平台感知协调
 
 ## 项目结构
 
@@ -302,8 +303,8 @@ agentdev-suite/
 │   ├── skill-development-methodology/ # 技能设计原则
 │   ├── traditional-development-methodology/ # 开发模式
 │   └── managing-git-workflows/        # 版本控制
-├── commands/               # CLI命令定义
-│   └── dev.md             # /agent-dev命令
+├── commands/               # 命令定义（遗留）
+│   └── dev.md             # 遗留命令参考
 ├── lib/                   # 核心工具
 │   ├── skills-core.js     # 技能管理工具
 │   └── utils.js           # 通用工具

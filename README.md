@@ -249,40 +249,41 @@ Skill: using-agentdev-suite
 
 This skill enforces the "1% rule": if there's even a 1% chance a skill might apply, you MUST invoke it. It provides access to all other skills in the library.
 
-### 2. Use the `/agent-dev` Command
+### 2. Start Development Coordination with `using-agentdev-suite`
 
-The `/agent-dev` command triggers the complete development coordination system:
+Once the core discipline skill is loaded, you can start development coordination by using the appropriate skills through the `using-agentdev-suite` framework:
 
 #### Traditional Software Development Example
+In your Claude Code conversation, describe your development request:
 ```
-/agent-dev I need to develop a REST API service with user management including registration, authentication, and profile management
+I need to develop a REST API service with user management including registration, authentication, and profile management
 ```
 
 **Workflow:**
-1. `coordinating-agent-development` detects traditional indicators (`src/`, `tests/`, "API", "service")
-2. Routes to `traditional-development-coordination`
-3. Coordinates 6-phase workflow with specialized agents:
-   - Product Manager creates PRD in `docs/01_product_strategy/`
-   - Product Owner decomposes into user stories in `docs/02_product_backlog/`
-   - Software Architect designs system in `docs/03_system_design/`
-   - Developer implements features incrementally in `src/`
-   - Tester validates each feature in `docs/05_qa_reports/`
-   - Final integration testing and git commit
+1. The `using-agentdev-suite` skill enforces the 1% rule, requiring invocation of relevant skills
+2. `coordinating-agent-development` is automatically triggered based on task context
+3. `coordinating-agent-development` detects traditional indicators (`src/`, `tests/`, "API", "service")
+4. Routes to `traditional-development-coordination`
+5. Coordinates intelligent workflow with dynamic agent orchestration:
+   - Analyzes task type (complete project development)
+   - Selects optimal agent sequence: PM → PO → Architect → Developer → Tester
+   - Executes context-adapted workflow based on project maturity
 
 #### Skill Project Development Example
+Describe your skill development request:
 ```
-/agent-dev Create a skill project for financial analysis workflows with support for multiple AI platforms
+Create a skill project for financial analysis workflows with support for multiple AI platforms
 ```
 
 **Workflow:**
-1. `coordinating-agent-development` detects skill indicators (`skills/`, "skill project", "multi-platform")
-2. Routes to `skill-development-coordination`
-3. Coordinates skill development workflow:
-   - Skill Requirements Analyst defines skill ecosystem in `docs/01_product_strategy/`
-   - Skill Architect designs multi-platform configuration in `docs/03_system_design/`
-   - Skill Project Scaffolder creates project structure with `.claude-plugin/`, `.codex/`, `.opencode/`
-   - Skill Creator develops individual skills following best practices
-   - Skill Tester validates platform compatibility
+1. `using-agentdev-suite` ensures proper skill discipline is followed
+2. `coordinating-agent-development` is triggered based on skill-related keywords
+3. `coordinating-agent-development` detects skill indicators (`skills/`, "skill project", "multi-platform")
+4. Routes to `skill-development-coordination`
+5. Coordinates intelligent skill development workflow:
+   - Analyzes skill task type (complete skill project)
+   - Selects optimal agent/skill sequence: Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester
+   - Executes platform-aware coordination with progressive disclosure optimization
 
 ## Project Structure
 
@@ -302,8 +303,8 @@ agentdev-suite/
 │   ├── skill-development-methodology/ # Skill design principles
 │   ├── traditional-development-methodology/ # Development patterns
 │   └── managing-git-workflows/        # Version control
-├── commands/               # CLI command definitions
-│   └── dev.md             # /agent-dev command
+├── commands/               # Command definitions (legacy)
+│   └── dev.md             # Legacy command reference
 ├── lib/                   # Core utilities
 │   ├── skills-core.js     # Skill management tools
 │   └── utils.js           # General utilities
