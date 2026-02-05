@@ -183,12 +183,12 @@ claude plugin install agentdev-suite
 
 然后从此市场安装插件。使用 `/plugin marketplace list` 检查市场名称：
 ```
-/plugin install agentdev-suite@<marketplace-name>
+/plugin install agentdev-suite@agentdev-suite-dev
 ```
 
-*示例（如果市场名为"agentdev-suite-marketplace"）：*
+*示例（如果市场名为"agentdev-suite-dev"）：*
 ```
-/plugin install agentdev-suite@agentdev-suite-marketplace
+/plugin install agentdev-suite@agentdev-suite-dev
 ```
 
 #### 源代码安装

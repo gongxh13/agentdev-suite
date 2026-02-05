@@ -183,12 +183,12 @@ First, register the marketplace from the Git repository:
 
 Then install the plugin from this marketplace. Check the marketplace name with `/plugin marketplace list`:
 ```
-/plugin install agentdev-suite@<marketplace-name>
+/plugin install agentdev-suite@agentdev-suite-dev
 ```
 
-*Example (if marketplace is named "agentdev-suite-marketplace"):*
+*Example (if marketplace is named "agentdev-suite-dev"):*
 ```
-/plugin install agentdev-suite@agentdev-suite-marketplace
+/plugin install agentdev-suite@agentdev-suite-dev
 ```
 
 #### Source Code Installation
