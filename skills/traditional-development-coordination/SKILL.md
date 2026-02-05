@@ -1,6 +1,6 @@
 ---
 name: traditional-development-coordination
-description: Coordinates traditional software development workflows (non-skill based) with specialized agent roles (product-manager, product-owner, software-architect, software-developer, software-tester). Use when developing executable software applications, APIs, services, or libraries. Focuses on code implementation, testing, deployment, and maintenance of traditional software projects.
+description: Coordinates traditional software development workflows (non-skill based) with specialized agent roles (product-manager, product-owner, traditional-development-architect, traditional-development-orchestrator, traditional-development-tester). Use when developing executable software applications, APIs, services, or libraries. Focuses on code implementation, testing, deployment, and maintenance of traditional software projects.
 ---
 
 # Traditional Software Development Coordination
@@ -17,13 +17,13 @@ Before starting any coordination, analyze the task type to determine the optimal
 
 | Task Type | Indicators | Recommended Agents | Workflow Pattern |
 |-----------|------------|-------------------|------------------|
-| **Complete Project Development** | "build an app", "create API", "new project", "from scratch" | PM → PO → Architect → Developer → Tester | Full 6-phase workflow |
-| **Architecture Design** | "design system", "select technology", "architecture review", "choose stack" | Architect → (Developer for prototyping) | Phase 3 + optional Phase 4 |
+| **Complete Project Development** | "build an app", "create API", "new project", "from scratch" | PM → PO → Architect → Traditional Development Orchestrator → Tester | Full 6-phase workflow |
+| **Architecture Design** | "design system", "select technology", "architecture review", "choose stack" | Traditional Development Architect → (Traditional Development Orchestrator for prototyping) | Phase 3 + optional Phase 4 |
 | **Requirement Analysis** | "analyze requirements", "define features", "product planning", "scope definition" | PM → PO | Phase 1-2 only |
-| **Code Implementation** | "implement feature", "write code", "add functionality", "fix bug" | Developer → Tester | Direct Phase 4 iteration |
-| **Testing & Validation** | "test feature", "verify quality", "run tests", "validate requirements" | Tester → (Developer for fixes) | Direct Phase 5 |
-| **Maintenance Tasks** | "refactor code", "optimize performance", "update dependencies", "small changes" | Developer (with context analysis) → Tester | Adaptive workflow |
-| **Documentation Tasks** | "write documentation", "update API docs", "create technical specs" | Architect or Developer (based on scope) | Targeted documentation |
+| **Code Implementation** | "implement feature", "write code", "add functionality", "fix bug" | Traditional Development Orchestrator → Traditional Development Tester | Direct Phase 4 iteration |
+| **Testing & Validation** | "test feature", "verify quality", "run tests", "validate requirements" | Traditional Development Tester → (Traditional Development Orchestrator for fixes) | Direct Phase 5 |
+| **Maintenance Tasks** | "refactor code", "optimize performance", "update dependencies", "small changes" | Traditional Development Orchestrator (with context analysis) → Traditional Development Tester | Adaptive workflow |
+| **Documentation Tasks** | "write documentation", "update API docs", "create technical specs" | Traditional Development Architect or Traditional Development Orchestrator (based on scope) | Targeted documentation |
 
 ### Dynamic Orchestration Logic
 
@@ -47,18 +47,18 @@ digraph orchestration_flow {
     "Task Type Analysis" -> "Documentation Tasks" [label="Documentation"];
 
     "Complete Project" -> "Full 6-phase workflow";
-    "Architecture Design" -> "Architect → (Developer)";
+    "Architecture Design" -> "Traditional Development Architect → (Traditional Development Orchestrator)";
     "Requirement Analysis" -> "PM → PO";
-    "Code Implementation" -> "Developer → Tester";
-    "Testing & Validation" -> "Tester → (Developer)";
+    "Code Implementation" -> "Traditional Development Orchestrator → Traditional Development Tester";
+    "Testing & Validation" -> "Traditional Development Tester → (Traditional Development Orchestrator)";
     "Maintenance Tasks" -> "Adaptive workflow";
     "Documentation Tasks" -> "Targeted documentation";
 
     "Full 6-phase workflow" -> "Execute with all agents";
-    "Architect → (Developer)" -> "Execute architecture focus";
+    "Traditional Development Architect → (Traditional Development Orchestrator)" -> "Execute architecture focus";
     "PM → PO" -> "Execute requirements focus";
-    "Developer → Tester" -> "Execute implementation focus";
-    "Tester → (Developer)" -> "Execute testing focus";
+    "Traditional Development Orchestrator → Traditional Development Tester" -> "Execute implementation focus";
+    "Traditional Development Tester → (Traditional Development Orchestrator)" -> "Execute testing focus";
     "Adaptive workflow" -> "Execute maintenance focus";
     "Targeted documentation" -> "Execute documentation focus";
 }
@@ -132,7 +132,7 @@ digraph workflow_selection {
     "Architecture Focus?" -> "Requirements Focus?" [label="No"];
     "Requirements Focus?" -> "PM-PO Workflow" [label="Yes"];
     "Requirements Focus?" -> "Implementation Focus?" [label="No"];
-    "Implementation Focus?" -> "Developer-Tester Workflow" [label="Yes"];
+    "Implementation Focus?" -> "Traditional Development Orchestrator-Tester Workflow" [label="Yes"];
     "Implementation Focus?" -> "Testing Focus?" [label="No"];
     "Testing Focus?" -> "Tester-Centric Workflow" [label="Yes"];
     "Testing Focus?" -> "Maintenance Focus?" [label="No"];
@@ -144,8 +144,8 @@ digraph workflow_selection {
     "Full 6-Phase Workflow" -> "Execute Phase 1-6";
     "Architect-Centric Workflow" -> "Execute Phase 3 (+ Phase 4 if needed)";
     "PM-PO Workflow" -> "Execute Phase 1-2";
-    "Developer-Tester Workflow" -> "Execute Phase 4 (+ Phase 5)";
-    "Tester-Centric Workflow" -> "Execute Phase 5 (+ Developer for fixes)";
+    "Traditional Development Orchestrator-Tester Workflow" -> "Execute Phase 4 (+ Phase 5)";
+    "Tester-Centric Workflow" -> "Execute Phase 5 (+ Traditional Development Orchestrator for fixes)";
     "Adaptive Maintenance Workflow" -> "Execute Context-Aware Adaptation";
     "Targeted Documentation Workflow" -> "Execute Documentation Task";
 }
@@ -160,9 +160,9 @@ digraph workflow_selection {
 **Agent Sequence**:
 1. `product-manager` → PRD in `docs/01_product_strategy/`
 2. `product-owner` → Backlog in `docs/02_product_backlog/`
-3. `software-architect` → Architecture in `docs/03_system_design/`
-4. `software-developer` → Code in `src/`
-5. `software-tester` → Tests and validation
+3. `traditional-development-architect` → Architecture in `docs/03_system_design/`
+4. `traditional-development-orchestrator` → Parallel implementation with technology patterns in `src/`
+5. `traditional-development-tester` → Tests and validation
 6. `managing-git-workflows` → Final delivery
 
 #### Example 2: Architecture Design Only
@@ -170,17 +170,17 @@ digraph workflow_selection {
 **Analysis**: Architecture design indicators detected
 **Workflow**: Architect-centric workflow
 **Agent Sequence**:
-1. `software-architect` → Architecture design in `docs/03_system_design/`
-2. (Optional) `software-developer` → Prototype implementation if requested
+1. `traditional-development-architect` → Architecture design in `docs/03_system_design/`
+2. (Optional) `traditional-development-orchestrator` → Prototype implementation if requested
 
 #### Example 3: Bug Fix
 **Request**: "Fix the authentication bug in the login module"
 **Analysis**: Code implementation indicators detected
-**Workflow**: Developer-tester workflow
+**Workflow**: Traditional Development Orchestrator-Tester workflow
 **Agent Sequence**:
-1. `software-tester` → Reproduce and analyze bug
-2. `software-developer` → Implement fix in `src/`
-3. `software-tester` → Verify fix and run regression tests
+1. `traditional-development-tester` → Reproduce and analyze bug
+2. `traditional-development-orchestrator` → Implement fix in `src/`
+3. `traditional-development-tester` → Verify fix and run regression tests
 
 #### Example 4: Requirement Analysis
 **Request**: "Analyze requirements for the new payment integration feature"
@@ -209,19 +209,29 @@ When orchestrating agents dynamically, use these phase definitions as building b
 - **Output**: `docs/02_product_backlog/backlog.md`, `features/*.md`
 
 #### Phase 3: Architecture Design (Software Architect)
-- **Agent**: `software-architect`
+- **Agent**: `traditional-development-architect`
 - **Action**: Design system architecture based on requirements
 - **Context**: Read `docs/01_product_strategy/` and `docs/02_product_backlog/`
 - **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `docs/03_system_design/`. Ensure the directory exists."
 - **Output**: `docs/03_system_design/architecture.md`, `api_spec.md`, `database_schema.md`
 
-#### Phase 4: Iterative Development (Developer & Tester)
-- **Agents**: `software-developer`, `software-tester`
-- **Strategy**: Use adaptive iteration based on project context
-- **Action Loop**: Plan → Develop → Verify → Handle Bugs → (Optional) Commit
+#### Phase 4: Iterative Development with Parallel Execution (Traditional Development Orchestrator)
+- **Agent**: `traditional-development-orchestrator`
+- **Strategy**: Use adaptive iteration with parallel execution capabilities
+- **Action Flow**:
+  1. Analyze technology stack and load relevant patterns
+  2. Identify independent features for parallel development
+  3. Coordinate parallel development tasks
+  4. Manage dependencies and integration
+  5. Coordinate testing and quality verification
+- **Key Features**:
+  - Parallel execution of independent features
+  - Technology-specific pattern integration
+  - Automated skill loading based on stack
+  - Dependency-aware task scheduling
 
 #### Phase 5: Final Integration & Acceptance
-- **Agent**: `software-tester`
+- **Agent**: `traditional-development-tester`
 - **Action**: Run full regression test suite
 - **Instruction**: "Run comprehensive regression testing to ensure no regressions were introduced."
 - **Output**: Final test report in `docs/05_qa_reports/`
@@ -316,12 +326,29 @@ Software Development Progress:
 ## Available Specialized Skills
 
 This suite coordinates these specialized skills:
+
+### Core Development Agents
 - `product-manager`: Product strategy and high-level requirements
 - `product-owner`: Backlog management and user stories
-- `software-architect`: System architecture design
-- `software-developer`: Code implementation
-- `software-tester`: Testing and quality verification
+- `traditional-development-architect`: System architecture design
+- `traditional-development-orchestrator`: Code implementation
+- `traditional-development-tester`: Testing and quality verification
+- `traditional-development-orchestrator`: Parallel development coordination and technology pattern integration
 - `managing-git-workflows`: Git operations and commit guidelines
+
+### Technology-Specific Pattern Skills
+- `nodejs-backend-patterns`: Node.js/Express/Next.js backend architecture patterns
+- `react-frontend-patterns`: React/Next.js frontend development patterns
+- `django-patterns`: Django framework best practices
+- `springboot-patterns`: Spring Boot architecture patterns
+- `python-patterns`: Pythonic idioms and PEP 8 standards
+- `golang-patterns`: Go language best practices
+- `java-coding-standards`: Java coding standards for Spring Boot
+- `java-jpa-patterns`: JPA/Hibernate data access patterns
+
+### Development Standards & Security
+- `typescript-coding-standards`: TypeScript/JavaScript coding standards
+- `security-review`: Security checklist and vulnerability prevention
 
 ## Common Use Cases
 
@@ -329,14 +356,14 @@ This suite coordinates these specialized skills:
 1. Analyze requirements with Product Manager
 2. Decompose into user stories with Product Owner
 3. Design architecture with Software Architect
-4. Implement features iteratively with Developer
+4. Implement features with parallel execution using Traditional Development Orchestrator
 5. Verify with Tester
 6. Final integration and delivery
 
 ### Bug Fix Workflow
 1. Reproduce and analyze bug
 2. Identify root cause
-3. Generate fix with Developer
+3. Generate fix with Traditional Development Orchestrator
 4. Test fix with Tester
 5. Validate no regressions introduced
 
