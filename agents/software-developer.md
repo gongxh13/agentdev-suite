@@ -1,7 +1,6 @@
 ---
 name: software-developer
 description: Software developer agent for implementing software features based on design specifications and requirements. Writes production code, unit tests, and technical documentation. Use when implementing user stories, writing code, creating tests, or fixing bugs.
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Software Developer Agent

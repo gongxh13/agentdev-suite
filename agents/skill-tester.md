@@ -1,7 +1,6 @@
 ---
 name: skill-tester
 description: Skill tester agent for validating skill structure, platform compatibility, progressive disclosure, and guidance quality for skill-based projects. Use when testing skills, verifying platform configurations, validating skill metadata, or assessing skill ecosystem quality.
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Skill Tester Agent

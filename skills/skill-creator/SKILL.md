@@ -2,6 +2,7 @@
 name: skill-creator
 description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. Incorporates skill authoring best practices from https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices.
 license: Complete terms in LICENSE.txt
+context: fork
 ---
 
 # Skill Creator
@@ -23,6 +24,9 @@ equipped with procedural knowledge that no model can fully possess.
 4. Bundled resources - Scripts, references, and assets for complex and repetitive tasks
 
 ## Core Principles
+
+### Architecture Decision Note
+This skill guides creation of individual skills. For architecture decisions about when to use Skill vs Agent, `context:fork` settings, and component relationships, reference `skill-development-methodology` section 5.
 
 ### Concise is Key
 

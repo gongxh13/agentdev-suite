@@ -17,13 +17,30 @@ Before starting any coordination, analyze the task type to determine the optimal
 
 | Task Type | Indicators | Recommended Agents/Skills | Workflow Pattern |
 |-----------|------------|---------------------------|------------------|
-| **Complete Skill Project** | "create skill project", "multi-platform skill library", "new skill ecosystem" | Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester | Full 6-phase workflow |
-| **Skill Architecture Design** | "design skill architecture", "platform configuration", "skill structure design" | Skill Architect → (Skill Project Scaffolder for setup) | Phase 3 + optional Phase 4 |
+| **Complete Skill Project** | "create skill project", "multi-platform skill library", "new skill ecosystem" | Skill Requirements Analyst → Skill Architect → Skill Development Orchestrator → Skill Tester | Full 6-phase workflow |
+| **Skill Architecture Design** | "design skill architecture", "platform configuration", "skill structure design" | Skill Architect → (Skill Development Orchestrator for setup) | Phase 3 + optional Phase 4 |
 | **Skill Requirements Analysis** | "analyze skill requirements", "define skill ecosystem", "skill strategy planning" | Skill Requirements Analyst | Phase 1-2 only |
-| **Individual Skill Creation** | "create a skill", "write SKILL.md", "develop skill guidance" | Skill Creator → Skill Tester | Direct skill creation workflow |
+| **Individual Skill Creation** | "create a skill", "write SKILL.md", "develop skill guidance" | Skill Development Orchestrator → Skill Tester | Orchestrated skill creation workflow |
 | **Skill Testing & Validation** | "test skill", "verify platform compatibility", "validate skill structure" | Skill Tester → (Skill Creator for fixes) | Direct Phase 5 testing |
 | **Skill Maintenance** | "update skill", "refactor skill", "improve skill documentation" | Skill Creator (with context analysis) → Skill Tester | Adaptive maintenance workflow |
 | **Platform Configuration** | "configure multi-platform", "setup .claude-plugin/", "platform integration" | Skill Project Scaffolder → Skill Architect | Platform-focused workflow |
+
+### Architecture Decision Guidance
+
+When orchestrating skill development, consider these architecture decisions:
+
+#### Skill vs Agent Implementation
+- **File-intensive operations** (skill creation, project scaffolding): Use `context:fork` or dedicated agent
+- **Coordination workflows**: Design as Skill without `context:fork` to allow skill invocation
+- **Specialized execution**: Consider dedicated agent for unique tool/model requirements
+
+#### Context Management
+- **context:fork limitation**: Skills with `context:fork` cannot invoke other skills
+- **Gateway pattern**: Use non-forked skill to analyze and delegate to forked skills
+- **Performance isolation**: Use `context:fork` for operations with verbose output
+
+#### Reference
+For detailed architecture decision framework, see `skill-development-methodology` section 5.
 
 ### Dynamic Orchestration Logic
 
@@ -103,6 +120,7 @@ Use when creating a single skill within an existing project:
 3. **Platform Compatibility**: Support multiple AI platforms (Claude Code, Codex, OpenCode)
 4. **Skill Relationships**: Manage dependencies and combinations between skills
 5. **Quality Validation**: Verify skill structure, metadata, and functionality
+6. **Architecture Decision Framework**: Apply Skill vs Agent decision principles from `skill-development-methodology` section 5
 
 ## Workspace Structure
 
@@ -176,33 +194,35 @@ digraph skill_workflow_selection {
 1. `skill-requirements-analyst` → Skill ecosystem strategy in `docs/01_product_strategy/`
 2. `skill-requirements-analyst` → Skill specifications in `docs/02_product_backlog/`
 3. `skill-architect` → Architecture and platform design in `docs/03_system_design/`
-4. `skill-project-scaffolder` → Multi-platform project structure
-5. `skill-creator` → Individual skill development
-6. `skill-tester` → Platform compatibility testing
-7. `managing-git-workflows` → Final packaging and distribution
+4. `skill-development-orchestrator` → Project implementation coordination
+   - Executes `skill-project-scaffolder` for multi-platform project structure
+   - Coordinates multiple `skill-creator` executions for individual skill development
+   - Manages agent generation and configuration
+5. `skill-tester` → Platform compatibility testing
+6. `managing-git-workflows` → Final packaging and distribution
 
 #### Example 2: Skill Architecture Design
 **Request**: "Design the architecture for our new skill library supporting Claude Code and OpenCode"
 **Analysis**: Skill architecture design indicators detected
-**Workflow**: Architect-scaffolder workflow
+**Workflow**: Architect-orchestrator workflow
 **Agent Sequence**:
 1. `skill-architect` → Skill architecture design in `docs/03_system_design/`
-2. `skill-project-scaffolder` → Platform configuration setup
+2. `skill-development-orchestrator` → Platform configuration setup via `skill-project-scaffolder`
 
 #### Example 3: Individual Skill Creation
 **Request**: "Create a skill for API documentation generation"
 **Analysis**: Individual skill creation indicators detected
-**Workflow**: Creator-tester workflow
-**Agent/Skill Sequence**:
-1. `skill-creator` → Guided skill development following best practices
+**Workflow**: Orchestrator-tester workflow
+**Agent Sequence**:
+1. `skill-development-orchestrator` → Guided skill development via `skill-creator`
 2. `skill-tester` → Skill validation and platform testing
 
 #### Example 4: Platform Configuration
 **Request**: "Configure multi-platform support for our existing skill project"
 **Analysis**: Platform configuration indicators detected
-**Workflow**: Scaffolder-architect workflow
+**Workflow**: Orchestrator-architect workflow
 **Agent Sequence**:
-1. `skill-project-scaffolder` → Platform configuration setup
+1. `skill-development-orchestrator` → Platform configuration setup via `skill-project-scaffolder`
 2. `skill-architect` → Architecture review and integration
 
 ### Phase Reference for Dynamic Orchestration
@@ -230,10 +250,12 @@ When orchestrating agents/skills dynamically, use these phase definitions as bui
 - **Instruction**: "Design skill project architecture. Create or update technical design documents in `docs/03_system_design/`. Include multi-platform configuration strategy, skill structure patterns, and testing approach."
 - **Output**: `docs/03_system_design/skill_architecture.md`, `platform_configuration.md`, `testing_strategy.md`
 
-#### Phase 4: Iterative Skill Development (Skill Creator & Scaffolder)
-- **Skills**: `skill-creator` (individual skills), `skill-project-scaffolder` (project structure)
-- **Strategy**: Adaptive iteration based on project scope and task type
-- **Action**: Plan → Develop → Verify → Test with platform compatibility
+#### Phase 4: Iterative Skill Development (Skill Development Orchestrator)
+- **Agent**: `skill-development-orchestrator`
+- **Action**: Coordinate skill project implementation, managing skill-creator executions, scaffolding operations, and agent generation
+- **Context**: Read `docs/03_system_design/` skill architecture
+- **Instruction**: "Implement skill project based on architecture design. Coordinate skill-creator for individual skills, skill-project-scaffolder for project structure, and generate specialized agents as needed."
+- **Output**: Implemented skill project with proper structure, skills, and agents
 
 #### Phase 5: Integration & Platform Testing (Skill Tester)
 - **Agent**: `skill-tester`
@@ -315,14 +337,18 @@ Skill Task Analysis & Orchestration:
 This coordination leverages these specialized skills designed specifically for skill development:
 
 ### Core Skill Development Skills
-- `skill-creator`: Guided skill creation with best practices
-- `skill-project-scaffolder`: Multi-platform project scaffolding
+- `skill-creator`: Guided skill creation with best practices (uses `context:fork`, invoked via orchestrator)
+- `skill-project-scaffolder`: Multi-platform project scaffolding (uses `context:fork`, invoked via orchestrator)
 - `skill-development-methodology`: Skill development principles and patterns
+- `skill-development-orchestrator`: Coordinates skill project implementation, manages skill-creator and scaffolder executions
 
 ### Skill-Specific Analysis & Design Skills
 - `skill-requirements-analyst`: Skill requirements and ecosystem strategy analysis
 - `skill-architect`: Skill architecture and platform configuration design
 - `skill-tester`: Skill structure and platform compatibility testing
+
+### Skill Implementation & Coordination Skills
+- `skill-development-orchestrator`: Coordinates skill project implementation, manages skill-creator executions, scaffolding operations, and agent generation
 
 ### Supporting Skills
 - `managing-git-workflows`: Version control for skill projects
@@ -331,17 +357,19 @@ This coordination leverages these specialized skills designed specifically for s
 ## Common Use Cases
 
 ### New Skill Project Development
-1. Analyze requirements and define skill ecosystem
-2. Setup multi-platform project structure
-3. Create core skills (entry point, creator, scaffolder)
-4. Develop domain-specific skills
-5. Test across platforms and package for distribution
+1. Analyze requirements and define skill ecosystem (`skill-requirements-analyst`)
+2. Design skill architecture and platform configurations (`skill-architect`)
+3. Implement project via orchestrator (`skill-development-orchestrator`):
+   - Setup multi-platform project structure (via `skill-project-scaffolder`)
+   - Create core skills (entry point, methodology, domain skills via `skill-creator`)
+   - Generate specialized agents if needed
+4. Test across platforms and package for distribution (`skill-tester` + `managing-git-workflows`)
 
 ### Individual Skill Creation
-1. Define skill purpose and trigger conditions
+1. Define skill purpose and trigger conditions (reference architecture if available)
 2. Design progressive disclosure structure
-3. Implement SKILL.md and bundled resources
-4. Test skill functionality and integration
+3. Implement skill via orchestrator (`skill-development-orchestrator` coordinating `skill-creator`)
+4. Test skill functionality and integration (`skill-tester`)
 5. Package and integrate into existing project
 
 ### Skill Project Maintenance

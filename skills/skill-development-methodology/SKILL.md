@@ -32,6 +32,116 @@ The context window is a shared resource. Only add information Claude doesn't alr
 - **scripts/**: Executable code for deterministic tasks
 - **assets/**: Output templates and resources
 
+### 5. Skill vs Agent Architecture Decision Framework
+
+Based on analysis of everything-claude-code and official Claude Code documentation, this framework guides architectural decisions for skill-based projects:
+
+#### Understanding Claude Code Components
+- **Skill**: User-invocable functionality with SKILL.md and supporting files. Defines "what" the AI should do.
+- **Agent (Subagent)**: Specialized execution environment with custom system prompt, tools, and model. Defines "where/how" the AI should execute.
+- **context:fork**: Skill frontmatter field that runs skill in isolated subagent context.
+
+#### Key Decision Principles
+
+**When to design as Skill:**
+1. **User workflow guidance**: Multi-step processes that guide users
+2. **Coordination logic**: Routing, sequencing, or orchestrating multiple components
+3. **Direct user interaction**: Skills invoked with `/command` syntax
+4. **Knowledge reference**: Domain expertise, conventions, patterns
+5. **Lightweight operations**: Read-only or minimal file operations
+
+**When to use context:fork in Skill:**
+1. **File-intensive operations**: Creating/modifying many files (project scaffolding, code generation)
+2. **Performance isolation**: Prevent verbose output from polluting main context
+3. **Error containment**: Isolate potentially failing operations
+4. **Specialized execution**: Need specific agent tools or model
+
+**When to create dedicated Agent:**
+1. **Specialized execution environment**: Unique tool restrictions or model requirements
+2. **Reusable coordination layer**: Multiple skills share same execution environment
+3. **Persistent memory needs**: Cross-session learning capabilities
+4. **Complex permission model**: Fine-grained tool access control
+
+#### Architecture Patterns
+
+**Pattern 1: Skill as Coordinator, Agent as Executor**
+```
+skill-coordination (user entry)
+    ├── context:fork → agent-specialized (file operations)
+    ├── context:fork → agent-specialized (data processing)
+    └── inline execution (lightweight tasks)
+```
+
+**Pattern 2: Skill Chain (No context:fork restrictions)**
+```
+skill-entry (user input)
+    ↓ Skill invocation
+skill-processor (coordination)
+    ↓ Skill invocation
+skill-presenter (output)
+```
+
+**Pattern 3: Hybrid Pattern with Gateway**
+```
+skill-gateway (analyzes task)
+    ├── If file-intensive → context:fork → agent-executor
+    └── If lightweight → skill-inline-processor
+```
+
+#### Avoiding context:fork Limitations
+
+The key limitation: **Skills with `context:fork` cannot directly invoke other skills**. Solutions:
+
+1. **Gateway pattern**: Skill without fork analyzes and delegates to forked skill
+2. **Agent coordination**: Create agent that can invoke multiple skills
+3. **Workflow restructuring**: Move coordination logic to non-forked skill
+
+#### Design Decision Flowchart
+
+```
+Analyze Component Requirement
+    ↓
+Need file operations? → Yes → Consider context:fork or Agent
+    ↓ No
+Need to coordinate other components? → Yes → Design as Skill (no fork)
+    ↓ No
+Direct user interaction? → Yes → Design as Skill
+    ↓ No
+Specialized execution environment? → Yes → Design as Agent
+    ↓ No
+Design as Skill with appropriate context setting
+```
+
+#### Example: PDF Processing System
+
+**Skill layer (pdf-processor-coordination):**
+```yaml
+---
+name: pdf-processor
+description: Coordinate PDF processing operations
+---
+
+# PDF Processing Coordinator
+Based on user request, delegate to appropriate processor:
+
+- **Rotate/merge operations** (file-intensive): `Task: pdf-operations-agent`
+- **Text extraction** (lightweight): Process inline
+- **Batch processing** (performance): `context:fork → batch-processor`
+```
+
+**Agent layer (pdf-operations-agent):**
+```markdown
+---
+name: pdf-operations-agent
+description: Specialized PDF file operations
+tools: ["Read", "Write", "Bash"]
+model: haiku
+---
+
+# PDF Operations Specialist
+Execute file-intensive PDF operations with error handling.
+```
+
 ## Project Structure
 
 ### Standard Skill Project Layout
@@ -106,11 +216,10 @@ Skill development follows a structured 6-phase workflow aligned with `skill-deve
 
 ### Phase 3: Iterative Skill Development
 **Purpose**: Create individual skills within the project
-**Recommended Skills**:
-- `skill-creator` (for each individual skill following best practices)
-- `skill-project-scaffolder` (for project structure setup)
-- Focus on: SKILL.md creation, bundled resources, progressive disclosure implementation
-**Outputs**: Individual skills in `skills/` directory with proper structure
+**Recommended Agent**:
+- `skill-development-orchestrator` (coordinates skill creation and scaffolding operations)
+- Focus on: Coordinating `skill-creator` for individual skills, `skill-project-scaffolder` for project structure, managing skill creation sequence
+**Outputs**: Individual skills in `skills/` directory with proper structure, coordinated implementation
 
 ### Phase 4: Integration & Platform Testing
 **Purpose**: Test complete skill ecosystem across target platforms

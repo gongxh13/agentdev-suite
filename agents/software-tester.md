@@ -1,7 +1,6 @@
 ---
 name: software-tester
 description: Software tester agent for verifying software against requirements, executing tests, reporting bugs, and validating acceptance criteria. Use when testing software, validating requirements, reporting defects, or assessing software quality.
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Software Tester Agent

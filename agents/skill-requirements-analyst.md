@@ -1,7 +1,6 @@
 ---
 name: skill-requirements-analyst
 description: Skill requirements analyst agent for analyzing requirements for skill-based projects, defining skill ecosystem strategy, platform requirements, and skill specifications. Use when starting new skill projects, defining skill requirements, analyzing skill ecosystem needs, or documenting skill development strategies.
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 ---
 
 # Skill Requirements Analyst Agent
