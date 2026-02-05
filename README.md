@@ -19,73 +19,100 @@ A comprehensive multi-platform agent development suite for Claude Code, OpenCode
 
 ## Architecture
 
-AgentDev Suite follows a three-layer coordination architecture:
+AgentDev Suite follows an **enhanced three-layer coordination architecture** with intelligent task analysis and dynamic agent orchestration:
 
 ```
-┌─────────────────────────────────────────────┐
-│          Paradigm Coordination Layer        │
-│  (coordinating-agent-development)          │
-│  • Routes based on project indicators      │
-│  • Traditional vs Skill-based detection    │
-└────────────────┬────────────────────────────┘
-                 │
-    ┌────────────┴────────────┐
-    │                         │
-┌───▼─────┐             ┌─────▼─────┐
-│Traditional│             │ Skill-Based │
-│Coordination│             │ Coordination │
-│ Workflow  │             │  Workflow   │
-└───┬──────┘             └─────┬──────┘
-    │                         │
-    └────────────┬────────────┘
-                 │
-       ┌─────────▼─────────┐
-       │  Specialized      │
-       │  Agent Roles      │
-       │  (8 agents)       │
-       └───────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│           Paradigm Coordination Layer                    │
+│      (coordinating-agent-development)                   │
+│      • First-level routing: Traditional vs Skill-based  │
+│      • Project structure and keyword analysis           │
+└────────────────────┬────────────────────────────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+┌───────▼──────┐           ┌──────▼──────┐
+│Traditional    │           │Skill-Based   │
+│Coordination   │           │Coordination  │
+│• Intelligent task analysis & dynamic orchestration      │
+│• Task type detection (complete project, architecture,   │
+│  requirements, implementation, testing, maintenance)    │
+│• Context-aware workflow adaptation                      │
+└───────┬──────┘           └──────┬──────┘
+        │                         │
+        └────────────┬────────────┘
+                     │
+           ┌─────────▼─────────┐
+           │  Specialized      │
+           │  Agent Roles      │
+           │  (8 agents)       │
+           │  • Dynamic selection based on task type      │
+           │  • Intelligent sequencing for optimal flow   │
+           └───────────────────┘
 ```
 
 ### 1. Paradigm Coordination Layer
 
-**`coordinating-agent-development`** - The intelligent router that analyzes project context:
+**`coordinating-agent-development`** - The intelligent first-level router that performs paradigm distinction:
 - **Project Structure Indicators**: `src/`, `tests/`, `package.json` (Traditional) vs `skills/`, `.claude-plugin/`, SKILL.md files (Skill-based)
 - **Request Keywords**: "build an app", "create API" (Traditional) vs "create skill", "skill project" (Skill-based)
-- **Decision Rules**: Clear indicators → corresponding coordination; Mixed → analyze focus; None → ask user
+- **Decision Rules**: Clear indicators → corresponding coordination; Mixed → analyze primary focus; None → ask user
+- **Architecture Role**: Provides efficient first-level routing, delegating detailed task analysis to specialized coordination layers
 
-### 2. Specialized Coordination Workflows
+### 2. Specialized Coordination Workflows with Intelligent Orchestration
 
 #### Traditional Software Development (`traditional-development-coordination`)
-Complete 6-phase workflow for executable software:
-1. **Product Definition** (Product Manager)
-2. **Requirement Decomposition** (Product Owner)
-3. **Architecture Design** (Software Architect)
-4. **Iterative Development** (Developer & Tester)
-5. **Final Integration Testing**
-6. **Delivery & Version Control**
+**Enhanced with intelligent task analysis and dynamic agent orchestration**:
+- **Task Type Detection**: Analyzes requests to identify specific task types (complete project, architecture design, requirements analysis, code implementation, testing, maintenance, documentation)
+- **Dynamic Agent Selection**: Selects optimal agent sequence based on task type
+- **Smart Workflow Adaptation**: Chooses between full 6-phase workflow or targeted agent combinations
+- **Context-Aware Execution**: Adjusts workflow intensity based on project maturity and existing structure
+
+**Workflow Patterns**:
+- **Complete Project**: Full 6-phase workflow with all agents
+- **Architecture Focus**: Architect → (Developer for prototyping)
+- **Requirements Focus**: Product Manager → Product Owner
+- **Implementation Focus**: Developer → Tester
+- **Testing Focus**: Tester → (Developer for fixes)
+- **Maintenance Tasks**: Adaptive workflow with context analysis
+- **Documentation Tasks**: Targeted documentation workflow
 
 #### Skill-Based Development (`skill-development-coordination`)
-Structured workflow for AI skill projects:
-1. **Project Strategy & Scope** (Skill Requirements Analyst)
-2. **Skill Requirements & Design** (Skill Requirements Analyst)
-3. **Skill Architecture & Platform Design** (Skill Architect)
-4. **Iterative Skill Development** (Skill Creator, Skill Project Scaffolder)
-5. **Integration & Platform Testing** (Skill Tester)
-6. **Packaging & Distribution**
+**Enhanced with intelligent skill task analysis and dynamic orchestration**:
+- **Skill Task Type Detection**: Identifies skill-specific task types (complete skill project, skill architecture, requirements analysis, individual skill creation, testing, maintenance, platform configuration)
+- **Dynamic Agent/Skill Selection**: Selects optimal agent/skill sequence based on task type
+- **Platform-Aware Coordination**: Handles multi-platform configurations intelligently
+- **Progressive Disclosure Optimization**: Ensures efficient context management for skill projects
 
-### 3. Specialized Agent Roles
+**Workflow Patterns**:
+- **Complete Skill Project**: Full 6-phase workflow with all agents
+- **Architecture Focus**: Skill Architect → Skill Project Scaffolder
+- **Requirements Focus**: Skill Requirements Analyst
+- **Skill Creation Focus**: Skill Creator → Skill Tester
+- **Testing Focus**: Skill Tester → (Skill Creator for fixes)
+- **Maintenance Tasks**: Adaptive workflow for skill updates
+- **Platform Configuration**: Scaffolder → Architect for multi-platform setup
 
-#### Traditional Development Agents
+### 3. Specialized Agent Roles with Dynamic Orchestration
+
+#### Traditional Development Agents (Dynamically Selected)
 - **`product-manager`**: Product strategy and high-level requirements analysis
 - **`product-owner`**: Backlog management and user story decomposition
 - **`software-architect`**: System architecture and technical design
 - **`software-developer`**: Code implementation and unit testing
 - **`software-tester`**: Quality verification and bug reporting
 
-#### Skill Development Agents
+#### Skill Development Agents (Dynamically Selected)
 - **`skill-requirements-analyst`**: Skill ecosystem strategy and requirements analysis
 - **`skill-architect`**: Skill architecture and multi-platform configuration design
 - **`skill-tester`**: Skill structure validation and platform compatibility testing
+
+#### Dynamic Orchestration Capabilities
+- **Intelligent Agent Selection**: Coordination layers analyze task types and select appropriate agents
+- **Optimal Sequencing**: Agents are sequenced for maximum efficiency based on task requirements
+- **Context-Aware Adaptation**: Agent instructions are tailored to project maturity and existing context
+- **Feedback Loop Integration**: Agents work collaboratively with built-in quality assurance cycles
+- **Minimal Overhead**: Simple tasks bypass unnecessary agents, complex projects get full coverage
 
 ### 4. Core Development Tools
 

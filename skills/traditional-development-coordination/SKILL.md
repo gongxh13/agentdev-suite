@@ -7,17 +7,72 @@ description: Coordinates traditional software development workflows (non-skill b
 
 ## Overview
 
-This skill coordinates traditional software development lifecycle for executable software projects. It provides workflow coordination for developing applications, APIs, services, and libraries using specialized agent roles focused on code implementation, testing, and deployment.
+This skill coordinates traditional software development lifecycle for executable software projects. It provides **intelligent workflow coordination** with dynamic agent selection based on task type analysis. The system automatically identifies the optimal agent combination and workflow sequence for each specific development request.
+
+## Task Type Analysis & Dynamic Agent Orchestration
+
+Before starting any coordination, analyze the task type to determine the optimal workflow:
+
+### Task Type Detection Matrix
+
+| Task Type | Indicators | Recommended Agents | Workflow Pattern |
+|-----------|------------|-------------------|------------------|
+| **Complete Project Development** | "build an app", "create API", "new project", "from scratch" | PM → PO → Architect → Developer → Tester | Full 6-phase workflow |
+| **Architecture Design** | "design system", "select technology", "architecture review", "choose stack" | Architect → (Developer for prototyping) | Phase 3 + optional Phase 4 |
+| **Requirement Analysis** | "analyze requirements", "define features", "product planning", "scope definition" | PM → PO | Phase 1-2 only |
+| **Code Implementation** | "implement feature", "write code", "add functionality", "fix bug" | Developer → Tester | Direct Phase 4 iteration |
+| **Testing & Validation** | "test feature", "verify quality", "run tests", "validate requirements" | Tester → (Developer for fixes) | Direct Phase 5 |
+| **Maintenance Tasks** | "refactor code", "optimize performance", "update dependencies", "small changes" | Developer (with context analysis) → Tester | Adaptive workflow |
+| **Documentation Tasks** | "write documentation", "update API docs", "create technical specs" | Architect or Developer (based on scope) | Targeted documentation |
+
+### Dynamic Orchestration Logic
+
+1. **Analyze Request**: Parse user request for task type indicators
+2. **Assess Context**: Check project maturity, existing files, and documentation
+3. **Select Workflow**: Choose optimal agent sequence based on task type
+4. **Adapt Intensity**: Adjust workflow depth based on task complexity and project maturity
+5. **Execute Coordination**: Route to appropriate agents with tailored instructions
+
+### Orchestration Decision Flow
+
+```dot
+digraph orchestration_flow {
+    "User Request" -> "Task Type Analysis";
+    "Task Type Analysis" -> "Complete Project" [label="Complete development"];
+    "Task Type Analysis" -> "Architecture Design" [label="Design/Architecture"];
+    "Task Type Analysis" -> "Requirement Analysis" [label="Planning/Requirements"];
+    "Task Type Analysis" -> "Code Implementation" [label="Implementation/Bug fix"];
+    "Task Type Analysis" -> "Testing & Validation" [label="Testing/Verification"];
+    "Task Type Analysis" -> "Maintenance Tasks" [label="Maintenance/Optimization"];
+    "Task Type Analysis" -> "Documentation Tasks" [label="Documentation"];
+
+    "Complete Project" -> "Full 6-phase workflow";
+    "Architecture Design" -> "Architect → (Developer)";
+    "Requirement Analysis" -> "PM → PO";
+    "Code Implementation" -> "Developer → Tester";
+    "Testing & Validation" -> "Tester → (Developer)";
+    "Maintenance Tasks" -> "Adaptive workflow";
+    "Documentation Tasks" -> "Targeted documentation";
+
+    "Full 6-phase workflow" -> "Execute with all agents";
+    "Architect → (Developer)" -> "Execute architecture focus";
+    "PM → PO" -> "Execute requirements focus";
+    "Developer → Tester" -> "Execute implementation focus";
+    "Tester → (Developer)" -> "Execute testing focus";
+    "Adaptive workflow" -> "Execute maintenance focus";
+    "Targeted documentation" -> "Execute documentation focus";
+}
+```
 
 ## When to Use
 
 Use this skill when:
 - Developing new software features or projects end-to-end
 - Maintaining and modifying existing codebases
-- Coordinating multiple specialized agents (PM, PO, Architect, Developer, Tester)
-- Following structured development processes for new or existing projects
-- Managing complex development tasks with iterative approach
-- Fixing bugs or implementing small changes in established projects
+- Coordinating multiple specialized agents based on task type
+- Following structured development processes with intelligent adaptation
+- Managing complex development tasks with dynamic workflow selection
+- Fixing bugs or implementing small changes with appropriate agent focus
 
 ## Project Context Assessment
 
@@ -62,65 +117,144 @@ We use a standardized directory structure for collaboration. Ensure agents save 
 - **Dev Workspace**: `src/` (Code), `tests/` (Tests), `docs/04_development/` (Tech Notes)
 - **QA Workspace**: `docs/05_qa_reports/`
 
-## Complete Development Workflow
+## Intelligent Workflow Selection & Execution
 
-### Phase 1: Product Definition (Product Manager)
+Based on the task type analysis, select and execute the optimal workflow:
+
+### Workflow Selection Logic
+
+```dot
+digraph workflow_selection {
+    "Task Type Identified" -> "Complete Project?" [label="Check"];
+    "Complete Project?" -> "Full 6-Phase Workflow" [label="Yes"];
+    "Complete Project?" -> "Architecture Focus?" [label="No"];
+    "Architecture Focus?" -> "Architect-Centric Workflow" [label="Yes"];
+    "Architecture Focus?" -> "Requirements Focus?" [label="No"];
+    "Requirements Focus?" -> "PM-PO Workflow" [label="Yes"];
+    "Requirements Focus?" -> "Implementation Focus?" [label="No"];
+    "Implementation Focus?" -> "Developer-Tester Workflow" [label="Yes"];
+    "Implementation Focus?" -> "Testing Focus?" [label="No"];
+    "Testing Focus?" -> "Tester-Centric Workflow" [label="Yes"];
+    "Testing Focus?" -> "Maintenance Focus?" [label="No"];
+    "Maintenance Focus?" -> "Adaptive Maintenance Workflow" [label="Yes"];
+    "Maintenance Focus?" -> "Documentation Focus?" [label="No"];
+    "Documentation Focus?" -> "Targeted Documentation Workflow" [label="Yes"];
+    "Documentation Focus?" -> "Default to Full Workflow" [label="No/Uncertain"];
+
+    "Full 6-Phase Workflow" -> "Execute Phase 1-6";
+    "Architect-Centric Workflow" -> "Execute Phase 3 (+ Phase 4 if needed)";
+    "PM-PO Workflow" -> "Execute Phase 1-2";
+    "Developer-Tester Workflow" -> "Execute Phase 4 (+ Phase 5)";
+    "Tester-Centric Workflow" -> "Execute Phase 5 (+ Developer for fixes)";
+    "Adaptive Maintenance Workflow" -> "Execute Context-Aware Adaptation";
+    "Targeted Documentation Workflow" -> "Execute Documentation Task";
+}
+```
+
+### Dynamic Agent Orchestration Examples
+
+#### Example 1: Complete Project Development
+**Request**: "I need to build a REST API service for user management"
+**Analysis**: Complete project indicators detected
+**Workflow**: Full 6-phase workflow
+**Agent Sequence**:
+1. `product-manager` → PRD in `docs/01_product_strategy/`
+2. `product-owner` → Backlog in `docs/02_product_backlog/`
+3. `software-architect` → Architecture in `docs/03_system_design/`
+4. `software-developer` → Code in `src/`
+5. `software-tester` → Tests and validation
+6. `managing-git-workflows` → Final delivery
+
+#### Example 2: Architecture Design Only
+**Request**: "Design the architecture for our new microservices system"
+**Analysis**: Architecture design indicators detected
+**Workflow**: Architect-centric workflow
+**Agent Sequence**:
+1. `software-architect` → Architecture design in `docs/03_system_design/`
+2. (Optional) `software-developer` → Prototype implementation if requested
+
+#### Example 3: Bug Fix
+**Request**: "Fix the authentication bug in the login module"
+**Analysis**: Code implementation indicators detected
+**Workflow**: Developer-tester workflow
+**Agent Sequence**:
+1. `software-tester` → Reproduce and analyze bug
+2. `software-developer` → Implement fix in `src/`
+3. `software-tester` → Verify fix and run regression tests
+
+#### Example 4: Requirement Analysis
+**Request**: "Analyze requirements for the new payment integration feature"
+**Analysis**: Requirement analysis indicators detected
+**Workflow**: PM-PO workflow
+**Agent Sequence**:
+1. `product-manager` → High-level requirements in `docs/01_product_strategy/`
+2. `product-owner` → User stories and backlog in `docs/02_product_backlog/`
+
+### Phase Reference for Dynamic Orchestration
+
+When orchestrating agents dynamically, use these phase definitions as building blocks:
+
+#### Phase 1: Product Definition (Product Manager)
+- **Agent**: `product-manager`
 - **Action**: Analyze user request for product strategy
 - **Context**: Pass the user's initial request
 - **Instruction**: "Analyze this request. Create or update the Product Requirements Document (PRD) and other strategy docs in `docs/01_product_strategy/`. Ensure the directory exists."
 - **Output**: `docs/01_product_strategy/prd.md`, `market_analysis.md`, `roadmap.md`
-- **Existing Project Adaptation**: Skip this phase if project already has clear goals and established codebase. For maintenance tasks, document changes in existing PRD or create lightweight change request.
 
-### Phase 2: Requirement Decomposition (Product Owner)
+#### Phase 2: Requirement Decomposition (Product Owner)
+- **Agent**: `product-owner`
 - **Action**: Break down high-level requirements into user stories
 - **Context**: Read `docs/01_product_strategy/`
 - **Instruction**: "Read the strategy docs in `docs/01_product_strategy/`. Create or update the detailed Product Backlog and User Stories in `docs/02_product_backlog/`. Ensure the directory exists."
 - **Output**: `docs/02_product_backlog/backlog.md`, `features/*.md`
-- **Existing Project Adaptation**: For maintenance tasks, create focused user stories for specific changes. Reference existing code patterns and constraints. Skip comprehensive backlog creation for small changes.
 
-### Phase 3: Architecture Design (Software Architect)
+#### Phase 3: Architecture Design (Software Architect)
+- **Agent**: `software-architect`
 - **Action**: Design system architecture based on requirements
 - **Context**: Read `docs/01_product_strategy/` and `docs/02_product_backlog/`
 - **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `docs/03_system_design/`. Ensure the directory exists."
 - **Output**: `docs/03_system_design/architecture.md`, `api_spec.md`, `database_schema.md`
-- **Existing Project Adaptation**: Reference existing architecture and patterns. For maintenance tasks, document design decisions incrementally rather than creating comprehensive architecture docs. Follow established technology stack and conventions.
 
-### Phase 4: Iterative Development (Developer & Tester)
+#### Phase 4: Iterative Development (Developer & Tester)
+- **Agents**: `software-developer`, `software-tester`
+- **Strategy**: Use adaptive iteration based on project context
+- **Action Loop**: Plan → Develop → Verify → Handle Bugs → (Optional) Commit
 
-**Strategy**: Use adaptive iteration based on project context:
-- **New projects**: Start with full backlog and design review
-- **Existing projects**: Begin with code analysis and existing test suite review
-- **Maintenance tasks**: Focus on specific changes while preserving existing functionality
-- **Complex features**: **DO NOT** attempt to build everything in one go. Use iterative approach to manage context window and complexity.
-
-**Action Loop**:
-1. **Plan**: Assess project context and identify work items:
-   - **New projects**: Review Backlog (`docs/02_product_backlog/`) and Design (`docs/03_system_design/`)
-   - **Existing projects**: Analyze existing codebase, test suite, and documentation
-   - **Maintenance**: Review specific change requests or bug reports
-   Identify distinct Features, Modules, or Changes to implement.
-2. **Iterate**: For each Feature/Module in the list:
-   - **Develop**: Implement **ONLY** the specific feature or change
-     - **Instruction**: "Implement **ONLY** the [Feature/Change Name]. For new projects, read `docs/03_system_design/` for architectural guidance. For existing projects, follow established patterns and conventions. Save code to `src/`."
-   - **Verify**: Test the specific feature or change
-     - **Instruction**: "Verify **ONLY** the [Feature/Change Name]. Run tests (including existing test suite for regression testing) and save the report to `docs/05_qa_reports/`."
-   - **Handle Bugs**: If bugs are found, fix them immediately before moving to next feature
-   - **Commit (Optional)**: Use `managing-git-workflows` skill to commit this specific feature if it passes tests
-
-### Phase 5: Final Integration & Acceptance
-- **Action**: Once all features/changes are implemented and verified individually
-- **Instruction**: Run full regression test suite to ensure no regressions were introduced
+#### Phase 5: Final Integration & Acceptance
+- **Agent**: `software-tester`
+- **Action**: Run full regression test suite
+- **Instruction**: "Run comprehensive regression testing to ensure no regressions were introduced."
 - **Output**: Final test report in `docs/05_qa_reports/`
-- **Existing Project Adaptation**: Focus on regression testing to preserve existing functionality. For maintenance tasks, ensure backward compatibility and minimal disruption.
 
-### Phase 6: Delivery & Version Control
+#### Phase 6: Delivery & Version Control
+- **Agent**: `managing-git-workflows` skill
 - **Condition**: Only proceed if Final Integration Testing is successful
-- **Action**: Use the `managing-git-workflows` skill to commit the final artifacts
-- **Instruction**:
-  1. "Stage all changes in the workspace (`git add .`)."
-  2. "Consult the `managing-git-workflows` skill to generate a Semantic Commit Message based on the features/changes implemented."
-  3. "Execute `git commit -m '...'` with the generated message."
-- **Existing Project Adaptation**: Use appropriate commit types (fix, chore, refactor) for maintenance tasks. Follow existing branch naming conventions and workflow.
+- **Action**: Package and deliver final artifacts with semantic versioning
+
+### Smart Context Adaptation
+
+When executing workflows, apply these adaptation rules:
+
+1. **Existing Project Context**: Skip unnecessary phases, reference existing patterns
+2. **Partial Documentation**: Start at earliest missing phase, fill gaps incrementally
+3. **Mature Codebase**: Focus on code changes, minimal documentation overhead
+4. **Maintenance Tasks**: Target specific changes, preserve existing functionality
+5. **Hybrid Requests**: Combine relevant phases from different workflows
+
+### Orchestration Checklist
+
+Copy this checklist when orchestrating development tasks:
+
+```
+Task Analysis & Orchestration:
+- [ ] Identify task type from request indicators
+- [ ] Assess project context and maturity
+- [ ] Select optimal workflow pattern
+- [ ] Determine agent sequence
+- [ ] Apply context adaptation rules
+- [ ] Execute dynamic agent coordination
+- [ ] Monitor progress and adjust as needed
+```
 
 ## Handling Feedback Loops (Bugs)
 
@@ -238,13 +372,3 @@ AgentDev Suite integrates with:
 - Version control systems through `managing-git-workflows` skill
 - CI/CD pipelines through standardized test outputs
 - Project management through structured documentation
-
-## Using the `/agent-dev` Command
-
-The `/agent-dev` command activates this skill for complete software development coordination:
-
-```
-/agent-dev I need to develop a [project description] - please coordinate the full team
-```
-
-This will initiate the complete 6-phase development workflow with specialized agent coordination.

@@ -46,5 +46,21 @@ If automatic routing fails:
 - Skill-based development: `Skill: skill-development-coordination`
 
 ## Notes
-- Detailed workflows are in the specialized coordination skills
+- Detailed workflows with intelligent task analysis are in the specialized coordination skills
+- Coordination layers perform dynamic agent orchestration based on task type analysis
 - Focus on correct routing, not implementation details
+
+## Enhanced Architecture
+
+This skill provides **first-level routing** (paradigm distinction). Once routed, the specialized coordination skills (`traditional-development-coordination` and `skill-development-coordination`) perform:
+
+1. **Intelligent Task Analysis**: Parse user requests to identify specific task types
+2. **Dynamic Agent Orchestration**: Select optimal agent sequence based on task type
+3. **Context-Aware Adaptation**: Adjust workflow intensity based on project maturity
+4. **Smart Workflow Selection**: Choose between full workflows or targeted agent combinations
+
+This two-level architecture ensures:
+- **Efficient routing** at paradigm level
+- **Intelligent coordination** at task execution level
+- **Minimal overhead** for simple tasks
+- **Comprehensive coverage** for complex projects
