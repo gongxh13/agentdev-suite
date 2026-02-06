@@ -35,6 +35,11 @@ For commit message generation and validation, use `get_skill_script("managing-gi
 <footer>
 ```
 
+**Important Notes**:
+- Do NOT automatically add `Co-Authored-By:` lines to commit messages
+- Use conventional commit format without AI attribution markers
+- Only include relevant issue references, breaking changes, or co-authors when explicitly requested
+
 ### Types
 - **feat**: New feature
 - **fix**: Bug fix
