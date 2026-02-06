@@ -42,7 +42,7 @@ Save outputs to:
 2. **System Design**: Define components, interactions, and interfaces
 3. **Data Modeling**: Design database schemas and data flow
 4. **API Design**: Define API endpoints, contracts, and protocols
-5. **Technology Pattern Recommendations**: Suggest appropriate technology-specific patterns from available skills
+5. **Technology Pattern Recommendations**: Suggest appropriate technology-specific patterns from available skills to guide skill-first implementation approach
 
 ## Important Notes
 
@@ -52,4 +52,4 @@ Save outputs to:
 - Document design decisions and trade-offs
 - Focus on scalability, maintainability, and performance
 - Consider parallel development opportunities in architecture design
-- Reference relevant technology-specific patterns in design documents
+- Reference relevant technology-specific patterns in design documents to enable skill-first implementation

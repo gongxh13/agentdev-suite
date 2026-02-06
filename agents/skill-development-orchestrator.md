@@ -60,88 +60,47 @@ Before starting, verify these inputs exist:
 
 ### Phase 4a: Project Scaffolding Setup
 ```bash
-# Execute skill-project-scaffolder in forked context
-Task: {
-  subagent_type: "general-purpose",
-  description: "Setup skill project scaffolding",
-  prompt: "Read architecture docs in docs/03_system_design/. Execute skill-project-scaffolder to create project structure based on platform configurations."
-}
+# Setup multi-platform project scaffolding
+Skill(skill-project-scaffolder)
 ```
 
 ### Phase 4b: Core Skills Implementation
 1. **Entry point skill** (`using-{project}`):
    ```bash
-   Task: {
-     subagent_type: "general-purpose",
-     description: "Create entry point skill",
-     prompt: "Create using-{project} skill based on architecture design. Include skill discipline rules and project context."
-   }
+   # Create entry point skill (using-{project})
+   Skill(skill-creator)
    ```
 
-2. **Methodology skill** (`skill-development-methodology`):
-   ```bash
-   Task: {
-     subagent_type: "general-purpose",
-     description: "Create methodology skill",
-     prompt: "Create skill-development-methodology skill with architecture decision framework from docs/03_system_design/."
-   }
-   ```
-
-3. **Domain-specific skills**:
+2. **Domain-specific skills**:
    ```bash
    # For each skill in architecture design
-   Task: {
-     subagent_type: "general-purpose",
-     description: "Create {skill-name} skill",
-     prompt: "Create {skill-name} skill based on specifications in docs/02_product_backlog/. Follow progressive disclosure patterns."
-   }
+   Skill(skill-creator)  # Creates {skill-name} skill
    ```
 
 ### Phase 4c: Agent Implementation
 ```bash
 # For each agent in architecture design
-Task: {
-  subagent_type: "general-purpose",
-  description: "Create {agent-name} agent",
-  prompt: "Create {agent-name}.md agent based on design in docs/03_system_design/. Configure tools, model, and permissions."
-}
+Task("Create {agent-name} agent")
 ```
 
 
 ## Key Implementation Patterns
 
-### Handling context:fork Limitations
-Since `skill-creator` and `skill-project-scaffolder` use `context:fork`, you cannot invoke them directly as skills. Instead:
-
-1. **Use Task tool** to execute them in general-purpose subagent:
-   ```bash
-   Task: {
-     subagent_type: "general-purpose",
-     description: "Execute skill-creator for {skill-name}",
-     prompt: "Invoke skill-creator to create {skill-name} skill with specifications: {spec-details}"
-   }
-   ```
-
-2. **Pass architecture context** to subagent so it can read design documents
-3. **Handle results** returned from forked execution
-
 ### Parallel Skill Creation
 For independent skills, execute parallel creation:
 ```bash
 # Parallel execution for independent skills
-[
-  Task: {subagent_type: "general-purpose", description: "Create skill A", prompt: "..."},
-  Task: {subagent_type: "general-purpose", description: "Create skill B", prompt: "..."}
-]
+Skill(skill-creator)  # Creates skill A
+Skill(skill-creator)  # Creates skill B
 ```
 
 ### Sequential Dependencies
 For dependent skills, execute sequentially:
 ```bash
 # Sequential execution for dependent skills
-Task: {subagent_type: "general-purpose", description: "Create foundational skill", prompt: "..."}
+Skill(skill-creator)  # Creates foundational skill first
 # Wait for completion, then:
-Task: {subagent_type: "general-purpose", description: "Create dependent skill", prompt: "..."}
+Skill(skill-creator)  # Creates dependent skill next
 ```
 
 ## Output Management

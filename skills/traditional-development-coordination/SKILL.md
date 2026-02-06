@@ -215,20 +215,22 @@ When orchestrating agents dynamically, use these phase definitions as building b
 - **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `docs/03_system_design/`. Ensure the directory exists."
 - **Output**: `docs/03_system_design/architecture.md`, `api_spec.md`, `database_schema.md`
 
-#### Phase 4: Iterative Development with Parallel Execution (Traditional Development Orchestrator)
+#### Phase 4: Iterative Development with Skill-First Parallel Execution (Traditional Development Orchestrator)
 - **Agent**: `traditional-development-orchestrator`
-- **Strategy**: Use adaptive iteration with parallel execution capabilities
+- **Strategy**: Use skill-first approach prioritizing technology-specific skills over generic Task execution, with adaptive parallel execution capabilities
 - **Action Flow**:
   1. Analyze technology stack and load relevant patterns
   2. Identify independent features for parallel development
-  3. Coordinate parallel development tasks
-  4. Manage dependencies and integration
-  5. Coordinate testing and quality verification
+  3. Prioritize using technology-specific skills (Skill()) for feature implementation
+  4. Use Task execution only when no relevant skill exists (fallback approach)
+  5. Manage dependencies and integration
+  6. Coordinate testing and quality verification
 - **Key Features**:
-  - Parallel execution of independent features
-  - Technology-specific pattern integration
-  - Automated skill loading based on stack
-  - Dependency-aware task scheduling
+  - Skill-first development: Prioritize using available technology-specific skills
+  - Parallel execution of independent features with appropriate execution method
+  - Technology-specific pattern integration through skill guidance
+  - Automated skill loading based on technology stack detection
+  - Dependency-aware task scheduling with skill/Task selection
 
 #### Phase 5: Final Integration & Acceptance
 - **Agent**: `traditional-development-tester`
@@ -331,9 +333,8 @@ This suite coordinates these specialized skills:
 - `product-manager`: Product strategy and high-level requirements
 - `product-owner`: Backlog management and user stories
 - `traditional-development-architect`: System architecture design
-- `traditional-development-orchestrator`: Code implementation
+- `traditional-development-orchestrator`: Code implementation with skill-first approach and parallel execution
 - `traditional-development-tester`: Testing and quality verification
-- `traditional-development-orchestrator`: Parallel development coordination and technology pattern integration
 - `managing-git-workflows`: Git operations and commit guidelines
 
 ### Technology-Specific Pattern Skills
@@ -355,7 +356,7 @@ This suite coordinates these specialized skills:
 ### New Feature Development
 1. Analyze requirements with Product Manager
 2. Decompose into user stories with Product Owner
-3. Design architecture with Software Architect
+3. Design architecture with Traditional Development Architect
 4. Implement features with parallel execution using Traditional Development Orchestrator
 5. Verify with Tester
 6. Final integration and delivery
