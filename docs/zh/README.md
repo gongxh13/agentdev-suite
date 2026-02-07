@@ -96,16 +96,16 @@ AgentDev Suite 遵循**增强的三层协调架构**，具备智能任务分析�
 ### 3. 具备动态编排的专门智能体角色
 
 #### 传统开发智能体（动态选择）
-- **`product-manager`**：产品策略和高级需求分析
-- **`product-owner`**：产品待办事项管理和用户故事分解
-- **`software-architect`**：系统架构和技术设计
-- **`software-developer`**：代码实现和单元测试
-- **`software-tester`**：质量验证和错误报告
+- **`agentdev-suite:product-manager`**：产品策略和高级需求分析
+- **`agentdev-suite:product-owner`**：产品待办事项管理和用户故事分解
+- **`agentdev-suite:traditional-development-architect`**：系统架构和技术设计
+- **`agentdev-suite:traditional-development-orchestrator`**：代码实现和单元测试
+- **`agentdev-suite:traditional-development-tester`**：质量验证和错误报告
 
 #### 技能开发智能体（动态选择）
-- **`skill-requirements-analyst`**：技能生态系统策略和需求分析
-- **`skill-architect`**：技能架构和多平台配置设计
-- **`skill-tester`**：技能结构验证和平台兼容性测试
+- **`agentdev-suite:skill-requirements-analyst`**：技能生态系统策略和需求分析
+- **`agentdev-suite:skill-architect`**：技能架构和多平台配置设计
+- **`agentdev-suite:skill-tester`**：技能结构验证和平台兼容性测试
 
 #### 动态编排能力
 - **智能智能体选择**：协调层分析任务类型并选择适当的智能体

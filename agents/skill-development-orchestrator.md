@@ -61,20 +61,20 @@ Before starting, verify these inputs exist:
 ### Phase 4a: Project Scaffolding Setup
 ```bash
 # Setup multi-platform project scaffolding
-Skill(skill-project-scaffolder)
+Skill("agentdev-suite:skill-project-scaffolder")
 ```
 
 ### Phase 4b: Core Skills Implementation
 1. **Entry point skill** (`using-{project}`):
    ```bash
    # Create entry point skill (using-{project})
-   Skill(skill-creator)
+   Skill("agentdev-suite:skill-creator")
    ```
 
 2. **Domain-specific skills**:
    ```bash
    # For each skill in architecture design
-   Skill(skill-creator)  # Creates {skill-name} skill
+   Skill("agentdev-suite:skill-creator")  # Creates {skill-name} skill
    ```
 
 ### Phase 4c: Agent Implementation
@@ -90,17 +90,17 @@ Task("Create {agent-name} agent")
 For independent skills, execute parallel creation:
 ```bash
 # Parallel execution for independent skills
-Skill(skill-creator)  # Creates skill A
-Skill(skill-creator)  # Creates skill B
+Skill("agentdev-suite:skill-creator")  # Creates skill A
+Skill("agentdev-suite:skill-creator")  # Creates skill B
 ```
 
 ### Sequential Dependencies
 For dependent skills, execute sequentially:
 ```bash
 # Sequential execution for dependent skills
-Skill(skill-creator)  # Creates foundational skill first
+Skill("agentdev-suite:skill-creator")  # Creates foundational skill first
 # Wait for completion, then:
-Skill(skill-creator)  # Creates dependent skill next
+Skill("agentdev-suite:skill-creator")  # Creates dependent skill next
 ```
 
 ## Output Management

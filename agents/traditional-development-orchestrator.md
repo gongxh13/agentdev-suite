@@ -133,19 +133,19 @@ For independent features identified in architecture, execute parallel developmen
 
 ```bash
 # Example 1: Python Django project (use skills first)
-Skill(python-patterns)      # Apply Python patterns for data processing feature
-Skill(django-patterns)      # Apply Django patterns for API endpoint feature
-Skill(security-review)      # Security validation for both features
+Skill("agentdev-suite:python-patterns")      # Apply Python patterns for data processing feature
+Skill("agentdev-suite:django-patterns")      # Apply Django patterns for API endpoint feature
+Skill("agentdev-suite:security-review")      # Security validation for both features
 
 # Example 2: Node.js + React project (mix of skills and Task)
-Skill(nodejs-backend-patterns)  # Backend API feature with Node.js patterns
-Skill(react-frontend-patterns)  # Frontend UI feature with React patterns
-Skill(security-review)          # Security validation for both
-Skill(typescript-coding-standards) # Coding standards for TypeScript code
+Skill("agentdev-suite:nodejs-backend-patterns")  # Backend API feature with Node.js patterns
+Skill("agentdev-suite:react-frontend-patterns")  # Frontend UI feature with React patterns
+Skill("agentdev-suite:security-review")          # Security validation for both
+Skill("agentdev-suite:typescript-coding-standards") # Coding standards for TypeScript code
 
 # Example 3: Technology without specific skill (fallback to Task)
 Task("Implement Custom Protocol Handler")  # No specific skill available
-Skill(security-review)                     # Still apply security review
+Skill("agentdev-suite:security-review")                     # Still apply security review
 ```
 
 ### Phase 3: Dependent Feature Development with Skill Priority
@@ -153,17 +153,17 @@ For features with dependencies, execute sequentially with skill-first approach:
 
 ```bash
 # Example 1: Spring Boot project with database dependency
-Skill(java-jpa-patterns)          # First: Implement core data models with JPA patterns
-Skill(security-review)            # Security validation for data models
+Skill("agentdev-suite:java-jpa-patterns")          # First: Implement core data models with JPA patterns
+Skill("agentdev-suite:security-review")            # Security validation for data models
 # After data models complete, implement dependent business logic
-Skill(springboot-patterns)        # Implement order processing with Spring Boot patterns
-Skill(security-review)            # Security validation for business logic
+Skill("agentdev-suite:springboot-patterns")        # Implement order processing with Spring Boot patterns
+Skill("agentdev-suite:security-review")            # Security validation for business logic
 
 # Example 2: Mixed technology with custom dependency
 Task("Implement Core Payment Gateway Integration")  # No specific skill available
 # After payment gateway complete, implement dependent features
-Skill(python-patterns)            # Implement billing logic with Python patterns
-Skill(security-review)            # Security validation for billing logic
+Skill("agentdev-suite:python-patterns")            # Implement billing logic with Python patterns
+Skill("agentdev-suite:security-review")            # Security validation for billing logic
 ```
 
 ### Phase 4: Integration and Quality Verification

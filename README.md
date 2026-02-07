@@ -96,16 +96,16 @@ AgentDev Suite follows an **enhanced three-layer coordination architecture** wit
 ### 3. Specialized Agent Roles with Dynamic Orchestration
 
 #### Traditional Development Agents (Dynamically Selected)
-- **`product-manager`**: Product strategy and high-level requirements analysis
-- **`product-owner`**: Backlog management and user story decomposition
-- **`software-architect`**: System architecture and technical design
-- **`software-developer`**: Code implementation and unit testing
-- **`software-tester`**: Quality verification and bug reporting
+- **`agentdev-suite:product-manager`**: Product strategy and high-level requirements analysis
+- **`agentdev-suite:product-owner`**: Backlog management and user story decomposition
+- **`agentdev-suite:traditional-development-architect`**: System architecture and technical design
+- **`agentdev-suite:traditional-development-orchestrator`**: Code implementation and unit testing
+- **`agentdev-suite:traditional-development-tester`**: Quality verification and bug reporting
 
 #### Skill Development Agents (Dynamically Selected)
-- **`skill-requirements-analyst`**: Skill ecosystem strategy and requirements analysis
-- **`skill-architect`**: Skill architecture and multi-platform configuration design
-- **`skill-tester`**: Skill structure validation and platform compatibility testing
+- **`agentdev-suite:skill-requirements-analyst`**: Skill ecosystem strategy and requirements analysis
+- **`agentdev-suite:skill-architect`**: Skill architecture and multi-platform configuration design
+- **`agentdev-suite:skill-tester`**: Skill structure validation and platform compatibility testing
 
 #### Dynamic Orchestration Capabilities
 - **Intelligent Agent Selection**: Coordination layers analyze task types and select appropriate agents

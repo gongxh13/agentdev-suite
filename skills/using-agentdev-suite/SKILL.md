@@ -15,6 +15,8 @@ This is not negotiable. This is not optional. You cannot rationalize your way ou
 
 **In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
 
+**Important:** All skills from this project require the `agentdev-suite:` prefix. Use `Skill("agentdev-suite:skill-name")` format.
+
 **In other environments:** Check your platform's documentation for how skills are loaded.
 
 # Using Skills

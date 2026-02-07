@@ -7,8 +7,8 @@ description: Routes development requests to appropriate paradigm (traditional vs
 
 Routes development requests based on project context and request keywords to the appropriate specialized coordination:
 
-- **Traditional Software Development** (executable code, APIs, services, libraries) → `traditional-development-coordination`
-- **Skill-Based Development** (AI skills, plugin projects, guidance packages) → `skill-development-coordination`
+- **Traditional Software Development** (executable code, APIs, services, libraries) → `agentdev-suite:traditional-development-coordination`
+- **Skill-Based Development** (AI skills, plugin projects, guidance packages) → `agentdev-suite:skill-development-coordination`
 
 ## Routing Logic
 
@@ -26,11 +26,11 @@ Routes development requests based on project context and request keywords to the
 
 1. **Check indicators**: Examine project structure and request keywords
 2. **Apply rules**:
-   - Clear skill indicators → `Skill: skill-development-coordination`
-   - Clear traditional indicators → `Skill: traditional-development-coordination`
+   - Clear skill indicators → `Skill: agentdev-suite:skill-development-coordination`
+   - Clear traditional indicators → `Skill: agentdev-suite:traditional-development-coordination`
    - Mixed indicators → Analyze primary focus, default to traditional if uncertain
    - No clear indicators → Ask user: "Are you building executable software or creating AI skills?"
-3. **Hybrid projects**: Route code components to `traditional-development-coordination` and skill components to `skill-development-coordination`. Coordinate integration as needed.
+3. **Hybrid projects**: Route code components to `agentdev-suite:traditional-development-coordination` and skill components to `agentdev-suite:skill-development-coordination`. Coordinate integration as needed.
 
 ## Usage
 
@@ -42,15 +42,15 @@ This skill is automatically triggered when you:
 
 ### Manual Invocation
 If automatic routing doesn't occur (e.g., in specific development contexts):
-- Traditional development: `Skill: traditional-development-coordination`
-- Skill-based development: `Skill: skill-development-coordination`
+- Traditional development: `Skill: agentdev-suite:traditional-development-coordination`
+- Skill-based development: `Skill: agentdev-suite:skill-development-coordination`
 
 ### Example Workflow
 ```
 User: "I need to build a REST API for user management"
-Using-agentdev-suite: Enforces skill discipline
-Coordinating-agent-development: Analyzes request, detects traditional indicators
-Traditional-development-coordination: Routes to, performs task analysis and dynamic orchestration
+agentdev-suite:using-agentdev-suite: Enforces skill discipline
+agentdev-suite:coordinating-agent-development: Analyzes request, detects traditional indicators
+agentdev-suite:traditional-development-coordination: Routes to, performs task analysis and dynamic orchestration
 ```
 
 ## Notes
