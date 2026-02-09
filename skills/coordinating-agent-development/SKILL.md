@@ -22,9 +22,16 @@ Routes development requests based on project context and request keywords to the
 - **Traditional**: "build an app", "create API", "develop service", "write code", "database", "backend", "deploy"
 - **Skill-based**: "create skill", "skill project", "AI guidance", "plugin development", "SKILL.md", "progressive disclosure", "multi-platform"
 
+### Feature Claim Check
+
+Before routing to development coordination, check if the request involves feature development that needs claim management:
+
+**Development Keywords**: "build", "create", "implement", "develop", "add", "fix", "write", "design"
+**Process**: If request contains development keywords, invoke `Skill: agentdev-suite:feature-management` with the user's request as argument to check feature claim status before proceeding with routing decision.
+
 ### Decision Process
 
-1. **Check indicators**: Examine project structure and request keywords
+1. **Check indicators**: Examine project structure and request keywords. If development keywords detected, perform feature claim check as described above before proceeding.
 2. **Apply rules**:
    - Clear skill indicators → `Skill: agentdev-suite:skill-development-coordination`
    - Clear traditional indicators → `Skill: agentdev-suite:traditional-development-coordination`
