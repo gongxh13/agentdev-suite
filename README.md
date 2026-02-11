@@ -1,226 +1,111 @@
 # AgentDev Suite
 
-A comprehensive multi-platform agent development suite for Claude Code, OpenCode, and Codex that provides intelligent agent collaboration across the full software development lifecycle.
+🌐 语言切换: [English](docs/en/README.md) | **中文**
 
-## Overview
+一个全面的多平台智能体开发套件，支持 Claude Code、OpenCode 和 Codex，提供覆盖完整软件开发生命周期的智能体协作能力。
 
-**AgentDev Suite** is a revolutionary agent-driven development framework that enables structured software development using specialized AI agents. It features a unique dual-paradigm coordination system that automatically routes development tasks to the appropriate workflow based on project context:
+## 概述
 
-- **Traditional Software Development**: Executable code, APIs, services, libraries
-- **Skill-Based Development**: AI skills, guidance packages, plugin projects
+**AgentDev Suite** 是一个革命性的智能体驱动开发框架，通过专门的AI智能体实现结构化软件开发。它采用独特的双范式协调系统，根据项目上下文自动路由开发任务到相应的工作流：
 
-### Key Innovations
+- **传统软件开发**：可执行代码、API、服务、库
+- **技能项目开发**：AI技能、指导包、插件项目
 
-- **Paradigm-Based Routing**: Automatically detects project type and routes to specialized coordination
-- **Multi-Platform Support**: Unified skill library for Claude Code, OpenCode, and Codex
-- **Progressive Disclosure**: Efficient context management through three-level loading system
-- **Agent Role Specialization**: 8 specialized agent roles for different development phases
-- **Structured Collaboration**: Directory-based workspace for multi-agent coordination
+### 核心创新
 
-## Architecture
+- **范式路由**：自动检测项目类型并路由到专门的协调系统
+- **多平台支持**：为 Claude Code、OpenCode 和 Codex 提供统一的技能库
+- **渐进式披露**：通过三级加载系统实现高效的上下文管理
+- **智能体角色专业化**：8个专门角色覆盖不同开发阶段
+- **结构化协作**：基于目录的工作空间支持多智能体协调
 
-AgentDev Suite follows an **enhanced three-layer coordination architecture** with intelligent task analysis and dynamic agent orchestration:
+## 安装
 
-```
-┌─────────────────────────────────────────────────────────┐
-│           Paradigm Coordination Layer                    │
-│      (coordinating-agent-development)                   │
-│      • First-level routing: Traditional vs Skill-based  │
-│      • Project structure and keyword analysis           │
-└────────────────────┬────────────────────────────────────┘
-                     │
-        ┌────────────┴────────────┐
-        │                         │
-┌───────▼──────┐           ┌──────▼──────┐
-│Traditional    │           │Skill-Based   │
-│Coordination   │           │Coordination  │
-│• Intelligent task analysis & dynamic orchestration      │
-│• Task type detection (complete project, architecture,   │
-│  requirements, implementation, testing, maintenance)    │
-│• Context-aware workflow adaptation                      │
-└───────┬──────┘           └──────┬──────┘
-        │                         │
-        └────────────┬────────────┘
-                     │
-           ┌─────────▼─────────┐
-           │  Specialized      │
-           │  Agent Roles      │
-           │  (8 agents)       │
-           │  • Dynamic selection based on task type      │
-           │  • Intelligent sequencing for optimal flow   │
-           └───────────────────┘
-```
+**注意：** 安装方法因平台和用户类型（AI助手 vs 人类用户）而异。
 
-### 1. Paradigm Coordination Layer
+### 对于AI助手
 
-**`coordinating-agent-development`** - The intelligent first-level router that performs paradigm distinction:
-- **Project Structure Indicators**: `src/`, `tests/`, `package.json` (Traditional) vs `skills/`, `.claude-plugin/`, SKILL.md files (Skill-based)
-- **Request Keywords**: "build an app", "create API" (Traditional) vs "create skill", "skill project" (Skill-based)
-- **Decision Rules**: Clear indicators → corresponding coordination; Mixed → analyze primary focus; None → ask user
-- **Architecture Role**: Provides efficient first-level routing, delegating detailed task analysis to specialized coordination layers
-
-### 2. Specialized Coordination Workflows with Intelligent Orchestration
-
-#### Traditional Software Development (`traditional-development-coordination`)
-**Enhanced with intelligent task analysis and dynamic agent orchestration**:
-- **Task Type Detection**: Analyzes requests to identify specific task types (complete project, architecture design, requirements analysis, code implementation, testing, maintenance, documentation)
-- **Dynamic Agent Selection**: Selects optimal agent sequence based on task type
-- **Smart Workflow Adaptation**: Chooses between full 6-phase workflow or targeted agent combinations
-- **Context-Aware Execution**: Adjusts workflow intensity based on project maturity and existing structure
-
-**Workflow Patterns**:
-- **Complete Project**: Full 6-phase workflow with all agents
-- **Architecture Focus**: Architect → (Developer for prototyping)
-- **Requirements Focus**: Product Manager → Product Owner
-- **Implementation Focus**: Developer → Tester
-- **Testing Focus**: Tester → (Developer for fixes)
-- **Maintenance Tasks**: Adaptive workflow with context analysis
-- **Documentation Tasks**: Targeted documentation workflow
-
-#### Skill-Based Development (`skill-development-coordination`)
-**Enhanced with intelligent skill task analysis and dynamic orchestration**:
-- **Skill Task Type Detection**: Identifies skill-specific task types (complete skill project, skill architecture, requirements analysis, individual skill creation, testing, maintenance, platform configuration)
-- **Dynamic Agent/Skill Selection**: Selects optimal agent/skill sequence based on task type
-- **Platform-Aware Coordination**: Handles multi-platform configurations intelligently
-- **Progressive Disclosure Optimization**: Ensures efficient context management for skill projects
-
-**Workflow Patterns**:
-- **Complete Skill Project**: Full 6-phase workflow with all agents
-- **Architecture Focus**: Skill Architect → Skill Project Scaffolder
-- **Requirements Focus**: Skill Requirements Analyst
-- **Skill Creation Focus**: Skill Creator → Skill Tester
-- **Testing Focus**: Skill Tester → (Skill Creator for fixes)
-- **Maintenance Tasks**: Adaptive workflow for skill updates
-- **Platform Configuration**: Scaffolder → Architect for multi-platform setup
-
-### 3. Specialized Agent Roles with Dynamic Orchestration
-
-#### Traditional Development Agents (Dynamically Selected)
-- **`agentdev-suite:product-manager`**: Product strategy and high-level requirements analysis
-- **`agentdev-suite:product-owner`**: Backlog management and user story decomposition
-- **`agentdev-suite:traditional-development-architect`**: System architecture and technical design
-- **`agentdev-suite:traditional-development-orchestrator`**: Code implementation and unit testing
-- **`agentdev-suite:traditional-development-tester`**: Quality verification and bug reporting
-
-#### Skill Development Agents (Dynamically Selected)
-- **`agentdev-suite:skill-requirements-analyst`**: Skill ecosystem strategy and requirements analysis
-- **`agentdev-suite:skill-architect`**: Skill architecture and multi-platform configuration design
-- **`agentdev-suite:skill-tester`**: Skill structure validation and platform compatibility testing
-
-#### Dynamic Orchestration Capabilities
-- **Intelligent Agent Selection**: Coordination layers analyze task types and select appropriate agents
-- **Optimal Sequencing**: Agents are sequenced for maximum efficiency based on task requirements
-- **Context-Aware Adaptation**: Agent instructions are tailored to project maturity and existing context
-- **Feedback Loop Integration**: Agents work collaboratively with built-in quality assurance cycles
-- **Minimal Overhead**: Simple tasks bypass unnecessary agents, complex projects get full coverage
-
-### 4. Core Development Tools
-
-- **`skill-creator`**: Guided skill creation following Claude's best practices
-- **`skill-project-scaffolder`**: Multi-platform project structure generation
-- **`skill-development-methodology`**: Skill design principles and patterns
-- **`traditional-development-methodology`**: Traditional development best practices
-- **`managing-git-workflows`**: Version control with semantic commit guidelines
-
-## Multi-Platform Support
-
-AgentDev Suite supports three major AI development platforms with a unified skill library:
-
-| Platform | Configuration | Installation Method |
-|----------|---------------|---------------------|
-| **Claude Code** | `.claude-plugin/` | Plugin system with marketplace |
-| **OpenCode** | `.opencode/` | Plugin script with symlinks |
-| **Codex** | `.codex/` | Bootstrap script integration |
-
-All platforms share the same `skills/` directory, ensuring consistent behavior across environments.
-
-## Installation
-
-**Note:** Installation differs by platform and user type (AI assistant vs human).
-
-### For AI Assistants
-
-AI assistants can directly fetch installation instructions:
+AI助手可以直接获取安装说明：
 
 #### Codex
-Tell Codex:
+告诉 Codex：
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.codex/INSTALL.md
 ```
 
 #### OpenCode
-Tell OpenCode:
+告诉 OpenCode：
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.opencode/INSTALL.md
 ```
 
 #### Claude Code
-Tell Claude Code:
+告诉 Claude Code：
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/gongxh13/agentdev-suite/refs/heads/main/.claude-plugin/INSTALL.md
 ```
 
-### For Human Users
+### 对于人类用户
 
-#### Remote Installation (from Git repository)
-Currently only Claude Code supports remote installation from Git repositories:
+#### 远程安装（从Git仓库）
+目前只有 Claude Code 支持从Git仓库远程安装：
 
 ##### Claude Code
 
-**Command Line:**
+**命令行：**
 ```bash
-# Add Git repository as a marketplace
+# 添加Git仓库作为市场
 claude plugin marketplace add https://github.com/gongxh13/agentdev-suite.git
-# Install the plugin from the added marketplace
+# 从添加的市场安装插件
 claude plugin install agentdev-suite
 ```
 
-**In Claude Code (slash commands):**
-First, register the marketplace from the Git repository:
+**在 Claude Code 中（斜杠命令）：**
+首先，从Git仓库注册市场：
 ```
 /plugin marketplace add https://github.com/gongxh13/agentdev-suite.git
 ```
 
-Then install the plugin from this marketplace. Check the marketplace name with `/plugin marketplace list`:
+然后从此市场安装插件。使用 `/plugin marketplace list` 检查市场名称：
 ```
 /plugin install agentdev-suite@agentdev-suite-dev
 ```
 
-*Example (if marketplace is named "agentdev-suite-dev"):*
+*示例（如果市场名为"agentdev-suite-dev"）：*
 ```
 /plugin install agentdev-suite@agentdev-suite-dev
 ```
 
-#### Source Code Installation
-Install from local source code:
+#### 源代码安装
+从本地源代码安装：
 
 ##### Claude Code
 
-**Command Line:**
+**命令行：**
 ```bash
-# Add local directory as a marketplace
+# 添加本地目录作为市场
 claude plugin marketplace add ./
-# Install the plugin from the local marketplace
+# 从本地市场安装插件
 claude plugin install agentdev-suite
 ```
 
-**In Claude Code (slash commands):**
-First, register the local directory as a marketplace (with a name):
+**在 Claude Code 中（斜杠命令）：**
+首先，将本地目录注册为市场（带名称）：
 ```
 /plugin marketplace add ./ --name agentdev-suite-dev
 ```
 
-Then install the plugin from this marketplace:
+然后从此市场安装插件：
 ```
 /plugin install agentdev-suite@agentdev-suite-dev
 ```
 
-*If you don't specify a name, check the marketplace name with `/plugin marketplace list` and use `@<marketplace-name>` suffix.*
+*如果不指定名称，请使用 `/plugin marketplace list` 检查市场名称，并使用 `@<marketplace-name>` 后缀。*
 
 ##### Codex
 ```bash
 cp -r . ~/.codex/agentdev-suite
-# Update ~/.codex/AGENTS.md with:
+# 更新 ~/.codex/AGENTS.md 添加：
 # ## agentdev-suite
 # <EXTREMELY_IMPORTANT>
 # You have access to agentdev-suite. RIGHT NOW run: ~/.codex/agentdev-suite/.codex/agentdev-suite-codex bootstrap
@@ -236,193 +121,286 @@ mkdir -p ~/.config/opencode/skills
 ln -s ~/.config/opencode/agentdev-suite/skills ~/.config/opencode/skills/agentdev-suite
 ```
 
-## Getting Started
 
-### 1. Load the Core Discipline Skill
+## 架构设计
 
-Once installed, use the `Skill` tool to load the mandatory discipline skill:
+AgentDev Suite 遵循**增强的三层协调架构**，具备智能任务分析和动态智能体编排能力：
+
+```
+┌─────────────────────────────────────────────────────────┐
+│           范式协调层                                    │
+│      (coordinating-agent-development)                   │
+│      • 第一级路由：传统 vs 技能项目区分                │
+│      • 项目结构和关键词分析                            │
+└────────────────────┬────────────────────────────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+┌───────▼──────┐           ┌──────▼──────┐
+│  传统协调     │           │  技能协调    │
+│  工作流      │           │  工作流      │
+│  • 智能任务分析与动态编排                              │
+│  • 任务类型检测（完整项目、架构设计、需求分析、        │
+│    代码实现、测试验证、维护任务、文档任务）            │
+│  • 上下文感知的工作流适配                              │
+└───────┬──────┘           └──────┬──────┘
+        │                         │
+        └────────────┬────────────┘
+                     │
+           ┌─────────▼─────────┐
+           │    专门智能体     │
+           │      角色         │
+           │    (8个智能体)    │
+           │  • 基于任务类型的动态选择                  │
+           │  • 智能排序实现最优流程                    │
+           └───────────────────┘
+```
+
+### 1. 范式协调层
+
+**`coordinating-agent-development`** - 智能第一级路由器，执行范式区分：
+- **项目结构指示器**：`src/`、`tests/`、`package.json`（传统） vs `skills/`、`.claude-plugin/`、SKILL.md 文件（技能）
+- **请求关键词**："build an app"、"create API"（传统） vs "create skill"、"skill project"（技能）
+- **决策规则**：明确指示器 → 对应协调；混合 → 分析主要重点；无指示器 → 询问用户
+- **架构角色**：提供高效的第一级路由，将详细任务分析委托给专门的协调层
+
+### 2. 具备智能编排的专门协调工作流
+
+#### 传统软件开发 (`traditional-development-coordination`)
+**增强的智能任务分析和动态智能体编排**：
+- **任务类型检测**：分析请求以识别特定任务类型（完整项目、架构设计、需求分析、代码实现、测试验证、维护任务、文档任务）
+- **动态智能体选择**：根据任务类型选择最优智能体序列
+- **智能工作流适配**：在完整6阶段工作流和针对性智能体组合之间选择
+- **上下文感知执行**：根据项目成熟度和现有结构调整工作流强度
+
+**工作流模式**：
+- **完整项目**：包含所有智能体的完整6阶段工作流
+- **架构重点**：架构师 →（开发者用于原型设计）
+- **需求重点**：产品经理 → 产品负责人
+- **实现重点**：开发者 → 测试者
+- **测试重点**：测试者 →（开发者用于修复）
+- **维护任务**：具备上下文分析的自适应工作流
+- **文档任务**：针对性文档工作流
+
+#### 技能项目开发 (`skill-development-coordination`)
+**增强的智能技能任务分析和动态编排**：
+- **技能任务类型检测**：识别技能特定任务类型（完整技能项目、技能架构、需求分析、单个技能创建、测试验证、维护任务、平台配置）
+- **动态智能体/技能选择**：根据任务类型选择最优智能体/技能序列
+- **平台感知协调**：智能处理多平台配置
+- **渐进式披露优化**：确保技能项目的高效上下文管理
+
+**工作流模式**：
+- **完整技能项目**：包含所有智能体的完整6阶段工作流
+- **架构重点**：技能架构师 → 技能项目脚手架
+- **需求重点**：技能需求分析师
+- **技能创建重点**：技能创建者 → 技能测试者
+- **测试重点**：技能测试者 →（技能创建者用于修复）
+- **维护任务**：技能更新的自适应工作流
+- **平台配置**：脚手架 → 架构师用于多平台设置
+
+### 3. 具备动态编排的专门智能体角色
+
+#### 传统开发智能体（动态选择）
+- **`agentdev-suite:product-manager`**：产品策略和高级需求分析
+- **`agentdev-suite:product-owner`**：产品待办事项管理和用户故事分解
+- **`agentdev-suite:traditional-development-architect`**：系统架构和技术设计
+- **`agentdev-suite:traditional-development-orchestrator`**：代码实现和单元测试
+- **`agentdev-suite:traditional-development-tester`**：质量验证和错误报告
+
+#### 技能开发智能体（动态选择）
+- **`agentdev-suite:skill-requirements-analyst`**：技能生态系统策略和需求分析
+- **`agentdev-suite:skill-architect`**：技能架构和多平台配置设计
+- **`agentdev-suite:skill-tester`**：技能结构验证和平台兼容性测试
+
+#### 动态编排能力
+- **智能智能体选择**：协调层分析任务类型并选择适当的智能体
+- **最优序列**：根据任务要求以最高效率排序智能体
+- **上下文感知适配**：根据项目成熟度和现有上下文定制智能体指令
+- **反馈循环集成**：智能体通过内置质量保证循环协同工作
+- **最小开销**：简单任务绕过不必要的智能体，复杂项目获得完整覆盖
+
+### 4. 核心开发工具
+
+- **`skill-creator`**：遵循Claude最佳实践的引导式技能创建
+- **`skill-project-scaffolder`**：多平台项目结构生成
+- **`skill-development-methodology`**：技能设计原则和模式
+- **`traditional-development-methodology`**：传统开发最佳实践
+- **`managing-git-workflows`**：带有语义提交指南的版本控制
+
+### 5. 智能体与技能协作
+
+AgentDev Suite 的核心优势在于智能体与技能之间的无缝协作：
+
+- **智能体角色分工**：8个专门智能体各司其职，覆盖从产品策略到测试验证的完整开发生命周期
+- **技能作为工具库**：核心开发技能（如 skill-creator、skill-project-scaffolder）为智能体提供标准化工具和方法论
+- **动态编排协作**：协调层根据任务类型智能选择智能体序列，并调用相应技能支持
+- **反馈循环优化**：智能体通过技能执行任务，技能根据使用反馈不断优化，形成正向增强循环
+- **跨平台一致性**：所有智能体和技能在多平台（Claude Code、OpenCode、Codex）上保持统一行为
+
+这种协作模式确保了开发过程既高度结构化又灵活适应不同项目需求。
+
+## 多平台支持
+
+AgentDev Suite 支持三大AI开发平台，采用统一的技能库：
+
+| 平台 | 配置 | 安装方法 |
+|------|------|----------|
+| **Claude Code** | `.claude-plugin/` | 插件系统与市场 |
+| **OpenCode** | `.opencode/` | 插件脚本与符号链接 |
+| **Codex** | `.codex/` | 引导脚本集成 |
+
+所有平台共享相同的 `skills/` 目录，确保跨环境的一致性行为。
+
+
+## 快速开始
+
+### 1. 加载核心纪律技能
+
+安装后，使用 `Skill` 工具加载强制纪律技能：
 
 ```bash
-# In Claude Code conversation
+# 在 Claude Code 对话中
 Skill: using-agentdev-suite
 ```
 
-This skill enforces the "1% rule": if there's even a 1% chance a skill might apply, you MUST invoke it. It provides access to all other skills in the library.
+此技能强制执行"1%规则"：即使只有1%的可能性某个技能适用，也必须调用它。它提供对库中所有其他技能的访问权限。
 
-### 2. Start Development Coordination with `using-agentdev-suite`
+### 2. 通过 `using-agentdev-suite` 启动开发协调
 
-Once the core discipline skill is loaded, you can start development coordination by using the appropriate skills through the `using-agentdev-suite` framework:
+加载核心纪律技能后，您可以通过 `using-agentdev-suite` 框架使用适当的技能来启动开发协调：
 
-#### Traditional Software Development Example
-In your Claude Code conversation, describe your development request:
+#### 传统软件开发示例
+在您的 Claude Code 对话中，描述您的开发请求：
 ```
-I need to develop a REST API service with user management including registration, authentication, and profile management
-```
-
-**Workflow:**
-1. The `using-agentdev-suite` skill enforces the 1% rule, requiring invocation of relevant skills
-2. `coordinating-agent-development` is automatically triggered based on task context
-3. `coordinating-agent-development` detects traditional indicators (`src/`, `tests/`, "API", "service")
-4. Routes to `traditional-development-coordination`
-5. Coordinates intelligent workflow with dynamic agent orchestration:
-   - Analyzes task type (complete project development)
-   - Selects optimal agent sequence: PM → PO → Architect → Developer → Tester
-   - Executes context-adapted workflow based on project maturity
-
-#### Skill Project Development Example
-Describe your skill development request:
-```
-Create a skill project for financial analysis workflows with support for multiple AI platforms
+我需要开发一个包含用户管理功能的REST API服务，包括注册、认证和资料管理
 ```
 
-**Workflow:**
-1. `using-agentdev-suite` ensures proper skill discipline is followed
-2. `coordinating-agent-development` is triggered based on skill-related keywords
-3. `coordinating-agent-development` detects skill indicators (`skills/`, "skill project", "multi-platform")
-4. Routes to `skill-development-coordination`
-5. Coordinates intelligent skill development workflow:
-   - Analyzes skill task type (complete skill project)
-   - Selects optimal agent/skill sequence: Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester
-   - Executes platform-aware coordination with progressive disclosure optimization
+**工作流：**
+1. `using-agentdev-suite` 技能强制执行 1% 规则，要求调用相关技能
+2. `coordinating-agent-development` 根据任务上下文自动触发
+3. `coordinating-agent-development` 检测传统指示器（`src/`、`tests/`、"API"、"service"）
+4. 路由到 `traditional-development-coordination`
+5. 协调具备动态智能体编排的智能工作流：
+   - 分析任务类型（完整项目开发）
+   - 选择最优智能体序列：PM → PO → Architect → Developer → Tester
+   - 根据项目成熟度执行上下文适配的工作流
 
-## Project Structure
-
+#### 技能项目开发示例
+描述您的技能开发请求：
 ```
-agentdev-suite/
-├── .claude-plugin/          # Claude Code plugin configuration
-├── .codex/                  # Codex platform configuration
-├── .opencode/               # OpenCode platform configuration
-├── agents/                  # Specialized agent role definitions (8 agents)
-├── skills/                  # Unified skill library (core)
-│   ├── using-agentdev-suite/          # Mandatory discipline skill
-│   ├── coordinating-agent-development/ # Paradigm routing skill
-│   ├── traditional-development-coordination/ # Traditional workflow
-│   ├── skill-development-coordination/ # Skill project workflow
-│   ├── skill-creator/                 # Skill creation guidance
-│   ├── skill-project-scaffolder/      # Multi-platform scaffolding
-│   ├── skill-development-methodology/ # Skill design principles
-│   ├── traditional-development-methodology/ # Development patterns
-│   └── managing-git-workflows/        # Version control
-├── commands/               # Command definitions
-│   └── dev.md             # Development coordination command
-├── lib/                   # Core utilities
-│   └── skills-core.js     # Skill management tools
-├── docs/                  # Documentation
-│   ├── api/              # API documentation
-│   ├── en/               # English documentation
-│   └── zh/               # Chinese documentation
-├── hooks/                 # System hooks
-│   └── session-start.sh  # Session initialization
-├── tests/                 # Test suites
-│   ├── structure.test.js # Project structure validation
-│   ├── platform-validation.js # Multi-platform compatibility
-│   └── skill-triggering/ # Skill activation tests
-├── package.json           # Project configuration
-└── LICENSE               # MIT License
+创建一个用于财务分析工作流的技能项目，支持多个AI平台
 ```
 
-## Workspace Structure
+**工作流：**
+1. `using-agentdev-suite` 确保遵循正确的技能纪律
+2. `coordinating-agent-development` 根据技能相关关键词触发
+3. `coordinating-agent-development` 检测技能指示器（`skills/`、"skill project"、"multi-platform"）
+4. 路由到 `skill-development-coordination`
+5. 协调智能技能开发工作流：
+   - 分析技能任务类型（完整技能项目）
+   - 选择最优智能体/技能序列：Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester
+   - 执行具备渐进式披露优化的平台感知协调
 
-The suite uses a standardized directory structure for agent collaboration:
+## 工作空间结构
+
+套件使用标准化的目录结构进行智能体协作：
 
 ```
 docs/
-├── 01_product_strategy/    # Product Manager workspace (PRD, roadmap, market analysis)
-├── 02_product_backlog/     # Product Owner workspace (user stories, features, backlog)
-├── 03_system_design/       # Architect workspace (architecture, API specs, schemas)
-├── 04_development/         # Developer workspace (technical notes, setup guides)
-└── 05_qa_reports/          # Tester workspace (test reports, bug tracker, validation)
+├── 01_product_strategy/    # Product Manager工作空间（PRD、路线图、市场分析）
+├── 02_product_backlog/     # Product Owner工作空间（用户故事、功能、待办事项）
+├── 03_system_design/       # Architect工作空间（架构、API规范、模式）
+├── 04_development/         # Developer工作空间（技术笔记、设置指南）
+└── 05_qa_reports/          # Tester工作空间（测试报告、错误跟踪器、验证）
 
-src/                       # Source code implementation
-tests/                     # Test files
-scripts/                   # Utility scripts (for skill projects)
-templates/                 # Project templates (for skill projects)
+src/                       # 源代码实现
+tests/                     # 测试文件
+scripts/                   # 工具脚本（用于技能项目）
+templates/                 # 项目模板（用于技能项目）
 ```
 
-## Progressive Disclosure Design
+## 渐进式披露设计
 
-AgentDev Suite implements efficient context management through progressive disclosure:
+AgentDev Suite 通过渐进式披露实现高效的上下文管理：
 
-1. **Level 1: Metadata** (Always loaded)
-   - Skill `name` and `description` in YAML frontmatter
-   - Used for skill triggering decisions
+1. **第1级：元数据**（始终加载）
+   - 技能 `name` 和 `description`（YAML frontmatter中）
+   - 用于技能触发决策
 
-2. **Level 2: SKILL.md Body** (Loaded when triggered)
-   - Core instructions and workflow definitions
-   - Limited to essential information
+2. **第2级：SKILL.md主体**（触发时加载）
+   - 核心指令和工作流定义
+   - 限于必要信息
 
-3. **Level 3: Bundled Resources** (Loaded as needed)
-   - Reference files, detailed documentation, examples
-   - Accessed via explicit references from SKILL.md
+3. **第3级：捆绑资源**（按需加载）
+   - 参考文件、详细文档、示例
+   - 通过SKILL.md中的显式引用访问
 
-This approach minimizes token usage while providing comprehensive guidance when needed.
+这种方法在需要时提供全面指导的同时，最小化了令牌使用。
 
-## Development Principles
+## 开发原则
 
-### Skill Design Best Practices
-- **Clear triggers**: Description starts with "Use when" specifying exact conditions
-- **Appropriate freedom**: Match instruction specificity to task fragility
-- **Resource organization**: Separate SKILL.md, references, scripts, assets
-- **Progressive disclosure**: Keep SKILL.md concise, move details to references
+### 技能设计最佳实践
+- **明确触发条件**：描述以"Use when"开头，指定确切条件
+- **适当自由度**：根据任务脆弱性匹配指令特异性
+- **资源组织**：分离SKILL.md、参考文件、脚本、资产
+- **渐进式披露**：保持SKILL.md简洁，将细节移至参考文件
 
-### Traditional Development Best Practices
-- **Agent-first development**: Leverage specialized agents for each phase
-- **Lifecycle coverage**: Complete coverage from requirements to deployment
-- **Collaborative intelligence**: Multiple agents work through standardized workspace
-- **Quality assurance**: Automated validation and testing at every stage
-- **Iterative development**: Incremental feature implementation to manage complexity
+### 传统开发最佳实践
+- **智能体优先开发**：为每个阶段利用专门的智能体
+- **生命周期覆盖**：从需求到部署的完整覆盖
+- **协作智能**：多个智能体通过标准化工作空间协作
+- **质量保证**：每个阶段的自动化验证和测试
+- **迭代开发**：增量功能实现以管理复杂性
 
-## Testing
+## 测试
 
-The project includes comprehensive test suites:
+项目包含全面的测试套件：
 
-- **Structure Testing**: Validates project directory structure and configuration files
-- **Platform Validation**: Checks multi-platform configuration completeness
-- **Skill Triggering**: Verifies skill activation logic and progressive disclosure
-- **Integration Testing**: Ensures agent coordination workflows function correctly
+- **结构测试**：验证项目目录结构和配置文件
+- **平台验证**：检查多平台配置的完整性
+- **技能触发测试**：验证技能激活逻辑和渐进式披露
+- **集成测试**：确保智能体协调工作流正常运行
 
-Run tests with:
+运行测试：
 ```bash
 npm test
 ```
 
-## Contributing
+## 贡献指南
 
-We welcome contributions to AgentDev Suite! To contribute:
+我们欢迎对 AgentDev Suite 做出贡献！贡献步骤如下：
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass (`npm test`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
+1. Fork 仓库
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 进行更改
+4. 为新功能添加测试
+5. 确保所有测试通过 (`npm test`)
+6. 提交更改 (`git commit -m '添加出色功能'`)
+7. 推送到分支 (`git push origin feature/amazing-feature`)
+8. 打开 Pull Request
 
-### Development Guidelines
-- Follow existing patterns and directory structure
-- Maintain multi-platform compatibility
-- Implement progressive disclosure for new skills
-- Add comprehensive tests for new functionality
-- Update documentation accordingly
+### 开发指南
+- 遵循现有模式和目录结构
+- 保持多平台兼容性
+- 为新技能实现渐进式披露
+- 为新功能添加全面测试
+- 相应更新文档
 
-## Multilingual Support
+## 多语言支持
 
-AgentDev Suite provides documentation in multiple languages:
+- **English**: [docs/en/README.md](docs/en/README.md)
+- **中文 (Chinese)**: 此文档（根目录）
 
-- **English**: This document (primary)
-- **中文 (Chinese)**: [docs/zh/README.md](docs/zh/README.md)
+## 许可证
 
-## License
+MIT许可证 - 详见 [LICENSE](LICENSE) 文件。
 
-MIT License - see [LICENSE](LICENSE) file for details.
+## 致谢
 
-## Acknowledgments
-
-- Inspired by Claude's official [Skill Authoring Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- Built with multi-platform compatibility as a core design principle
-- Developed through iterative refinement with real-world usage feedback
+- 灵感来自 Claude 官方的 [技能创作最佳实践](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+- 以多平台兼容性为核心设计原则构建
+- 通过实际使用反馈进行迭代优化开发
 
 ---
 
-**AgentDev Suite** - Revolutionizing AI-assisted software development through intelligent agent coordination and structured workflows.
+**AgentDev Suite** - 通过智能体协调和结构化工作流，革命性地改变AI辅助软件开发。
