@@ -37,7 +37,7 @@ Take action when:
   - For feature development: `features/{feature-name}/architecture/`
   - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 - `src/`: Implemented code
-- `tests/`: Test files (structure varies by technology stack - refer to traditional-dev's Testing Constraints section)
+- `tests/`: Test files (structure varies by technology stack - refer to traditional-dev's Testing Constraints section for unit/integration tests, and see Test Code Structure & Organization section for QA test automation code)
 
 ## Output
 
@@ -50,8 +50,96 @@ Follow format: `{YYYYMMDD-HHMMSS}-qa-{document-type}.md`
 
 ### Example Outputs
 - Test reports and bug lists in appropriate testing directory
-- Updated test files following technology-specific test structure
+- Updated test files following appropriate test structure guidelines (technology-specific for unit/integration tests, test code structure for QA automation)
 - Security validation reports
+
+### Test Code Structure & Organization
+When writing test automation code (end-to-end, performance, security), follow these directory conventions for organizing test assets:
+
+**Base Directory Structure:**
+```
+tests/
+├── e2e/                 # End-to-end user workflow tests
+│   ├── playwright/     # Playwright test scripts (JavaScript/TypeScript/Python/Java)
+│   ├── cypress/       # Cypress test scripts (JavaScript)
+│   ├── selenium/      # Selenium test scripts (Python/Java/JavaScript)
+│   ├── test-data/     # Test data files (CSV, JSON, fixtures)
+│   └── config/        # E2E test configuration (playwright.config.js, cypress.config.js)
+├── performance/        # Performance, load, and stress tests
+│   ├── jmeter/        # JMeter .jmx test plans and scripts
+│   ├── k6/           # k6 JavaScript performance scripts
+│   ├── gatling/      # Gatling Scala performance tests
+│   ├── locust/       # Locust Python load tests
+│   ├── test-data/    # Performance test datasets
+│   └── results/      # Performance test results and metrics
+├── security/          # Security validation and penetration tests
+│   ├── scans/        # Security scanning scripts (OWASP ZAP, Burp Suite)
+│   ├── penetration/  # Penetration testing code and exploits
+│   ├── compliance/   # Compliance validation scripts
+│   └── reports/      # Security findings and audit reports
+├── test-results/     # Test execution outputs and reports
+│   ├── e2e-reports/ # E2E test execution reports
+│   ├── performance-reports/ # Performance test results
+│   ├── security-reports/   # Security test findings
+│   └── logs/        # Test execution logs
+└── test-config/      # Test environment and configuration
+    ├── environments/ # Environment-specific configurations (dev, staging, prod)
+    ├── fixtures/    # Test fixtures and setup data
+    ├── utilities/   # Test utility libraries and helpers
+    └── docker/      # Test container configurations
+```
+
+**Technology/Tool Adaptation Guidelines:**
+
+1. **End-to-End Testing**:
+   - **Playwright**: Use `tests/e2e/playwright/` with `*.spec.ts` or `*.spec.js` files
+   - **Cypress**: Use `tests/e2e/cypress/` with Cypress standard structure (`integration/`, `fixtures/`, `plugins/`)
+   - **Selenium**: Use `tests/e2e/selenium/` with language-specific subdirectories (`python/`, `java/`, `javascript/`)
+
+2. **Performance Testing**:
+   - **JMeter**: Use `tests/performance/jmeter/` with `.jmx` files and supporting libraries in `lib/`
+   - **k6**: Use `tests/performance/k6/` with `.js` script files and test data in `test-data/`
+   - **Gatling**: Use `tests/performance/gatling/` with Scala simulation files in `src/test/scala/`
+
+3. **Security Testing**:
+   - **Automated Scans**: Use `tests/security/scans/` with tool-specific scripts
+   - **Manual Tests**: Document procedures in `tests/security/manual/` checklists
+   - **Compliance**: Store compliance checklists in `tests/security/compliance/`
+
+**Language-Specific Considerations:**
+
+- **Java Projects**:
+  - Follow Maven/Gradle standard: `src/test/java/e2e/`, `src/test/java/performance/`
+  - Use `src/test/resources/` for test configuration and data
+  - Integrate with existing test frameworks (JUnit, TestNG)
+
+- **Python Projects**:
+  - Use `tests/e2e/test_*.py` convention with pytest
+  - Place performance tests in `tests/performance/` with appropriate runners
+  - Use `conftest.py` for shared fixtures across test types
+
+- **JavaScript/TypeScript Projects**:
+  - Use `tests/e2e/` with Jest, Playwright, or Cypress test runners
+  - Keep performance tests in `tests/performance/` with dedicated runners
+  - Use `test-config/` for environment variables and test settings
+
+- **Multi-Language Projects**:
+  - Organize by testing domain rather than language
+  - Use clear README files explaining language choices per directory
+  - Maintain consistent configuration patterns across language boundaries
+
+**Integration with Development Tests:**
+- Coordinate with traditional-dev to ensure test coverage gaps are addressed
+- Reference unit and integration tests in `tests/` (created by traditional-dev)
+- Avoid duplication by focusing on complementary testing levels
+- Share test utilities and fixtures where appropriate
+
+**Best Practices:**
+1. **Separation of Concerns**: Keep test code, configuration, and results in separate directories
+2. **Tool Consistency**: Use consistent tools and patterns within each testing domain
+3. **Documentation**: Include README.md files explaining test structure and execution
+4. **Maintainability**: Design tests for easy updates and maintenance
+5. **Collaboration**: Structure tests so both dev and qa teams can understand and use them
 
 ## Responsibilities
 
@@ -72,5 +160,6 @@ Follow format: `{YYYYMMDD-HHMMSS}-qa-{document-type}.md`
 - Validate performance requirements
 - Apply security testing from security-review skill
 - Consider technology-specific testing patterns
+- Follow test code structure guidelines for organizing test automation assets
 - Document test results thoroughly
 - Coordinate with traditional-dev for bug fixes and quality improvements
