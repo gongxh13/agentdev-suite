@@ -42,7 +42,7 @@ Before starting, verify these inputs exist:
 ### 1. Direct Development Implementation
 - Apply relevant technology-specific skills for feature implementation (skill-first approach)
 - Write production code in `src/` following skill guidance
-- Create unit and integration tests in `tests/`
+- Create unit and integration tests following **technology-specific test constraints** (see Testing Constraints section)
 - Document technical decisions in appropriate directory:
   - For feature development: `features/{feature-name}/development/`
   - For non-feature tasks: `docs/agent-outputs/{task-id}/development/`
@@ -67,8 +67,8 @@ Before starting, verify these inputs exist:
 - Ensure code follows project-specific patterns and standards
 - Apply security review guidelines during implementation
 - Verify implementation matches architecture design
-- Write comprehensive unit and component tests alongside implementation
-- Create integration tests for directly dependent components
+- Write comprehensive unit and component tests **following technology-specific test constraints**
+- Create integration tests for directly dependent components **using appropriate test patterns for the technology stack**
 - Coordinate with traditional-qa for advanced testing validation
 
 ## Technology Stack Detection & Skill Mapping
@@ -91,6 +91,44 @@ For each detected technology stack:
 2. **Apply standards**: Follow appropriate coding standards
 3. **Security first**: Include security review checklists
 4. **Framework best practices**: Follow framework-specific conventions
+
+### Technology-Specific Testing Constraints
+When writing tests, follow technology-specific constraints and patterns. Use this reference table for common technology stacks:
+
+| Technology Stack | Test Directory Structure | Test Framework | Minimum Coverage | Test Naming Convention | Key Testing Patterns |
+|------------------|--------------------------|----------------|------------------|------------------------|----------------------|
+| **Python** (General) | `tests/`<br>`tests/unit/`<br>`tests/integration/` | pytest | 80%+ | `test_*.py` files<br>`def test_function_name():` | • pytest fixtures<br>• conftest.py for shared fixtures<br>• Use `@pytest.mark.parametrize`<br>• Arrange-Act-Assert pattern |
+| **Django** | `tests/`<br>`<app>/tests.py` or `<app>/tests/` | pytest-django | 85%+ | `test_*.py`<br>`test_<model/view>_<action>` | • Django TestCase<br>• Client() for HTTP requests<br>• Fixtures for test data<br>• Use `@pytest.mark.django_db` |
+| **Java/Spring Boot** | `src/test/java/`<br>Mirror main package structure | JUnit 5 + Mockito | 70%+ | `*Test.java` class names<br>`should<Behavior>` method names | • `@SpringBootTest`<br>• `@MockBean` / `@SpyBean`<br>• TestContainers for integration<br>• Given-When-Then structure |
+| **Node.js/JavaScript** | `tests/`<br>`__tests__/`<br>`*.test.js` or `*.spec.js` | Jest or Mocha + Chai | 80%+ | `*.test.js` files<br>`describe()` blocks | • Jest mocks<br>• Supertest for HTTP<br>• Mock external APIs<br>• Test async/await |
+| **TypeScript** | Same as JavaScript<br>Add `*.test.ts` or `*.spec.ts` | Jest with ts-jest | 80%+ | `*.test.ts` files | • Type-safe mocks<br>• Test utilities with types<br>• Mock modules with `jest.mock()` |
+| **React** | `__tests__/`<br>`*.test.jsx` or `*.spec.jsx`<br>`src/components/*/*.test.jsx` | Jest + React Testing Library | 85%+ | `ComponentName.test.jsx`<br>`describe('Component')` | • Test user interactions<br>• Avoid testing implementation<br>• Mock hooks and contexts<br>• Use `userEvent` over `fireEvent` |
+| **Go** | `*_test.go` alongside source files | Go testing package | 75%+ | `func TestFunctionName(t *testing.T)` | • Table-driven tests<br>• Subtests with `t.Run()`<br>• Test helpers in `_test` package<br>• Use testify/assert for assertions |
+
+#### For Unlisted Technology Stacks
+If the project uses a technology stack not listed above, apply these general principles to determine appropriate test structure:
+
+1. **Research Framework Conventions**:
+   - Check framework documentation for testing recommendations
+   - Look for `CONTRIBUTING.md` or testing guides in the project
+   - Examine existing test files in the codebase
+
+2. **Follow Language-Specific Patterns**:
+   - **Static languages** (Java, C#, Go): Use compiler-safe test patterns, type-safe mocks
+   - **Dynamic languages** (Python, JavaScript, Ruby): Use runtime testing patterns, dynamic mocks
+   - **Web frameworks**: Include HTTP testing, database integration, client-side testing
+
+3. **Adapt Based on Project Size**:
+   - **Small projects**: Simple test structure, focus on critical paths
+   - **Medium projects**: Organized test directories, moderate coverage
+   - **Large projects**: Comprehensive test suites, specialized test types (unit, integration, e2e)
+
+4. **Apply Testing Best Practices**:
+   - Isolate tests from each other
+   - Use meaningful test names that describe behavior
+   - Keep tests fast and deterministic
+   - Test behavior, not implementation
+   - Include edge cases and error conditions
 
 ### Skill vs Task Decision Logic
 When implementing features, prioritize using available technology-specific skills over generic Task execution:
@@ -195,7 +233,7 @@ When implementing a single feature directly (not in parallel mode):
 3. Apply relevant technology-specific skills (e.g., python-patterns, nodejs-backend-patterns)
 4. Apply security-review for security validation
 5. Write implementation code in src/ following skill guidance
-6. Create tests in tests/
+6. Create tests following technology-specific test constraints (directory structure, naming, coverage)
 7. Document decisions in appropriate development documentation directory
 ```
 
@@ -207,7 +245,7 @@ When fixing bugs reported by tester:
 3. Apply relevant technology-specific skills for the fix (e.g., python-patterns, springboot-patterns)
 4. Apply security-review for security validation of the fix
 5. Implement fix in src/ following skill guidance
-6. Update tests in tests/
+6. Update tests following technology-specific test constraints
 7. Verify fix resolves the issue
 8. Document fix in appropriate development documentation directory
 ```
@@ -228,7 +266,7 @@ Implementation Requirements:
 1. Reference guidance from {technology_skills} for technology-specific patterns
 2. Apply security-review checklist for security validation
 3. Write production code in src/ following referenced skill guidance
-4. Create comprehensive tests in tests/
+4. Create comprehensive tests following technology-specific test constraints (directory structure, naming, coverage)
 5. Document technical decisions in appropriate development documentation directory
 6. Follow coding standards from relevant skills
 
@@ -257,22 +295,29 @@ Handle feature dependencies effectively:
 ## Output Management
 
 ### Code Structure Implementation
-Ensure implemented structure matches architecture:
+Ensure implemented structure matches architecture and follows technology-specific conventions:
+
 ```
 project/
 ├── src/                    # Source code as designed
-├── tests/                  # Test files (unit, integration)
+├── tests/                  # Test files - structure varies by technology stack
+│   # Python: tests/unit/, tests/integration/
+│   # Java: src/test/java/ (mirroring src/main/java/)
+│   # React: __tests__/ or *.test.jsx alongside components
 ├── appropriate development documentation directory    # Technical notes and documentation
 └── configuration files     # As per technology stack
 ```
+
+**Note**: Test directory structure must follow the technology-specific constraints defined in the Testing Constraints section.
 
 ### Quality Verification
 After implementation, verify:
 1. All features implemented according to acceptance criteria
 2. Code follows technology-specific patterns and standards
 3. Security guidelines applied appropriately
-4. Tests created for all implemented functionality
-5. Documentation updated in `appropriate development documentation directory`
+4. Tests follow technology-specific constraints (directory structure, naming, coverage requirements)
+5. Tests created for all implemented functionality following technology-specific constraints
+6. Documentation updated in `appropriate development documentation directory`
 
 ## Integration with traditional-development-coordination
 

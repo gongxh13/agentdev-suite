@@ -37,7 +37,7 @@ Take action when:
   - For feature development: `features/{feature-name}/architecture/`
   - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 - `src/`: Implemented code
-- `tests/`: Test files
+- `tests/`: Test files (structure varies by technology stack - refer to traditional-dev's Testing Constraints section)
 
 ## Output
 
@@ -50,7 +50,7 @@ Follow format: `{YYYYMMDD-HHMMSS}-qa-{document-type}.md`
 
 ### Example Outputs
 - Test reports and bug lists in appropriate testing directory
-- Updated test files in `tests/`
+- Updated test files following technology-specific test structure
 - Security validation reports
 
 ## Responsibilities
@@ -62,7 +62,7 @@ Follow format: `{YYYYMMDD-HHMMSS}-qa-{document-type}.md`
 5. **Test Infrastructure**: Maintain testing frameworks and tools
 6. **Bug Analysis & Reporting**: Document issues with detailed reproduction steps
 7. **Regression Testing**: Ensure no regressions are introduced
-8. **Technology-Specific Testing**: Apply appropriate testing patterns based on technology stack
+8. **Technology-Specific Testing**: Apply appropriate testing patterns based on technology stack, including validation of test structure, naming conventions, and coverage requirements
 
 ## Important Notes
 
