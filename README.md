@@ -306,8 +306,7 @@ agentdev-suite/
 ├── commands/               # Command definitions
 │   └── dev.md             # Development coordination command
 ├── lib/                   # Core utilities
-│   ├── skills-core.js     # Skill management tools
-│   └── utils.js           # General utilities
+│   └── skills-core.js     # Skill management tools
 ├── docs/                  # Documentation
 │   ├── api/              # API documentation
 │   ├── en/               # English documentation

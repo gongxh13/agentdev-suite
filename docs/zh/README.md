@@ -306,8 +306,7 @@ agentdev-suite/
 ├── commands/               # 命令定义
 │   └── dev.md             # 开发协调命令
 ├── lib/                   # 核心工具
-│   ├── skills-core.js     # 技能管理工具
-│   └── utils.js           # 通用工具
+│   └── skills-core.js     # 技能管理工具
 ├── docs/                  # 文档
 │   ├── api/              # API文档
 │   ├── en/               # 英文文档
