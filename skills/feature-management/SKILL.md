@@ -241,7 +241,6 @@ Every critical step requires explicit user confirmation before proceeding. The s
 
 **Git Best Practices Reference**: For detailed commit message formatting, branch naming conventions, and PR guidelines, reference the `managing-git-workflows` skill.
 
-**Key rule**: Never automatically add `Co-Authored-By:` to commit messages.
 
 #### 1. Check Git Status
 - Verify the project uses git and has changes to commit

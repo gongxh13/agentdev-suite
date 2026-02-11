@@ -1,6 +1,6 @@
 ---
 name: managing-git-workflows
-description: Provides git workflow guidance for commits, branches, and pull requests following conventional commit standards. Use when creating git commits for new features or maintenance tasks, managing branches, preparing pull requests, or following version control best practices for new or existing projects. Commit messages should not include automatic Co-Authored-By attribution.
+description: Provides git workflow guidance for commits, branches, and pull requests following conventional commit standards. Use when creating git commits for new features or maintenance tasks, managing branches, preparing pull requests, or following version control best practices for new or existing projects.
 license: Apache-2.0
 metadata:
   version: "1.0.0"
@@ -24,7 +24,6 @@ Use this skill when:
 
 ## Commit Message Guidelines
 
-**Key Rule**: Commit messages must not include automatic `Co-Authored-By:` attribution. Only add co-authors when explicitly requested by the user.
 
 For commit message generation and validation, use `get_skill_script("managing-git-workflows", "commit_message.py")`.
 
@@ -38,9 +37,7 @@ For commit message generation and validation, use `get_skill_script("managing-gi
 ```
 
 **Important Notes**:
-- Do NOT automatically add `Co-Authored-By:` lines to commit messages
 - Use conventional commit format without AI attribution markers
-- Only include relevant issue references, breaking changes, or co-authors when explicitly requested
 
 ### Types
 - **feat**: New feature
