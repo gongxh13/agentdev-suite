@@ -7,7 +7,7 @@ context: fork
 
 # Skill Creator
 
-This skill provides guidance for creating effective skills. It incorporates Claude's official skill authoring best practices from https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices. Always reference these best practices when creating or updating skills.
+This skill provides guidance for creating effective skills. It incorporates Claude's official skill authoring best practices from https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices (also available locally in references/best-practices.md). Always reference these best practices when creating or updating skills.
 
 ## About Skills
 
@@ -205,7 +205,7 @@ Claude reads REDLINING.md or OOXML.md only when the user needs those features.
 
 ## Skill Creation Process
 
-**Important**: When creating skills, always reference Claude's official skill authoring best practices at https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices. Key principles include: concise documentation, appropriate degrees of freedom, progressive disclosure, and following naming conventions.
+**Important**: When creating skills, always reference Claude's official skill authoring best practices at https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices. For a comprehensive local reference, see `references/best-practices.md`. Key principles include: concise documentation, appropriate degrees of freedom, progressive disclosure, and following naming conventions.
 
 Skill creation involves these steps:
 
@@ -292,6 +292,7 @@ Consult these helpful guides based on your skill's needs:
 
 - **Multi-step processes**: See references/workflows.md for sequential workflows and conditional logic
 - **Specific output formats or quality standards**: See references/output-patterns.md for template and example patterns
+- **Comprehensive best practices**: See references/best-practices.md for complete skill authoring guidelines
 
 These files contain established best practices for effective skill design.
 
