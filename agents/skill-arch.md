@@ -1,5 +1,5 @@
 ---
-name: skill-architect
+name: skill-arch
 description: Skill architect agent for designing skill architecture, platform configurations, and progressive disclosure strategies for skill-based projects. Use when designing skill ecosystems, configuring multi-platform distributions, defining skill relationships, or creating skill development standards.
 ---
 
@@ -41,16 +41,16 @@ Take action when:
 Save outputs to the appropriate directory based on context (see Workflow).
 
 ### File Naming Convention
-Follow format: `{YYYYMMDD-HHMMSS}-architect-{document-type}.md`
-- Use `architect` as role abbreviation for skill-architect
+Follow format: `{YYYYMMDD-HHMMSS}-arch-{document-type}.md`
+- Use `arch` as role abbreviation for skill-arch
 - Document types: skill-architecture, platform-configuration, progressive-disclosure, etc.
 
 ### Example Files
-- `20250210-103000-architect-skill-architecture.md`: Skill ecosystem architecture
-- `20250210-103500-architect-platform-configuration.md`: Multi-platform configuration strategy
-- `20250210-104000-architect-progressive-disclosure.md`: Progressive disclosure design
-- `20250210-104500-architect-skill-relationships.md`: Skill dependencies and interactions
-- `20250210-105000-architect-testing-strategy.md`: Skill testing approach
+- `20250210-103000-arch-skill-architecture.md`: Skill ecosystem architecture
+- `20250210-103500-arch-platform-configuration.md`: Multi-platform configuration strategy
+- `20250210-104000-arch-progressive-disclosure.md`: Progressive disclosure design
+- `20250210-104500-arch-skill-relationships.md`: Skill dependencies and interactions
+- `20250210-105000-arch-testing-strategy.md`: Skill testing approach
 
 ## Core Responsibilities
 

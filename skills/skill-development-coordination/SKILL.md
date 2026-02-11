@@ -1,6 +1,6 @@
 ---
 name: skill-development-coordination
-description: Coordinates skill-based project development workflows with specialized focus on skill creation, platform configuration, and skill ecosystem management. Use when developing AI skill projects, creating skill libraries, or extending skill ecosystems. Focuses on skill design principles, progressive disclosure, multi-platform support, and skill testing/deployment.
+description: Coordinates skill-based project development workflows with specialized focus on skill creation, platform configuration, and skill ecosystem management. Use when developing AI skill projects, creating skill libraries, or extending skill ecosystems. Focuses on skill design principles, progressive disclosure, multi-platform support, and skill testing/deployment. Coordinates agents: skill-ra, skill-arch, skill-dev, skill-qa, skill-platform.
 ---
 
 # Skill-Based Development Coordination
@@ -51,13 +51,13 @@ Before starting any coordination, analyze the task type to determine the optimal
 
 | Task Type | Indicators | Recommended Agents/Skills | Workflow Pattern |
 |-----------|------------|---------------------------|------------------|
-| **Complete Skill Project** | "create skill project", "multi-platform skill library", "new skill ecosystem" | agentdev-suite:skill-requirements-analyst → agentdev-suite:skill-architect → agentdev-suite:skill-development-orchestrator → agentdev-suite:skill-tester | Full 6-phase workflow |
-| **Skill Architecture Design** | "design skill architecture", "platform configuration", "skill structure design" | agentdev-suite:skill-architect → (agentdev-suite:skill-development-orchestrator for setup) | Phase 3 + optional Phase 4 |
-| **Skill Requirements Analysis** | "analyze skill requirements", "define skill ecosystem", "skill strategy planning" | agentdev-suite:skill-requirements-analyst | Phase 1-2 only |
-| **Individual Skill Creation** | "create a skill", "write SKILL.md", "develop skill guidance" | agentdev-suite:skill-development-orchestrator → agentdev-suite:skill-tester | Orchestrated skill creation workflow |
-| **Skill Testing & Validation** | "test skill", "verify platform compatibility", "validate skill structure" | agentdev-suite:skill-tester → (agentdev-suite:skill-creator for fixes) | Direct Phase 5 testing |
-| **Skill Maintenance** | "update skill", "refactor skill", "improve skill documentation" | agentdev-suite:skill-creator (with context analysis) → agentdev-suite:skill-tester | Adaptive maintenance workflow |
-| **Platform Configuration** | "configure multi-platform", "setup .claude-plugin/", "platform integration" | agentdev-suite:skill-project-scaffolder → agentdev-suite:skill-architect | Platform-focused workflow |
+| **Complete Skill Project** | "create skill project", "multi-platform skill library", "new skill ecosystem" | agentdev-suite:skill-ra → agentdev-suite:skill-arch → agentdev-suite:skill-dev → agentdev-suite:skill-qa → agentdev-suite:skill-platform | Full 7-phase workflow |
+| **Skill Architecture Design** | "design skill architecture", "platform configuration", "skill structure design" | agentdev-suite:skill-arch → (agentdev-suite:skill-dev for setup) → agentdev-suite:skill-platform | Phase 3 + optional Phase 4 |
+| **Skill Requirements Analysis** | "analyze skill requirements", "define skill ecosystem", "skill strategy planning" | agentdev-suite:skill-ra | Phase 1-2 only |
+| **Individual Skill Creation** | "create a skill", "write SKILL.md", "develop skill guidance" | agentdev-suite:skill-dev → agentdev-suite:skill-qa | Orchestrated skill creation workflow |
+| **Skill Testing & Validation** | "test skill", "verify platform compatibility", "validate skill structure" | agentdev-suite:skill-qa → (agentdev-suite:skill-dev for fixes) → agentdev-suite:skill-platform | Direct Phase 5 testing |
+| **Skill Maintenance** | "update skill", "refactor skill", "improve skill documentation" | agentdev-suite:skill-dev (with context analysis) → agentdev-suite:skill-qa | Adaptive maintenance workflow |
+| **Platform Configuration** | "configure multi-platform", "setup .claude-plugin/", "platform integration" | agentdev-suite:skill-project-scaffolder → agentdev-suite:skill-arch → agentdev-suite:skill-platform | Platform-focused workflow |
 
 ### Architecture Decision Guidance
 
@@ -225,79 +225,88 @@ digraph skill_workflow_selection {
 **Analysis**: Complete skill project indicators detected
 **Workflow**: Full 6-phase workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-requirements-analyst` → Skill ecosystem strategy in appropriate product strategy directory (see Output Structure above)
-2. `agentdev-suite:skill-requirements-analyst` → Skill specifications in appropriate requirements analysis directory
-3. `agentdev-suite:skill-architect` → Architecture and platform design in appropriate architecture directory
-4. `agentdev-suite:skill-development-orchestrator` → Project implementation coordination
+1. `agentdev-suite:skill-ra` → Skill ecosystem strategy in appropriate product strategy directory (see Output Structure above)
+2. `agentdev-suite:skill-ra` → Skill specifications in appropriate requirements analysis directory
+3. `agentdev-suite:skill-arch` → Architecture and platform design in appropriate architecture directory
+4. `agentdev-suite:skill-dev` → Project implementation coordination
    - Executes `agentdev-suite:skill-project-scaffolder` for multi-platform project structure
-   - Coordinates multiple `agentdev-suite:skill-creator` executions for individual skill development
+   - Coordinates skill creation operations for individual skill development
    - Manages agent generation and configuration
-5. `agentdev-suite:skill-tester` → Platform compatibility testing
-6. `managing-git-workflows` → Final packaging and distribution
+5. `agentdev-suite:skill-qa` → Platform compatibility testing
+6. `agentdev-suite:skill-platform` → Platform configuration and deployment
+7. `managing-git-workflows` → Final packaging and distribution
 
 #### Example 2: Skill Architecture Design
 **Request**: "Design the architecture for our new skill library supporting Claude Code and OpenCode"
 **Analysis**: Skill architecture design indicators detected
 **Workflow**: Architect-orchestrator workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-architect` → Skill architecture design in appropriate architecture directory
-2. `agentdev-suite:skill-development-orchestrator` → Platform configuration setup via `agentdev-suite:skill-project-scaffolder`
+1. `agentdev-suite:skill-arch` → Skill architecture design in appropriate architecture directory
+2. `agentdev-suite:skill-dev` → Platform configuration setup via `agentdev-suite:skill-project-scaffolder`
+3. `agentdev-suite:skill-platform` → Platform integration and configuration
 
 #### Example 3: Individual Skill Creation
 **Request**: "Create a skill for API documentation generation"
 **Analysis**: Individual skill creation indicators detected
 **Workflow**: Orchestrator-tester workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-development-orchestrator` → Guided skill development via `agentdev-suite:skill-creator`
-2. `agentdev-suite:skill-tester` → Skill validation and platform testing
+1. `agentdev-suite:skill-dev` → Skill development and creation
+2. `agentdev-suite:skill-qa` → Skill validation and platform testing
 
 #### Example 4: Platform Configuration
 **Request**: "Configure multi-platform support for our existing skill project"
 **Analysis**: Platform configuration indicators detected
 **Workflow**: Orchestrator-architect workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-development-orchestrator` → Platform configuration setup via `agentdev-suite:skill-project-scaffolder`
-2. `agentdev-suite:skill-architect` → Architecture review and integration
+1. `agentdev-suite:skill-dev` → Platform configuration setup via `agentdev-suite:skill-project-scaffolder`
+2. `agentdev-suite:skill-arch` → Architecture review and integration
+3. `agentdev-suite:skill-platform` → Platform-specific configuration and testing
 
 ### Phase Reference for Dynamic Orchestration
 
 When orchestrating agents/skills dynamically, use these phase definitions as building blocks:
 
 #### Phase 1: Project Strategy & Scope (Skill Requirements Analyst)
-- **Agent**: `agentdev-suite:skill-requirements-analyst`
+- **Agent**: `agentdev-suite:skill-ra`
 - **Action**: Analyze requirements for skill project strategy
 - **Context**: User request for skill development
 - **Instruction**: "Analyze this skill development request. Create or update project strategy documents in appropriate product strategy directory (following Output Structure). Focus on skill ecosystem design, target platforms, and user scenarios."
 - **Output**: Appropriate product strategy directory with files like `skill_prd.md`, `platform_analysis.md`, `skill_roadmap.md` (following file naming convention)
 
 #### Phase 2: Skill Requirements & Design (Skill Requirements Analyst)
-- **Agent**: `agentdev-suite:skill-requirements-analyst` (continued)
+- **Agent**: `agentdev-suite:skill-ra` (continued)
 - **Action**: Define skill specifications and design principles
 - **Context**: Read appropriate product strategy directory
 - **Instruction**: "Read the strategy docs. Create or update skill specifications in appropriate requirements analysis directory. Define skill relationships, progressive disclosure strategy, and platform requirements."
 - **Output**: Appropriate requirements analysis directory with files like `skill_specs.md`, `skill_relationships.md`, `platform_configs.md` (following file naming convention)
 
 #### Phase 3: Skill Architecture & Platform Design (Skill Architect)
-- **Agent**: `agentdev-suite:skill-architect`
+- **Agent**: `agentdev-suite:skill-arch`
 - **Action**: Design skill architecture and platform configurations
 - **Context**: Read appropriate product strategy and requirements analysis directories
 - **Instruction**: "Design skill project architecture. Create or update technical design documents in appropriate architecture directory. Include multi-platform configuration strategy, skill structure patterns, and testing approach."
 - **Output**: Appropriate architecture directory with files like `skill_architecture.md`, `platform_configuration.md`, `testing_strategy.md` (following file naming convention)
 
-#### Phase 4: Iterative Skill Development (Skill Development Orchestrator)
-- **Agent**: `agentdev-suite:skill-development-orchestrator`
-- **Action**: Coordinate skill project implementation, managing skill-creator executions, scaffolding operations, and agent generation
+#### Phase 4: Iterative Skill Development (Skill Developer)
+- **Agent**: `agentdev-suite:skill-dev`
+- **Action**: Implement skill projects by creating skills, configuring platforms, and generating specialized agents
 - **Context**: Read appropriate architecture directory with skill architecture documents
-- **Instruction**: "Implement skill project based on architecture design. Coordinate skill-creator for individual skills, skill-project-scaffolder for project structure, and generate specialized agents as needed."
+- **Instruction**: "Implement skill project based on architecture design. Create skills, configure multi-platform projects, and generate specialized agents as needed."
 - **Output**: Implemented skill project with proper structure, skills, and agents
 
-#### Phase 5: Integration & Platform Testing (Skill Tester)
-- **Agent**: `agentdev-suite:skill-tester`
+#### Phase 5: Integration & Platform Testing (Skill QA)
+- **Agent**: `agentdev-suite:skill-qa`
 - **Action**: Test complete skill ecosystem across target platforms
 - **Instruction**: "Run comprehensive platform compatibility tests. Verify skill loading, progressive disclosure, and cross-platform consistency."
 - **Output**: Integration test report in appropriate testing directory
 
-#### Phase 6: Packaging & Distribution (Managing Git Workflows)
+#### Phase 6: Platform Configuration & Deployment (Skill Platform Engineer)
+- **Agent**: `agentdev-suite:skill-platform`
+- **Action**: Configure multi-platform distributions and handle skill deployment
+- **Instruction**: "Configure multi-platform skill distributions. Set up platform-specific configurations and deployment processes."
+- **Output**: Platform configuration files and deployment documentation
+
+#### Phase 7: Packaging & Distribution (Managing Git Workflows)
 - **Skill**: `managing-git-workflows`
 - **Condition**: Only proceed if integration testing is successful
 - **Action**: Package skills, update configurations, and prepare for distribution
@@ -371,18 +380,18 @@ Skill Task Analysis & Orchestration:
 This coordination leverages these specialized skills designed specifically for skill development:
 
 ### Core Skill Development Skills
-- `agentdev-suite:skill-creator`: Guided skill creation with best practices (uses `context:fork`, invoked via orchestrator)
-- `agentdev-suite:skill-project-scaffolder`: Multi-platform project scaffolding (uses `context:fork`, invoked via orchestrator)
+- `agentdev-suite:skill-creator`: Guided skill creation with best practices (uses `context:fork`, invoked via skill-dev)
+- `agentdev-suite:skill-project-scaffolder`: Multi-platform project scaffolding (uses `context:fork`, invoked via skill-dev)
 - `skill-development-methodology`: Skill development principles and patterns
-- `agentdev-suite:skill-development-orchestrator`: Coordinates skill project implementation, manages skill-creator and scaffolder executions
 
-### Skill-Specific Analysis & Design Skills
-- `agentdev-suite:skill-requirements-analyst`: Skill requirements and ecosystem strategy analysis
-- `agentdev-suite:skill-architect`: Skill architecture and platform configuration design
-- `agentdev-suite:skill-tester`: Skill structure and platform compatibility testing
+### Skill-Specific Analysis & Design Agents
+- `agentdev-suite:skill-ra`: Skill requirements and ecosystem strategy analysis
+- `agentdev-suite:skill-arch`: Skill architecture and platform configuration design
+- `agentdev-suite:skill-qa`: Skill quality assurance and platform compatibility testing
+- `agentdev-suite:skill-platform`: Platform engineering and deployment configuration
 
-### Skill Implementation & Coordination Skills
-- `agentdev-suite:skill-development-orchestrator`: Coordinates skill project implementation, manages skill-creator executions, scaffolding operations, and agent generation
+### Skill Implementation & Development Agent
+- `agentdev-suite:skill-dev`: Skill development engineer for implementing skill projects
 
 ### Supporting Skills
 - `managing-git-workflows`: Version control for skill projects
@@ -391,19 +400,21 @@ This coordination leverages these specialized skills designed specifically for s
 ## Common Use Cases
 
 ### New Skill Project Development
-1. Analyze requirements and define skill ecosystem (`agentdev-suite:skill-requirements-analyst`)
-2. Design skill architecture and platform configurations (`agentdev-suite:skill-architect`)
-3. Implement project via orchestrator (`agentdev-suite:skill-development-orchestrator`):
+1. Analyze requirements and define skill ecosystem (`agentdev-suite:skill-ra`)
+2. Design skill architecture and platform configurations (`agentdev-suite:skill-arch`)
+3. Implement project via skill developer (`agentdev-suite:skill-dev`):
    - Setup multi-platform project structure (via `agentdev-suite:skill-project-scaffolder`)
    - Create core skills (entry point, methodology, domain skills via `agentdev-suite:skill-creator`)
    - Generate specialized agents if needed
-4. Test across platforms and package for distribution (`agentdev-suite:skill-tester` + `managing-git-workflows`)
+4. Test across platforms (`agentdev-suite:skill-qa`)
+5. Configure platform deployment (`agentdev-suite:skill-platform`)
+6. Package for distribution (`managing-git-workflows`)
 
 ### Individual Skill Creation
 1. Define skill purpose and trigger conditions (reference architecture if available)
 2. Design progressive disclosure structure
-3. Implement skill via orchestrator (`agentdev-suite:skill-development-orchestrator` coordinating `agentdev-suite:skill-creator`)
-4. Test skill functionality and integration (`agentdev-suite:skill-tester`)
+3. Implement skill via skill developer (`agentdev-suite:skill-dev`)
+4. Test skill functionality and integration (`agentdev-suite:skill-qa`)
 5. Package and integrate into existing project
 
 ### Skill Project Maintenance

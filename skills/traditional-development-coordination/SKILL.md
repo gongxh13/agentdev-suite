@@ -1,6 +1,6 @@
 ---
 name: traditional-development-coordination
-description: Coordinates traditional software development workflows (non-skill based) with specialized agent roles (agentdev-suite:product-manager, agentdev-suite:product-owner, agentdev-suite:traditional-development-architect, agentdev-suite:traditional-development-orchestrator, agentdev-suite:traditional-development-tester). Use when developing executable software applications, APIs, services, or libraries. Focuses on code implementation, testing, deployment, and maintenance of traditional software projects.
+description: Coordinates traditional software development workflows (non-skill based) with specialized agent roles (agentdev-suite:traditional-pm, agentdev-suite:traditional-po, agentdev-suite:traditional-arch, agentdev-suite:traditional-dev, agentdev-suite:traditional-qa, agentdev-suite:traditional-ops). Use when developing executable software applications, APIs, services, or libraries. Focuses on code implementation, testing, deployment, and maintenance of traditional software projects.
 ---
 
 # Traditional Software Development Coordination
@@ -49,13 +49,13 @@ Before starting any coordination, analyze the task type to determine the optimal
 
 | Task Type | Indicators | Recommended Agents | Workflow Pattern |
 |-----------|------------|-------------------|------------------|
-| **Complete Project Development** | "build an app", "create API", "new project", "from scratch" | agentdev-suite:product-manager → agentdev-suite:product-owner → agentdev-suite:traditional-development-architect → agentdev-suite:traditional-development-orchestrator → agentdev-suite:traditional-development-tester | Full 6-phase workflow |
-| **Architecture Design** | "design system", "select technology", "architecture review", "choose stack" | agentdev-suite:traditional-development-architect → (agentdev-suite:traditional-development-orchestrator for prototyping) | Phase 3 + optional Phase 4 |
-| **Requirement Analysis** | "analyze requirements", "define features", "product planning", "scope definition" | agentdev-suite:product-manager → agentdev-suite:product-owner | Phase 1-2 only |
-| **Code Implementation** | "implement feature", "write code", "add functionality", "fix bug" | agentdev-suite:traditional-development-orchestrator → agentdev-suite:traditional-development-tester | Direct Phase 4 iteration |
-| **Testing & Validation** | "test feature", "verify quality", "run tests", "validate requirements" | agentdev-suite:traditional-development-tester → (agentdev-suite:traditional-development-orchestrator for fixes) | Direct Phase 5 |
-| **Maintenance Tasks** | "refactor code", "optimize performance", "update dependencies", "small changes" | agentdev-suite:traditional-development-orchestrator (with context analysis) → agentdev-suite:traditional-development-tester | Adaptive workflow |
-| **Documentation Tasks** | "write documentation", "update API docs", "create technical specs" | agentdev-suite:traditional-development-architect or agentdev-suite:traditional-development-orchestrator (based on scope) | Targeted documentation |
+| **Complete Project Development** | "build an app", "create API", "new project", "from scratch" | agentdev-suite:traditional-pm → agentdev-suite:traditional-po → agentdev-suite:traditional-arch → agentdev-suite:traditional-dev → agentdev-suite:traditional-qa → agentdev-suite:traditional-ops | Full 7-phase workflow |
+| **Architecture Design** | "design system", "select technology", "architecture review", "choose stack" | agentdev-suite:traditional-arch → (agentdev-suite:traditional-dev for prototyping) | Phase 3 + optional Phase 4 |
+| **Requirement Analysis** | "analyze requirements", "define features", "product planning", "scope definition" | agentdev-suite:traditional-pm → agentdev-suite:traditional-po | Phase 1-2 only |
+| **Code Implementation** | "implement feature", "write code", "add functionality", "fix bug" | agentdev-suite:traditional-dev → agentdev-suite:traditional-qa | Direct Phase 4 iteration |
+| **Testing & Validation** | "test feature", "verify quality", "run tests", "validate requirements" | agentdev-suite:traditional-qa → (agentdev-suite:traditional-dev for fixes) | Direct Phase 5 |
+| **Maintenance Tasks** | "refactor code", "optimize performance", "update dependencies", "small changes" | agentdev-suite:traditional-dev (with context analysis) → agentdev-suite:traditional-qa | Adaptive workflow |
+| **Documentation Tasks** | "write documentation", "update API docs", "create technical specs" | agentdev-suite:traditional-arch or agentdev-suite:traditional-dev (based on scope) | Targeted documentation |
 
 ### Dynamic Orchestration Logic
 
@@ -79,18 +79,18 @@ digraph orchestration_flow {
     "Task Type Analysis" -> "Documentation Tasks" [label="Documentation"];
 
     "Complete Project" -> "Full 6-phase workflow";
-    "Architecture Design" -> "agentdev-suite:traditional-development-architect → (agentdev-suite:traditional-development-orchestrator)";
-    "Requirement Analysis" -> "agentdev-suite:product-manager → agentdev-suite:product-owner";
-    "Code Implementation" -> "agentdev-suite:traditional-development-orchestrator → agentdev-suite:traditional-development-tester";
-    "Testing & Validation" -> "agentdev-suite:traditional-development-tester → (agentdev-suite:traditional-development-orchestrator)";
+    "Architecture Design" -> "agentdev-suite:traditional-arch → (agentdev-suite:traditional-dev)";
+    "Requirement Analysis" -> "agentdev-suite:traditional-pm → agentdev-suite:traditional-po";
+    "Code Implementation" -> "agentdev-suite:traditional-dev → agentdev-suite:traditional-qa";
+    "Testing & Validation" -> "agentdev-suite:traditional-qa → (agentdev-suite:traditional-dev)";
     "Maintenance Tasks" -> "Adaptive workflow";
     "Documentation Tasks" -> "Targeted documentation";
 
     "Full 6-phase workflow" -> "Execute with all agents";
-    "agentdev-suite:traditional-development-architect → (agentdev-suite:traditional-development-orchestrator)" -> "Execute architecture focus";
-    "agentdev-suite:product-manager → agentdev-suite:product-owner" -> "Execute requirements focus";
-    "agentdev-suite:traditional-development-orchestrator → agentdev-suite:traditional-development-tester" -> "Execute implementation focus";
-    "agentdev-suite:traditional-development-tester → (agentdev-suite:traditional-development-orchestrator)" -> "Execute testing focus";
+    "agentdev-suite:traditional-arch → (agentdev-suite:traditional-dev)" -> "Execute architecture focus";
+    "agentdev-suite:traditional-pm → agentdev-suite:traditional-po" -> "Execute requirements focus";
+    "agentdev-suite:traditional-dev → agentdev-suite:traditional-qa" -> "Execute implementation focus";
+    "agentdev-suite:traditional-qa → (agentdev-suite:traditional-dev)" -> "Execute testing focus";
     "Adaptive workflow" -> "Execute maintenance focus";
     "Targeted documentation" -> "Execute documentation focus";
 }
@@ -190,65 +190,66 @@ digraph workflow_selection {
 **Analysis**: Complete project indicators detected
 **Workflow**: Full 6-phase workflow
 **Agent Sequence**:
-1. `agentdev-suite:product-manager` → PRD in appropriate product strategy directory
-2. `agentdev-suite:product-owner` → Backlog in appropriate product management directory
-3. `agentdev-suite:traditional-development-architect` → Architecture in appropriate architecture directory
-4. `agentdev-suite:traditional-development-orchestrator` → Parallel implementation with technology patterns in `src/`
-5. `agentdev-suite:traditional-development-tester` → Tests and validation
-6. `managing-git-workflows` → Final delivery
+1. `agentdev-suite:traditional-pm` → PRD in appropriate product strategy directory
+2. `agentdev-suite:traditional-po` → Backlog in appropriate product management directory
+3. `agentdev-suite:traditional-arch` → Architecture in appropriate architecture directory
+4. `agentdev-suite:traditional-dev` → Implementation with technology patterns in `src/`
+5. `agentdev-suite:traditional-qa` → Tests and validation
+6. `agentdev-suite:traditional-ops` → Build and deployment configuration
+7. `managing-git-workflows` → Final delivery
 
 #### Example 2: Architecture Design Only
 **Request**: "Design the architecture for our new microservices system"
 **Analysis**: Architecture design indicators detected
 **Workflow**: Architect-centric workflow
 **Agent Sequence**:
-1. `agentdev-suite:traditional-development-architect` → Architecture design in appropriate architecture directory
-2. (Optional) `agentdev-suite:traditional-development-orchestrator` → Prototype implementation if requested
+1. `agentdev-suite:traditional-arch` → Architecture design in appropriate architecture directory
+2. (Optional) `agentdev-suite:traditional-dev` → Prototype implementation if requested
 
 #### Example 3: Bug Fix
 **Request**: "Fix the authentication bug in the login module"
 **Analysis**: Code implementation indicators detected
 **Workflow**: Traditional Development Orchestrator-Tester workflow
 **Agent Sequence**:
-1. `agentdev-suite:traditional-development-tester` → Reproduce and analyze bug
-2. `agentdev-suite:traditional-development-orchestrator` → Implement fix in `src/`
-3. `agentdev-suite:traditional-development-tester` → Verify fix and run regression tests
+1. `agentdev-suite:traditional-qa` → Reproduce and analyze bug
+2. `agentdev-suite:traditional-dev` → Implement fix in `src/`
+3. `agentdev-suite:traditional-qa` → Verify fix and run regression tests
 
 #### Example 4: Requirement Analysis
 **Request**: "Analyze requirements for the new payment integration feature"
 **Analysis**: Requirement analysis indicators detected
 **Workflow**: PM-PO workflow
 **Agent Sequence**:
-1. `agentdev-suite:product-manager` → High-level requirements in appropriate product strategy directory
-2. `agentdev-suite:product-owner` → User stories and backlog in appropriate product management directory
+1. `agentdev-suite:traditional-pm` → High-level requirements in appropriate product strategy directory
+2. `agentdev-suite:traditional-po` → User stories and backlog in appropriate product management directory
 
 ### Phase Reference for Dynamic Orchestration
 
 When orchestrating agents dynamically, use these phase definitions as building blocks:
 
 #### Phase 1: Product Definition (Product Manager)
-- **Agent**: `agentdev-suite:product-manager`
+- **Agent**: `agentdev-suite:traditional-pm`
 - **Action**: Analyze user request for product strategy
 - **Context**: Pass the user's initial request
 - **Instruction**: "Analyze this request. Create or update the Product Requirements Document (PRD) and other strategy docs in `appropriate product strategy directory`. Ensure the directory exists."
 - **Output**: `appropriate product strategy directoryprd.md`, `market_analysis.md`, `roadmap.md`
 
 #### Phase 2: Requirement Decomposition (Product Owner)
-- **Agent**: `agentdev-suite:product-owner`
+- **Agent**: `agentdev-suite:traditional-po`
 - **Action**: Break down high-level requirements into user stories
 - **Context**: Read `appropriate product strategy directory`
 - **Instruction**: "Read the strategy docs in `appropriate product strategy directory`. Create or update the detailed Product Backlog and User Stories in `appropriate product management directory`. Ensure the directory exists."
 - **Output**: `appropriate product management directorybacklog.md`, `features/*.md`
 
 #### Phase 3: Architecture Design (Software Architect)
-- **Agent**: `agentdev-suite:traditional-development-architect`
+- **Agent**: `agentdev-suite:traditional-arch`
 - **Action**: Design system architecture based on requirements
 - **Context**: Read `appropriate product strategy directory` and `appropriate product management directory`
 - **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `appropriate architecture directory`. Ensure the directory exists."
 - **Output**: `appropriate architecture directoryarchitecture.md`, `api_spec.md`, `database_schema.md`
 
 #### Phase 4: Iterative Development with Skill-First Parallel Execution (Traditional Development Orchestrator)
-- **Agent**: `agentdev-suite:traditional-development-orchestrator`
+- **Agent**: `agentdev-suite:traditional-dev`
 - **Strategy**: Use skill-first approach prioritizing technology-specific skills over generic Task execution, with adaptive parallel execution capabilities
 - **Action Flow**:
   1. Analyze technology stack and load relevant patterns
@@ -265,7 +266,7 @@ When orchestrating agents dynamically, use these phase definitions as building b
   - Dependency-aware task scheduling with skill/Task selection
 
 #### Phase 5: Final Integration & Acceptance
-- **Agent**: `agentdev-suite:traditional-development-tester`
+- **Agent**: `agentdev-suite:traditional-qa`
 - **Action**: Run full regression test suite
 - **Instruction**: "Run comprehensive regression testing to ensure no regressions were introduced."
 - **Output**: Final test report in `appropriate testing directory`
@@ -362,11 +363,12 @@ Software Development Progress:
 This suite coordinates these specialized skills:
 
 ### Core Development Agents
-- `agentdev-suite:product-manager`: Product strategy and high-level requirements
-- `agentdev-suite:product-owner`: Backlog management and user stories
-- `agentdev-suite:traditional-development-architect`: System architecture design
-- `agentdev-suite:traditional-development-orchestrator`: Code implementation with skill-first approach and parallel execution
-- `agentdev-suite:traditional-development-tester`: Testing and quality verification
+- `agentdev-suite:traditional-pm`: Product strategy and high-level requirements
+- `agentdev-suite:traditional-po`: Backlog management and user stories
+- `agentdev-suite:traditional-arch`: System architecture design
+- `agentdev-suite:traditional-dev`: Code implementation with technology patterns and testing
+- `agentdev-suite:traditional-qa`: Quality assurance and comprehensive testing
+- `agentdev-suite:traditional-ops`: Build systems and deployment pipelines
 - `managing-git-workflows`: Git operations and commit guidelines
 
 ### Technology-Specific Pattern Skills
@@ -386,18 +388,19 @@ This suite coordinates these specialized skills:
 ## Common Use Cases
 
 ### New Feature Development
-1. Analyze requirements with Product Manager
-2. Decompose into user stories with Product Owner
-3. Design architecture with Traditional Development Architect
-4. Implement features with parallel execution using Traditional Development Orchestrator
-5. Verify with Tester
-6. Final integration and delivery
+1. Analyze requirements with traditional-pm
+2. Decompose into user stories with traditional-po
+3. Design architecture with traditional-arch
+4. Implement features with traditional-dev
+5. Verify quality with traditional-qa
+6. Configure build and deployment with traditional-ops
+7. Final integration and delivery
 
 ### Bug Fix Workflow
-1. Reproduce and analyze bug
+1. Reproduce and analyze bug with traditional-qa
 2. Identify root cause
-3. Generate fix with Traditional Development Orchestrator
-4. Test fix with Tester
+3. Generate fix with traditional-dev
+4. Test fix with traditional-qa
 5. Validate no regressions introduced
 
 ### Refactoring Process
