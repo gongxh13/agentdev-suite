@@ -2,6 +2,10 @@
 
 🌐 语言切换: [English](docs/en/README.md) | **中文**
 
+📚 文档导航:
+- [用户使用指南](docs/zh/usage-guide.md) - 如何进行功能认领、开发、提交
+- [智能体产物目录结构](docs/zh/agent-artifacts.md) - 各智能体生成产物的组织结构
+
 一个全面的多平台智能体开发套件，支持 Claude Code、OpenCode 和 Codex，提供覆盖完整软件开发生命周期的智能体协作能力。
 
 ## 概述
@@ -16,7 +20,7 @@
 - **范式路由**：自动检测项目类型并路由到专门的协调系统
 - **多平台支持**：为 Claude Code、OpenCode 和 Codex 提供统一的技能库
 - **渐进式披露**：通过三级加载系统实现高效的上下文管理
-- **智能体角色专业化**：8个专门角色覆盖不同开发阶段
+- **智能体角色专业化**：11个专门角色覆盖不同开发阶段
 - **结构化协作**：基于目录的工作空间支持多智能体协调
 
 ## 安装
@@ -121,40 +125,50 @@ mkdir -p ~/.config/opencode/skills
 ln -s ~/.config/opencode/agentdev-suite/skills ~/.config/opencode/skills/agentdev-suite
 ```
 
-
 ## 架构设计
 
 AgentDev Suite 遵循**增强的三层协调架构**，具备智能任务分析和动态智能体编排能力：
 
+```mermaid
+graph TD
+    subgraph "范式协调层"
+        A[coordinating-agent-development<br/>• 传统 vs 技能项目区分<br/>• 项目结构/关键词分析]
+    end
+
+    A --> B[传统协调工作流<br/>traditional-development-coordination<br/>• 智能任务分析<br/>• 动态智能体编排<br/>• 上下文感知适配]
+    A --> C[技能协调工作流<br/>skill-development-coordination<br/>• 技能任务分析<br/>• 动态编排<br/>• 平台感知协调]
+
+    B --> D[专门智能体角色<br/>• 11个智能体<br/>• 动态选择<br/>• 智能排序]
+    C --> D
+
+    D --> E[核心开发工具<br/>• 5个核心技能]
 ```
-┌─────────────────────────────────────────────────────────┐
-│           范式协调层                                    │
-│      (coordinating-agent-development)                   │
-│      • 第一级路由：传统 vs 技能项目区分                │
-│      • 项目结构和关键词分析                            │
-└────────────────────┬────────────────────────────────────┘
-                     │
-        ┌────────────┴────────────┐
-        │                         │
-┌───────▼──────┐           ┌──────▼──────┐
-│  传统协调     │           │  技能协调    │
-│  工作流      │           │  工作流      │
-│  • 智能任务分析与动态编排                              │
-│  • 任务类型检测（完整项目、架构设计、需求分析、        │
-│    代码实现、测试验证、维护任务、文档任务）            │
-│  • 上下文感知的工作流适配                              │
-└───────┬──────┘           └──────┬──────┘
-        │                         │
-        └────────────┬────────────┘
-                     │
-           ┌─────────▼─────────┐
-           │    专门智能体     │
-           │      角色         │
-           │    (8个智能体)    │
-           │  • 基于任务类型的动态选择                  │
-           │  • 智能排序实现最优流程                    │
-           └───────────────────┘
-```
+
+### 智能体详细列表
+
+| 分类 | 智能体名称 | 角色缩写 | 主要职责 |
+|------|------------|----------|----------|
+| **传统开发智能体** | `traditional-pm` | pm | 产品策略和高级需求分析 |
+| | `traditional-po` | po | 产品待办事项管理和用户故事分解 |
+| | `traditional-arch` | arch | 系统架构和技术设计 |
+| | `traditional-dev` | dev | 代码实现和单元测试 |
+| | `traditional-qa` | qa | 质量验证和错误报告 |
+| | `traditional-ops` | ops | 构建系统、部署流水线和基础设施配置 |
+| **技能开发智能体** | `skill-ra` | analyst | 技能生态系统策略和需求分析 |
+| | `skill-arch` | arch | 技能架构和多平台配置设计 |
+| | `skill-dev` | dev | 技能项目实现和平台配置 |
+| | `skill-qa` | qa | 技能结构验证和平台兼容性测试 |
+| | `skill-platform` | platform | 多平台技能分发和部署配置 |
+
+### 核心开发工具
+
+| 工具名称 | 主要功能 |
+|----------|----------|
+| `skill-creator` | 遵循Claude最佳实践的引导式技能创建 |
+| `skill-project-scaffolder` | 多平台项目结构生成 |
+| `skill-development-methodology` | 技能设计原则和模式 |
+| `traditional-development-methodology` | 传统开发最佳实践 |
+| `managing-git-workflows` | 带有语义提交指南的版本控制 |
 
 ### 1. 范式协调层
 
@@ -201,16 +215,19 @@ AgentDev Suite 遵循**增强的三层协调架构**，具备智能任务分析�
 ### 3. 具备动态编排的专门智能体角色
 
 #### 传统开发智能体（动态选择）
-- **`agentdev-suite:product-manager`**：产品策略和高级需求分析
-- **`agentdev-suite:product-owner`**：产品待办事项管理和用户故事分解
-- **`agentdev-suite:traditional-development-architect`**：系统架构和技术设计
-- **`agentdev-suite:traditional-development-orchestrator`**：代码实现和单元测试
-- **`agentdev-suite:traditional-development-tester`**：质量验证和错误报告
+- **`traditional-pm`**：产品策略和高级需求分析
+- **`traditional-po`**：产品待办事项管理和用户故事分解
+- **`traditional-arch`**：系统架构和技术设计
+- **`traditional-dev`**：代码实现和单元测试
+- **`traditional-qa`**：质量验证和错误报告
+- **`traditional-ops`**：构建系统、部署流水线和基础设施配置
 
 #### 技能开发智能体（动态选择）
-- **`agentdev-suite:skill-requirements-analyst`**：技能生态系统策略和需求分析
-- **`agentdev-suite:skill-architect`**：技能架构和多平台配置设计
-- **`agentdev-suite:skill-tester`**：技能结构验证和平台兼容性测试
+- **`skill-ra`**：技能生态系统策略和需求分析
+- **`skill-arch`**：技能架构和多平台配置设计
+- **`skill-dev`**：技能项目实现和平台配置
+- **`skill-qa`**：技能结构验证和平台兼容性测试
+- **`skill-platform`**：多平台技能分发和部署配置
 
 #### 动态编排能力
 - **智能智能体选择**：协调层分析任务类型并选择适当的智能体
@@ -231,7 +248,7 @@ AgentDev Suite 遵循**增强的三层协调架构**，具备智能任务分析�
 
 AgentDev Suite 的核心优势在于智能体与技能之间的无缝协作：
 
-- **智能体角色分工**：8个专门智能体各司其职，覆盖从产品策略到测试验证的完整开发生命周期
+- **智能体角色分工**：11个专门智能体各司其职，覆盖从产品策略到测试验证的完整开发生命周期
 - **技能作为工具库**：核心开发技能（如 skill-creator、skill-project-scaffolder）为智能体提供标准化工具和方法论
 - **动态编排协作**：协调层根据任务类型智能选择智能体序列，并调用相应技能支持
 - **反馈循环优化**：智能体通过技能执行任务，技能根据使用反馈不断优化，形成正向增强循环
@@ -250,121 +267,6 @@ AgentDev Suite 支持三大AI开发平台，采用统一的技能库：
 | **Codex** | `.codex/` | 引导脚本集成 |
 
 所有平台共享相同的 `skills/` 目录，确保跨环境的一致性行为。
-
-
-## 快速开始
-
-### 1. 加载核心纪律技能
-
-安装后，使用 `Skill` 工具加载强制纪律技能：
-
-```bash
-# 在 Claude Code 对话中
-Skill: using-agentdev-suite
-```
-
-此技能强制执行"1%规则"：即使只有1%的可能性某个技能适用，也必须调用它。它提供对库中所有其他技能的访问权限。
-
-### 2. 通过 `using-agentdev-suite` 启动开发协调
-
-加载核心纪律技能后，您可以通过 `using-agentdev-suite` 框架使用适当的技能来启动开发协调：
-
-#### 传统软件开发示例
-在您的 Claude Code 对话中，描述您的开发请求：
-```
-我需要开发一个包含用户管理功能的REST API服务，包括注册、认证和资料管理
-```
-
-**工作流：**
-1. `using-agentdev-suite` 技能强制执行 1% 规则，要求调用相关技能
-2. `coordinating-agent-development` 根据任务上下文自动触发
-3. `coordinating-agent-development` 检测传统指示器（`src/`、`tests/`、"API"、"service"）
-4. 路由到 `traditional-development-coordination`
-5. 协调具备动态智能体编排的智能工作流：
-   - 分析任务类型（完整项目开发）
-   - 选择最优智能体序列：PM → PO → Architect → Developer → Tester
-   - 根据项目成熟度执行上下文适配的工作流
-
-#### 技能项目开发示例
-描述您的技能开发请求：
-```
-创建一个用于财务分析工作流的技能项目，支持多个AI平台
-```
-
-**工作流：**
-1. `using-agentdev-suite` 确保遵循正确的技能纪律
-2. `coordinating-agent-development` 根据技能相关关键词触发
-3. `coordinating-agent-development` 检测技能指示器（`skills/`、"skill project"、"multi-platform"）
-4. 路由到 `skill-development-coordination`
-5. 协调智能技能开发工作流：
-   - 分析技能任务类型（完整技能项目）
-   - 选择最优智能体/技能序列：Skill Requirements Analyst → Skill Architect → Skill Project Scaffolder → Skill Creator → Skill Tester
-   - 执行具备渐进式披露优化的平台感知协调
-
-## 工作空间结构
-
-套件使用标准化的目录结构进行智能体协作：
-
-```
-docs/
-├── 01_product_strategy/    # Product Manager工作空间（PRD、路线图、市场分析）
-├── 02_product_backlog/     # Product Owner工作空间（用户故事、功能、待办事项）
-├── 03_system_design/       # Architect工作空间（架构、API规范、模式）
-├── 04_development/         # Developer工作空间（技术笔记、设置指南）
-└── 05_qa_reports/          # Tester工作空间（测试报告、错误跟踪器、验证）
-
-src/                       # 源代码实现
-tests/                     # 测试文件
-scripts/                   # 工具脚本（用于技能项目）
-templates/                 # 项目模板（用于技能项目）
-```
-
-## 渐进式披露设计
-
-AgentDev Suite 通过渐进式披露实现高效的上下文管理：
-
-1. **第1级：元数据**（始终加载）
-   - 技能 `name` 和 `description`（YAML frontmatter中）
-   - 用于技能触发决策
-
-2. **第2级：SKILL.md主体**（触发时加载）
-   - 核心指令和工作流定义
-   - 限于必要信息
-
-3. **第3级：捆绑资源**（按需加载）
-   - 参考文件、详细文档、示例
-   - 通过SKILL.md中的显式引用访问
-
-这种方法在需要时提供全面指导的同时，最小化了令牌使用。
-
-## 开发原则
-
-### 技能设计最佳实践
-- **明确触发条件**：描述以"Use when"开头，指定确切条件
-- **适当自由度**：根据任务脆弱性匹配指令特异性
-- **资源组织**：分离SKILL.md、参考文件、脚本、资产
-- **渐进式披露**：保持SKILL.md简洁，将细节移至参考文件
-
-### 传统开发最佳实践
-- **智能体优先开发**：为每个阶段利用专门的智能体
-- **生命周期覆盖**：从需求到部署的完整覆盖
-- **协作智能**：多个智能体通过标准化工作空间协作
-- **质量保证**：每个阶段的自动化验证和测试
-- **迭代开发**：增量功能实现以管理复杂性
-
-## 测试
-
-项目包含全面的测试套件：
-
-- **结构测试**：验证项目目录结构和配置文件
-- **平台验证**：检查多平台配置的完整性
-- **技能触发测试**：验证技能激活逻辑和渐进式披露
-- **集成测试**：确保智能体协调工作流正常运行
-
-运行测试：
-```bash
-npm test
-```
 
 ## 贡献指南
 
