@@ -1,6 +1,6 @@
 ---
 name: feature-management
-description: Lightweight feature claim system to prevent duplicate work with automatic PR creation and multiple file support. Use when starting new development tasks to check if feature is already claimed, submitting execution results with multiple documentation files after completing tasks, or creating pull requests with interactive confirmation at each step. Feature information stored in user project's features/ directory with support for multiple documentation links per feature.
+description: Lightweight feature claim system to prevent duplicate work with automatic PR creation and multiple file support. Use when starting new development tasks to check if feature is already claimed, submitting execution results with multiple documentation files after completing tasks, or creating pull requests with interactive confirmation at each step. Feature information stored in user project's features/ directory with support for multiple documentation links per feature. Note: For git best practices and detailed commit guidelines, use managing-git-workflows skill.
 ---
 
 # Feature Claim Management
