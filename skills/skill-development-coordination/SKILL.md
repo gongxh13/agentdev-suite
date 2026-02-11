@@ -17,7 +17,7 @@ Agent outputs follow a standardized directory structure based on context:
 When working on a specific feature, outputs are organized within the feature directory:
 ```
 features/{feature-name}/
-├── product-management/      # PM/PO outputs: PRD, backlog, user stories
+├── product-management/      # Traditional PM/PO outputs; skill development uses requirements-analysis/
 ├── requirements-analysis/   # Skill requirements analysis outputs
 ├── architecture/           # Architecture design outputs
 ├── development/            # Development coordination outputs
@@ -225,7 +225,7 @@ digraph skill_workflow_selection {
 **Analysis**: Complete skill project indicators detected
 **Workflow**: Full 6-phase workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-ra` → Skill ecosystem strategy in appropriate product strategy directory (see Output Structure above)
+1. `agentdev-suite:skill-ra` → Skill ecosystem strategy in appropriate requirements analysis directory (see Output Structure above)
 2. `agentdev-suite:skill-ra` → Skill specifications in appropriate requirements analysis directory
 3. `agentdev-suite:skill-arch` → Architecture and platform design in appropriate architecture directory
 4. `agentdev-suite:skill-dev` → Project implementation coordination
@@ -270,20 +270,20 @@ When orchestrating agents/skills dynamically, use these phase definitions as bui
 - **Agent**: `agentdev-suite:skill-ra`
 - **Action**: Analyze requirements for skill project strategy
 - **Context**: User request for skill development
-- **Instruction**: "Analyze this skill development request. Create or update project strategy documents in appropriate product strategy directory (following Output Structure). Focus on skill ecosystem design, target platforms, and user scenarios."
-- **Output**: Appropriate product strategy directory with files like `skill_prd.md`, `platform_analysis.md`, `skill_roadmap.md` (following file naming convention)
+- **Instruction**: "Analyze this skill development request. Create or update project strategy documents in appropriate requirements analysis directory (following Output Structure). Focus on skill ecosystem design, target platforms, and user scenarios."
+- **Output**: Appropriate requirements analysis directory with files like `skill_prd.md`, `platform_analysis.md`, `skill_roadmap.md` (following file naming convention)
 
 #### Phase 2: Skill Requirements & Design (Skill Requirements Analyst)
 - **Agent**: `agentdev-suite:skill-ra` (continued)
 - **Action**: Define skill specifications and design principles
-- **Context**: Read appropriate product strategy directory
+- **Context**: Read appropriate requirements analysis directory
 - **Instruction**: "Read the strategy docs. Create or update skill specifications in appropriate requirements analysis directory. Define skill relationships, progressive disclosure strategy, and platform requirements."
 - **Output**: Appropriate requirements analysis directory with files like `skill_specs.md`, `skill_relationships.md`, `platform_configs.md` (following file naming convention)
 
 #### Phase 3: Skill Architecture & Platform Design (Skill Architect)
 - **Agent**: `agentdev-suite:skill-arch`
 - **Action**: Design skill architecture and platform configurations
-- **Context**: Read appropriate product strategy and requirements analysis directories
+- **Context**: Read appropriate requirements analysis directory
 - **Instruction**: "Design skill project architecture. Create or update technical design documents in appropriate architecture directory. Include multi-platform configuration strategy, skill structure patterns, and testing approach."
 - **Output**: Appropriate architecture directory with files like `skill_architecture.md`, `platform_configuration.md`, `testing_strategy.md` (following file naming convention)
 

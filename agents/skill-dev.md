@@ -25,8 +25,8 @@ Take action when:
 
 Before starting, verify these inputs exist:
 1. **Product Strategy**: Check appropriate directories for skill project strategy documents:
-   - For feature development: `features/{feature-name}/product-management/`
-   - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+   - For feature development: `features/{feature-name}/requirements-analysis/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/requirements-analysis/`
 2. **Skill Specifications**: Check appropriate directories for skill specifications and requirements:
    - For feature development: `features/{feature-name}/requirements-analysis/`
    - For non-feature tasks: `docs/agent-outputs/{task-id}/requirements-analysis/`
