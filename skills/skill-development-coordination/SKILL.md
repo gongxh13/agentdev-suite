@@ -9,6 +9,40 @@ description: Coordinates skill-based project development workflows with speciali
 
 This skill coordinates development workflows for skill-based projects that extend AI capabilities through modular, self-contained skill packages. It provides **intelligent workflow coordination** with dynamic agent selection based on task type analysis. The system automatically identifies the optimal agent combination and workflow sequence for each specific skill development request.
 
+## Output Structure
+
+Agent outputs follow a standardized directory structure based on context:
+
+### For Feature Development
+When working on a specific feature, outputs are organized within the feature directory:
+```
+features/{feature-name}/
+├── product-management/      # PM/PO outputs: PRD, backlog, user stories
+├── requirements-analysis/   # Skill requirements analysis outputs
+├── architecture/           # Architecture design outputs
+├── development/            # Development coordination outputs
+├── testing/               # Testing and validation outputs
+└── documentation/         # General documentation
+```
+
+### For Non-Feature Tasks
+For general skill development tasks, outputs are organized in:
+```
+docs/agent-outputs/{task-id}/
+├── product-management/
+├── requirements-analysis/
+├── architecture/
+├── development/
+├── testing/
+└── documentation/
+```
+
+### File Naming Convention
+- Format: `{YYYYMMDD-HHMMSS}-{role}-{document-type}.md`
+- Example: `20250210-103000-pm-prd.md`
+
+**Reference**: See `docs/agent-output-structure.md` for complete specifications.
+
 ## Task Type Analysis & Dynamic Agent Orchestration
 
 Before starting any coordination, analyze the task type to determine the optimal workflow:
@@ -191,9 +225,9 @@ digraph skill_workflow_selection {
 **Analysis**: Complete skill project indicators detected
 **Workflow**: Full 6-phase workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-requirements-analyst` → Skill ecosystem strategy in `docs/01_product_strategy/`
-2. `agentdev-suite:skill-requirements-analyst` → Skill specifications in `docs/02_product_backlog/`
-3. `agentdev-suite:skill-architect` → Architecture and platform design in `docs/03_system_design/`
+1. `agentdev-suite:skill-requirements-analyst` → Skill ecosystem strategy in appropriate product strategy directory (see Output Structure above)
+2. `agentdev-suite:skill-requirements-analyst` → Skill specifications in appropriate requirements analysis directory
+3. `agentdev-suite:skill-architect` → Architecture and platform design in appropriate architecture directory
 4. `agentdev-suite:skill-development-orchestrator` → Project implementation coordination
    - Executes `agentdev-suite:skill-project-scaffolder` for multi-platform project structure
    - Coordinates multiple `agentdev-suite:skill-creator` executions for individual skill development
@@ -206,7 +240,7 @@ digraph skill_workflow_selection {
 **Analysis**: Skill architecture design indicators detected
 **Workflow**: Architect-orchestrator workflow
 **Agent Sequence**:
-1. `agentdev-suite:skill-architect` → Skill architecture design in `docs/03_system_design/`
+1. `agentdev-suite:skill-architect` → Skill architecture design in appropriate architecture directory
 2. `agentdev-suite:skill-development-orchestrator` → Platform configuration setup via `agentdev-suite:skill-project-scaffolder`
 
 #### Example 3: Individual Skill Creation
@@ -233,27 +267,27 @@ When orchestrating agents/skills dynamically, use these phase definitions as bui
 - **Agent**: `agentdev-suite:skill-requirements-analyst`
 - **Action**: Analyze requirements for skill project strategy
 - **Context**: User request for skill development
-- **Instruction**: "Analyze this skill development request. Create or update project strategy documents in `docs/01_product_strategy/`. Focus on skill ecosystem design, target platforms, and user scenarios."
-- **Output**: `docs/01_product_strategy/skill_prd.md`, `platform_analysis.md`, `skill_roadmap.md`
+- **Instruction**: "Analyze this skill development request. Create or update project strategy documents in appropriate product strategy directory (following Output Structure). Focus on skill ecosystem design, target platforms, and user scenarios."
+- **Output**: Appropriate product strategy directory with files like `skill_prd.md`, `platform_analysis.md`, `skill_roadmap.md` (following file naming convention)
 
 #### Phase 2: Skill Requirements & Design (Skill Requirements Analyst)
 - **Agent**: `agentdev-suite:skill-requirements-analyst` (continued)
 - **Action**: Define skill specifications and design principles
-- **Context**: Read `docs/01_product_strategy/`
-- **Instruction**: "Read the strategy docs. Create or update skill specifications in `docs/02_product_backlog/`. Define skill relationships, progressive disclosure strategy, and platform requirements."
-- **Output**: `docs/02_product_backlog/skill_specs.md`, `skill_relationships.md`, `platform_configs.md`
+- **Context**: Read appropriate product strategy directory
+- **Instruction**: "Read the strategy docs. Create or update skill specifications in appropriate requirements analysis directory. Define skill relationships, progressive disclosure strategy, and platform requirements."
+- **Output**: Appropriate requirements analysis directory with files like `skill_specs.md`, `skill_relationships.md`, `platform_configs.md` (following file naming convention)
 
 #### Phase 3: Skill Architecture & Platform Design (Skill Architect)
 - **Agent**: `agentdev-suite:skill-architect`
 - **Action**: Design skill architecture and platform configurations
-- **Context**: Read `docs/01_product_strategy/` and `docs/02_product_backlog/`
-- **Instruction**: "Design skill project architecture. Create or update technical design documents in `docs/03_system_design/`. Include multi-platform configuration strategy, skill structure patterns, and testing approach."
-- **Output**: `docs/03_system_design/skill_architecture.md`, `platform_configuration.md`, `testing_strategy.md`
+- **Context**: Read appropriate product strategy and requirements analysis directories
+- **Instruction**: "Design skill project architecture. Create or update technical design documents in appropriate architecture directory. Include multi-platform configuration strategy, skill structure patterns, and testing approach."
+- **Output**: Appropriate architecture directory with files like `skill_architecture.md`, `platform_configuration.md`, `testing_strategy.md` (following file naming convention)
 
 #### Phase 4: Iterative Skill Development (Skill Development Orchestrator)
 - **Agent**: `agentdev-suite:skill-development-orchestrator`
 - **Action**: Coordinate skill project implementation, managing skill-creator executions, scaffolding operations, and agent generation
-- **Context**: Read `docs/03_system_design/` skill architecture
+- **Context**: Read appropriate architecture directory with skill architecture documents
 - **Instruction**: "Implement skill project based on architecture design. Coordinate skill-creator for individual skills, skill-project-scaffolder for project structure, and generate specialized agents as needed."
 - **Output**: Implemented skill project with proper structure, skills, and agents
 
@@ -261,7 +295,7 @@ When orchestrating agents/skills dynamically, use these phase definitions as bui
 - **Agent**: `agentdev-suite:skill-tester`
 - **Action**: Test complete skill ecosystem across target platforms
 - **Instruction**: "Run comprehensive platform compatibility tests. Verify skill loading, progressive disclosure, and cross-platform consistency."
-- **Output**: Integration test report in `docs/05_qa_reports/`
+- **Output**: Integration test report in appropriate testing directory
 
 #### Phase 6: Packaging & Distribution (Managing Git Workflows)
 - **Skill**: `managing-git-workflows`
@@ -406,5 +440,5 @@ For hybrid projects containing both skills and traditional code:
 ### Debugging Tips
 - Check skill metadata (name and description) for triggering accuracy
 - Verify platform-specific configuration files
-- Review test reports in `docs/05_qa_reports/`
+- Review test reports in appropriate testing directory
 - Test skill loading and progressive disclosure behavior

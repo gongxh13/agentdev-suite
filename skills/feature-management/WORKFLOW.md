@@ -158,6 +158,20 @@ User Project/
 └── docs/                    # Project documentation
 ```
 
+### Recommended Output Directory Structure
+For organized agent outputs that can be referenced in `feature.json` documentation links:
+```
+features/{feature-name}/
+├── feature.json                    # Feature metadata (created by this skill)
+├── product-management/             # PM/PO outputs
+├── requirements-analysis/          # Requirements analyst outputs
+├── architecture/                   # Architect outputs
+├── development/                    # Developer outputs
+├── testing/                        # Tester outputs
+└── documentation/                  # General documentation
+```
+*Note: Detailed output structure and file naming conventions are defined in development coordination skills.*
+
 ### Multiple File Support Options
 
 **Simple Array Approach** (Recommended)

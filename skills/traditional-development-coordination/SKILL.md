@@ -9,6 +9,38 @@ description: Coordinates traditional software development workflows (non-skill b
 
 This skill coordinates traditional software development lifecycle for executable software projects. It provides **intelligent workflow coordination** with dynamic agent selection based on task type analysis. The system automatically identifies the optimal agent combination and workflow sequence for each specific development request.
 
+## Output Structure
+
+Agent outputs follow a standardized directory structure based on context:
+
+### For Feature Development
+When working on a specific feature, outputs are organized within the feature directory:
+```
+features/{feature-name}/
+├── product-management/      # PM/PO outputs: PRD, backlog, user stories
+├── architecture/           # Architecture design outputs
+├── development/            # Development implementation outputs
+├── testing/               # Testing and validation outputs
+└── documentation/         # General documentation
+```
+
+### For Non-Feature Tasks
+For general development tasks, outputs are organized in:
+```
+docs/agent-outputs/{task-id}/
+├── product-management/
+├── architecture/
+├── development/
+├── testing/
+└── documentation/
+```
+
+### File Naming Convention
+- Format: `{YYYYMMDD-HHMMSS}-{role}-{document-type}.md`
+- Example: `20250210-103000-pm-prd.md`
+
+**Reference**: See `docs/agent-output-structure.md` for complete specifications.
+
 ## Task Type Analysis & Dynamic Agent Orchestration
 
 Before starting any coordination, analyze the task type to determine the optimal workflow:
@@ -111,11 +143,11 @@ Use when working with established codebases:
 
 We use a standardized directory structure for collaboration. Ensure agents save their outputs to these specific folders:
 
-- **PM Workspace**: `docs/01_product_strategy/`
-- **PO Workspace**: `docs/02_product_backlog/`
-- **Architect Workspace**: `docs/03_system_design/`
-- **Dev Workspace**: `src/` (Code), `tests/` (Tests), `docs/04_development/` (Tech Notes)
-- **QA Workspace**: `docs/05_qa_reports/`
+- **PM Workspace**: Appropriate product strategy directory (see Output Structure above)
+- **PO Workspace**: Appropriate product management directory for backlog and user stories
+- **Architect Workspace**: Appropriate architecture directory for design documents
+- **Dev Workspace**: `src/` (Code), `tests/` (Tests), appropriate development directory for technical notes
+- **QA Workspace**: Appropriate testing directory for reports and validation
 
 ## Intelligent Workflow Selection & Execution
 
@@ -158,9 +190,9 @@ digraph workflow_selection {
 **Analysis**: Complete project indicators detected
 **Workflow**: Full 6-phase workflow
 **Agent Sequence**:
-1. `agentdev-suite:product-manager` → PRD in `docs/01_product_strategy/`
-2. `agentdev-suite:product-owner` → Backlog in `docs/02_product_backlog/`
-3. `agentdev-suite:traditional-development-architect` → Architecture in `docs/03_system_design/`
+1. `agentdev-suite:product-manager` → PRD in appropriate product strategy directory
+2. `agentdev-suite:product-owner` → Backlog in appropriate product management directory
+3. `agentdev-suite:traditional-development-architect` → Architecture in appropriate architecture directory
 4. `agentdev-suite:traditional-development-orchestrator` → Parallel implementation with technology patterns in `src/`
 5. `agentdev-suite:traditional-development-tester` → Tests and validation
 6. `managing-git-workflows` → Final delivery
@@ -170,7 +202,7 @@ digraph workflow_selection {
 **Analysis**: Architecture design indicators detected
 **Workflow**: Architect-centric workflow
 **Agent Sequence**:
-1. `agentdev-suite:traditional-development-architect` → Architecture design in `docs/03_system_design/`
+1. `agentdev-suite:traditional-development-architect` → Architecture design in appropriate architecture directory
 2. (Optional) `agentdev-suite:traditional-development-orchestrator` → Prototype implementation if requested
 
 #### Example 3: Bug Fix
@@ -187,8 +219,8 @@ digraph workflow_selection {
 **Analysis**: Requirement analysis indicators detected
 **Workflow**: PM-PO workflow
 **Agent Sequence**:
-1. `agentdev-suite:product-manager` → High-level requirements in `docs/01_product_strategy/`
-2. `agentdev-suite:product-owner` → User stories and backlog in `docs/02_product_backlog/`
+1. `agentdev-suite:product-manager` → High-level requirements in appropriate product strategy directory
+2. `agentdev-suite:product-owner` → User stories and backlog in appropriate product management directory
 
 ### Phase Reference for Dynamic Orchestration
 
@@ -198,22 +230,22 @@ When orchestrating agents dynamically, use these phase definitions as building b
 - **Agent**: `agentdev-suite:product-manager`
 - **Action**: Analyze user request for product strategy
 - **Context**: Pass the user's initial request
-- **Instruction**: "Analyze this request. Create or update the Product Requirements Document (PRD) and other strategy docs in `docs/01_product_strategy/`. Ensure the directory exists."
-- **Output**: `docs/01_product_strategy/prd.md`, `market_analysis.md`, `roadmap.md`
+- **Instruction**: "Analyze this request. Create or update the Product Requirements Document (PRD) and other strategy docs in `appropriate product strategy directory`. Ensure the directory exists."
+- **Output**: `appropriate product strategy directoryprd.md`, `market_analysis.md`, `roadmap.md`
 
 #### Phase 2: Requirement Decomposition (Product Owner)
 - **Agent**: `agentdev-suite:product-owner`
 - **Action**: Break down high-level requirements into user stories
-- **Context**: Read `docs/01_product_strategy/`
-- **Instruction**: "Read the strategy docs in `docs/01_product_strategy/`. Create or update the detailed Product Backlog and User Stories in `docs/02_product_backlog/`. Ensure the directory exists."
-- **Output**: `docs/02_product_backlog/backlog.md`, `features/*.md`
+- **Context**: Read `appropriate product strategy directory`
+- **Instruction**: "Read the strategy docs in `appropriate product strategy directory`. Create or update the detailed Product Backlog and User Stories in `appropriate product management directory`. Ensure the directory exists."
+- **Output**: `appropriate product management directorybacklog.md`, `features/*.md`
 
 #### Phase 3: Architecture Design (Software Architect)
 - **Agent**: `agentdev-suite:traditional-development-architect`
 - **Action**: Design system architecture based on requirements
-- **Context**: Read `docs/01_product_strategy/` and `docs/02_product_backlog/`
-- **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `docs/03_system_design/`. Ensure the directory exists."
-- **Output**: `docs/03_system_design/architecture.md`, `api_spec.md`, `database_schema.md`
+- **Context**: Read `appropriate product strategy directory` and `appropriate product management directory`
+- **Instruction**: "Read the PRD and Backlog. Create or update Technical Design documents in `appropriate architecture directory`. Ensure the directory exists."
+- **Output**: `appropriate architecture directoryarchitecture.md`, `api_spec.md`, `database_schema.md`
 
 #### Phase 4: Iterative Development with Skill-First Parallel Execution (Traditional Development Orchestrator)
 - **Agent**: `agentdev-suite:traditional-development-orchestrator`
@@ -236,7 +268,7 @@ When orchestrating agents dynamically, use these phase definitions as building b
 - **Agent**: `agentdev-suite:traditional-development-tester`
 - **Action**: Run full regression test suite
 - **Instruction**: "Run comprehensive regression testing to ensure no regressions were introduced."
-- **Output**: Final test report in `docs/05_qa_reports/`
+- **Output**: Final test report in `appropriate testing directory`
 
 #### Phase 6: Delivery & Version Control
 - **Agent**: `managing-git-workflows` skill
@@ -270,10 +302,10 @@ Task Analysis & Orchestration:
 
 ## Handling Feedback Loops (Bugs)
 
-- **Monitor**: Check the latest report in `docs/05_qa_reports/`
+- **Monitor**: Check the latest report in `appropriate testing directory`
 - **If Bugs Found**:
   1. Call developer to fix identified bugs
-  2. **Instruction**: "Read the latest report in `docs/05_qa_reports/` and fix identified bugs in `src/`."
+  2. **Instruction**: "Read the latest report in `appropriate testing directory` and fix identified bugs in `src/`."
   3. After fixes, call tester again for verification
 - **Success**: When tests pass, proceed to next step
 
@@ -392,7 +424,7 @@ Agents can be configured through:
 ### Debugging Tips
 - Check agent outputs in respective workspace directories
 - Verify file formats and naming conventions
-- Review test reports in `docs/05_qa_reports/`
+- Review test reports in `appropriate testing directory`
 
 ## Integration
 

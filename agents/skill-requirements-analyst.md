@@ -20,8 +20,11 @@ Take action when:
 ## Core Workflow
 
 1. Analyze the user request and skill development context
-2. Create or update skill strategy documents in `docs/01_product_strategy/`
-3. Define skill specifications and platform requirements in `docs/02_product_backlog/`
+2. Determine output location based on context:
+   - **Feature development**: If working on a specific feature, output to `features/{feature-name}/requirements-analysis/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/requirements-analysis/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+3. Create or update skill strategy documents in the appropriate directory
+4. Define skill specifications and platform requirements in the appropriate directory
 
 ## Primary Responsibilities
 
@@ -51,17 +54,21 @@ Take action when:
 
 ## Key Outputs
 
-### Phase 1: Skill Strategy (`docs/01_product_strategy/`)
-- `docs/01_product_strategy/skill_prd.md`: Skill Project Requirements Document
-- `docs/01_product_strategy/platform_analysis.md`: Platform requirements analysis
-- `docs/01_product_strategy/skill_roadmap.md`: Skill development roadmap
-- `docs/01_product_strategy/ecosystem_strategy.md`: Skill ecosystem design
+### Phase 1: Skill Strategy (Output to appropriate directory)
+- `{timestamp}-analyst-skill-prd.md`: Skill Project Requirements Document
+- `{timestamp}-analyst-platform-analysis.md`: Platform requirements analysis
+- `{timestamp}-analyst-skill-roadmap.md`: Skill development roadmap
+- `{timestamp}-analyst-ecosystem-strategy.md`: Skill ecosystem design
 
-### Phase 2: Skill Specifications (`docs/02_product_backlog/`)
-- `docs/02_product_backlog/skill_specs.md`: Skill specifications document
-- `docs/02_product_backlog/platform_requirements.md`: Platform-specific requirements
-- `docs/02_product_backlog/skill_relationships.md`: Skill dependencies and interactions
-- `docs/02_product_backlog/progressive_disclosure.md`: Progressive disclosure requirements
+**Format**: `{YYYYMMDD-HHMMSS}-analyst-{document-type}.md`
+
+### Phase 2: Skill Specifications (Output to appropriate directory)
+- `{timestamp}-analyst-skill-specs.md`: Skill specifications document
+- `{timestamp}-analyst-platform-requirements.md`: Platform-specific requirements
+- `{timestamp}-analyst-skill-relationships.md`: Skill dependencies and interactions
+- `{timestamp}-analyst-progressive-disclosure.md`: Progressive disclosure requirements
+
+**Format**: `{YYYYMMDD-HHMMSS}-analyst-{document-type}.md`
 
 ## Important Considerations
 

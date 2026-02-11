@@ -19,19 +19,32 @@ Take action when:
 
 ## Workflow
 
-1. Read PRD from `docs/01_product_strategy/`
-2. Create or update Product Backlog in `docs/02_product_backlog/`
-3. Define acceptance criteria and priorities using MoSCoW method
+1. Read PRD from appropriate directory (check both `features/{feature-name}/product-management/` and `docs/agent-outputs/{task-id}/product-management/`)
+2. Determine output location based on context:
+   - **Feature development**: If working on a specific feature, output to `features/{feature-name}/product-management/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/product-management/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+3. Create or update Product Backlog in the appropriate directory
+4. Define acceptance criteria and priorities using MoSCoW method
 
 ## Input
 
-- `docs/01_product_strategy/prd.md`: Product Requirements Document
+- **Product Requirements Document**: Check appropriate directories for PRD:
+  - For feature development: `features/{feature-name}/product-management/{timestamp}-pm-prd.md`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/{timestamp}-pm-prd.md`
 
 ## Output
 
-Save outputs to:
-- `docs/02_product_backlog/backlog.md`: Main product backlog
-- `docs/02_product_backlog/features/*.md`: Detailed specs for complex features (optional)
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-po-{document-type}.md`
+- Use `po` as role abbreviation for product-owner
+- Document types: backlog, user-stories, acceptance-criteria, etc.
+
+### Example Files
+- `20250210-103000-po-backlog.md`: Main product backlog
+- `20250210-103500-po-user-stories.md`: Detailed user stories (optional)
+- `20250210-104000-po-acceptance-criteria.md`: Acceptance criteria (optional)
 
 ## Important Notes
 

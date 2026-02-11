@@ -15,28 +15,42 @@ Take action when:
 - Defining skill relationships and dependencies within a skill ecosystem
 - Creating progressive disclosure strategies for skill content
 - Establishing skill development standards and patterns
-- After skill requirements are defined in `docs/02_product_backlog/`
+- After skill requirements are defined in appropriate requirements analysis directory
 
 ## Workflow
 
-1. Read inputs from PM and PO workspaces
+1. Read inputs from PM and PO workspaces (check appropriate directories)
 2. Design skill architecture and platform configurations
-3. Create or update Technical Design Documents in `docs/03_system_design/`
+3. Determine output location based on context:
+   - **Feature development**: If working on a specific feature, output to `features/{feature-name}/architecture/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/architecture/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+4. Create or update Technical Design Documents in the appropriate directory
 
 ## Input
 
-- `docs/01_product_strategy/`: Skill project strategy documents
-- `docs/02_product_backlog/`: Skill specifications and requirements
+- **Product Strategy**: Check appropriate directories for skill project strategy documents:
+  - For feature development: `features/{feature-name}/product-management/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+- **Skill Specifications**: Check appropriate directories for skill specifications and requirements:
+  - For feature development: `features/{feature-name}/requirements-analysis/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/requirements-analysis/`
 - Existing skill library structure (if applicable)
 
 ## Output
 
-Save outputs to:
-- `docs/03_system_design/skill_architecture.md`: Skill ecosystem architecture
-- `docs/03_system_design/platform_configuration.md`: Multi-platform configuration strategy
-- `docs/03_system_design/progressive_disclosure.md`: Progressive disclosure design
-- `docs/03_system_design/skill_relationships.md`: Skill dependencies and interactions
-- `docs/03_system_design/testing_strategy.md`: Skill testing approach
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-architect-{document-type}.md`
+- Use `architect` as role abbreviation for skill-architect
+- Document types: skill-architecture, platform-configuration, progressive-disclosure, etc.
+
+### Example Files
+- `20250210-103000-architect-skill-architecture.md`: Skill ecosystem architecture
+- `20250210-103500-architect-platform-configuration.md`: Multi-platform configuration strategy
+- `20250210-104000-architect-progressive-disclosure.md`: Progressive disclosure design
+- `20250210-104500-architect-skill-relationships.md`: Skill dependencies and interactions
+- `20250210-105000-architect-testing-strategy.md`: Skill testing approach
 
 ## Core Responsibilities
 

@@ -20,22 +20,36 @@ Take action when:
 
 ## Workflow
 
-1. Read Backlog, Design, and Implementation
+1. Read Backlog, Design, and Implementation (check appropriate directories)
 2. Run test suites and validation
-3. Report results and issues
-4. Coordinate fixes if needed
+3. Determine output location based on context:
+   - **Feature development**: If testing a specific feature, output to `features/{feature-name}/testing/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/testing/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+4. Report results and issues to the appropriate directory
+5. Coordinate fixes if needed
 
 ## Input
 
-- `docs/02_product_backlog/`: User stories and acceptance criteria
-- `docs/03_system_design/`: Technical design documents
+- **Product Backlog**: Check appropriate directories for user stories and acceptance criteria:
+  - For feature development: `features/{feature-name}/product-management/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+- **System Design**: Check appropriate directories for technical design documents:
+  - For feature development: `features/{feature-name}/architecture/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 - `src/`: Implemented code
 - `tests/`: Test files
 
 ## Output
 
-Save outputs to:
-- `docs/05_qa_reports/`: Test reports and bug lists
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-tester-{document-type}.md`
+- Use `tester` as role abbreviation for traditional-development-tester
+- Document types: test-report, bug-list, security-validation, etc.
+
+### Example Outputs
+- Test reports and bug lists in appropriate testing directory
 - Updated test files in `tests/`
 - Security validation reports
 

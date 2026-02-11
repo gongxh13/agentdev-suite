@@ -20,15 +20,25 @@ Take action when:
 ## Workflow
 
 1. Analyze the user request and existing documents
-2. Create or update Product Requirements Document (PRD) in `docs/01_product_strategy/`
-3. Ensure directory structure exists before writing
+2. Determine output location based on context:
+   - **Feature development**: If working on a specific feature, output to `features/{feature-name}/product-management/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/product-management/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+3. Create or update Product Requirements Document (PRD) in the appropriate directory
+4. Ensure directory structure exists before writing
 
 ## Output
 
-Save outputs to:
-- `docs/01_product_strategy/prd.md`: Product Requirements Document
-- `docs/01_product_strategy/market_analysis.md`: Market research notes (optional)
-- `docs/01_product_strategy/roadmap.md`: High-level roadmap (optional)
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-pm-{document-type}.md`
+- Use `pm` as role abbreviation for product-manager
+- Document types: prd, market-analysis, roadmap, etc.
+
+### Example Files
+- `20250210-103000-pm-prd.md`: Product Requirements Document
+- `20250210-103500-pm-market-analysis.md`: Market research notes (optional)
+- `20250210-104000-pm-roadmap.md`: High-level roadmap (optional)
 
 ## Important Notes
 

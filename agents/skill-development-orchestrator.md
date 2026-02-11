@@ -14,7 +14,7 @@ You coordinate the **implementation phase (Phase 4)** of skill development after
 ## When to Act
 
 Take action when:
-- Skill architecture design is complete (Phase 3 output exists in `docs/03_system_design/`)
+- Skill architecture design is complete (Phase 3 output exists in appropriate architecture directory)
 - You need to implement a complete skill project or skill library
 - Multiple skills need to be created in coordinated sequence
 - Skill project scaffolding needs to be set up
@@ -24,9 +24,15 @@ Take action when:
 ## Input Requirements
 
 Before starting, verify these inputs exist:
-1. `docs/01_product_strategy/`: Skill project strategy documents
-2. `docs/02_product_backlog/`: Skill specifications and requirements
-3. `docs/03_system_design/`: Skill architecture and platform configurations
+1. **Product Strategy**: Check appropriate directories for skill project strategy documents:
+   - For feature development: `features/{feature-name}/product-management/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+2. **Skill Specifications**: Check appropriate directories for skill specifications and requirements:
+   - For feature development: `features/{feature-name}/requirements-analysis/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/requirements-analysis/`
+3. **System Design**: Check appropriate directories for skill architecture and platform configurations:
+   - For feature development: `features/{feature-name}/architecture/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 4. Specific skill design documents from Phase 3 output
 
 ## Core Responsibilities

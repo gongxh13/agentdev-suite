@@ -205,14 +205,14 @@ Skill development follows a structured 6-phase workflow aligned with `skill-deve
 **Recommended Skills**:
 - `skill-requirements-analyst` (specialized for skill development)
 - Focus on: skill ecosystem vision, platform requirements, skill relationships, progressive disclosure needs
-**Outputs**: `docs/01_product_strategy/` and `docs/02_product_backlog/` with skill-specific documents
+**Outputs**: Appropriate product strategy and requirements analysis directories with skill-specific documents (see Output Structure in skill-development-coordination)
 
 ### Phase 2: Skill Architecture Design
 **Purpose**: Design skill architecture, platform configurations, and progressive disclosure strategies
 **Recommended Skills**:
 - `skill-architect` (specialized for skill architecture)
 - Focus on: multi-platform configurations, skill structure patterns, progressive disclosure design, testing strategy
-**Outputs**: `docs/03_system_design/` with skill architecture documents
+**Outputs**: Appropriate architecture directory with skill architecture documents (see Output Structure in skill-development-coordination)
 
 ### Phase 3: Iterative Skill Development
 **Purpose**: Create individual skills within the project
@@ -226,7 +226,7 @@ Skill development follows a structured 6-phase workflow aligned with `skill-deve
 **Recommended Skills**:
 - `skill-tester` (specialized for skill testing)
 - Focus on: skill structure validation, platform compatibility testing, progressive disclosure verification, guidance quality assessment
-**Outputs**: Test reports in `docs/05_qa_reports/`
+**Outputs**: Test reports in appropriate testing directory (see Output Structure in skill-development-coordination)
 
 ### Phase 5: Packaging & Distribution
 **Purpose**: Package skills and prepare for multi-platform distribution

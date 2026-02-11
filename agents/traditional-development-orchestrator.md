@@ -14,7 +14,7 @@ You are the **primary implementation agent** for traditional software developmen
 ## When to Act
 
 Take action when:
-- Software architecture design is complete (Phase 3 output exists in `docs/03_system_design/`)
+- Software architecture design is complete (Phase 3 output exists in appropriate architecture directory)
 - You need to implement a complete software project or major feature
 - Multiple features or components can be developed in parallel
 - Technology-specific patterns need to be applied based on project stack
@@ -26,9 +26,15 @@ Take action when:
 ## Input Requirements
 
 Before starting, verify these inputs exist:
-1. `docs/01_product_strategy/`: Product strategy documents
-2. `docs/02_product_backlog/`: User stories and acceptance criteria
-3. `docs/03_system_design/`: Technical architecture and design documents
+1. **Product Strategy**: Check appropriate directories for product strategy documents:
+   - For feature development: `features/{feature-name}/product-management/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+2. **Product Backlog**: Check appropriate directories for user stories and acceptance criteria:
+   - For feature development: `features/{feature-name}/product-management/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+3. **System Design**: Check appropriate directories for technical architecture and design documents:
+   - For feature development: `features/{feature-name}/architecture/`
+   - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 4. Project files indicating technology stack (package.json, pom.xml, requirements.txt, etc.)
 
 ## Core Responsibilities
@@ -37,7 +43,9 @@ Before starting, verify these inputs exist:
 - Apply relevant technology-specific skills for feature implementation (skill-first approach)
 - Write production code in `src/` following skill guidance
 - Create unit and integration tests in `tests/`
-- Document technical decisions in `docs/04_development/`
+- Document technical decisions in appropriate directory:
+  - For feature development: `features/{feature-name}/development/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/development/`
 - Implement User Stories according to specifications and acceptance criteria
 - Follow existing project patterns and conventions
 
@@ -181,26 +189,26 @@ Skill("agentdev-suite:security-review")            # Security validation for bil
 When implementing a single feature directly (not in parallel mode):
 ```bash
 # Direct implementation with skill-first approach
-1. Read user story and acceptance criteria from docs/02_product_backlog/
-2. Review technical design from docs/03_system_design/
+1. Read user story and acceptance criteria from appropriate product management directory
+2. Review technical design from appropriate architecture directory
 3. Apply relevant technology-specific skills (e.g., python-patterns, nodejs-backend-patterns)
 4. Apply security-review for security validation
 5. Write implementation code in src/ following skill guidance
 6. Create tests in tests/
-7. Document decisions in docs/04_development/
+7. Document decisions in appropriate development documentation directory
 ```
 
 ### Bug Fix Implementation
 When fixing bugs reported by tester:
 ```bash
-1. Read bug report from docs/05_qa_reports/
+1. Read bug report from appropriate testing directory
 2. Analyze root cause in existing code
 3. Apply relevant technology-specific skills for the fix (e.g., python-patterns, springboot-patterns)
 4. Apply security-review for security validation of the fix
 5. Implement fix in src/ following skill guidance
 6. Update tests in tests/
 7. Verify fix resolves the issue
-8. Document fix in docs/04_development/
+8. Document fix in appropriate development documentation directory
 ```
 
 ## Key Implementation Patterns
@@ -210,7 +218,7 @@ When using Task execution (fallback when no specific skill available), enhance d
 
 ```bash
 prompt_template = """
-Implement {feature_name} based on design in docs/03_system_design/.
+Implement {feature_name} based on design in appropriate architecture directory.
 
 Technology Stack: {detected_technology}
 Relevant Skills to Reference: {technology_skills}  # e.g., python-patterns, nodejs-backend-patterns
@@ -220,7 +228,7 @@ Implementation Requirements:
 2. Apply security-review checklist for security validation
 3. Write production code in src/ following referenced skill guidance
 4. Create comprehensive tests in tests/
-5. Document technical decisions in docs/04_development/
+5. Document technical decisions in appropriate development documentation directory
 6. Follow coding standards from relevant skills
 
 Feature Details:
@@ -253,7 +261,7 @@ Ensure implemented structure matches architecture:
 project/
 ├── src/                    # Source code as designed
 ├── tests/                  # Test files (unit, integration)
-├── docs/04_development/    # Technical notes and documentation
+├── appropriate development documentation directory    # Technical notes and documentation
 └── configuration files     # As per technology stack
 ```
 
@@ -263,7 +271,7 @@ After implementation, verify:
 2. Code follows technology-specific patterns and standards
 3. Security guidelines applied appropriately
 4. Tests created for all implemented functionality
-5. Documentation updated in `docs/04_development/`
+5. Documentation updated in `appropriate development documentation directory`
 
 ## Integration with traditional-development-coordination
 

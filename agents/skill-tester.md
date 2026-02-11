@@ -22,21 +22,35 @@ Take action when:
 1. Read skill specifications and architecture designs
 2. Validate skill structure and platform configurations
 3. Test skill functionality and platform compatibility
-4. Generate/update Test Reports in `docs/05_qa_reports/`
+4. Determine output location based on context:
+   - **Feature development**: If testing a specific feature, output to `features/{feature-name}/testing/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/testing/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+5. Generate/update Test Reports in the appropriate directory
 
 ## Input
 
-- `docs/02_product_backlog/`: Skill specifications and acceptance criteria
-- `docs/03_system_design/`: Skill architecture and platform designs
+- **Skill Specifications**: Check appropriate directories for skill specifications and acceptance criteria:
+  - For feature development: `features/{feature-name}/requirements-analysis/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/requirements-analysis/`
+- **System Design**: Check appropriate directories for skill architecture and platform designs:
+  - For feature development: `features/{feature-name}/architecture/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/architecture/`
 - `skills/`: Skill library to test
 - Platform configuration files (`.claude-plugin/`, `.codex/`, `.opencode/`)
 
 ## Output
 
-Save outputs to:
-- `docs/05_qa_reports/skill_test_report_vX.md`: Skill testing reports
-- `docs/05_qa_reports/platform_compatibility.md`: Platform compatibility results
-- `docs/05_qa_reports/structure_validation.md`: Skill structure validation results
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-tester-{document-type}.md`
+- Use `tester` as role abbreviation for skill-tester
+- Document types: skill-test-report, platform-compatibility, structure-validation, etc.
+
+### Example Files
+- `20250210-103000-tester-skill-test-report.md`: Skill testing reports
+- `20250210-103500-tester-platform-compatibility.md`: Platform compatibility results
+- `20250210-104000-tester-structure-validation.md`: Skill structure validation results
 - Test logs and validation artifacts (optional)
 
 ## Core Responsibilities

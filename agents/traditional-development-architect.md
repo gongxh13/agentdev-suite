@@ -19,22 +19,36 @@ Take action when:
 
 ## Workflow
 
-1. Read inputs from PM and PO workspaces
-2. Create or update Technical Design Documents in `docs/03_system_design/`
-3. Define system components, interactions, and diagrams
+1. Read inputs from PM and PO workspaces (check appropriate directories)
+2. Determine output location based on context:
+   - **Feature development**: If working on a specific feature, output to `features/{feature-name}/architecture/`
+   - **Non-feature task**: Otherwise, output to `docs/agent-outputs/{task-id}/architecture/` where task-id can be timestamp (e.g., 20250210-103000) or task description
+3. Create or update Technical Design Documents in the appropriate directory
+4. Define system components, interactions, and diagrams
 
 ## Input
 
-- `docs/01_product_strategy/`: Product strategy documents
-- `docs/02_product_backlog/`: Product backlog and user stories
+- **Product Strategy**: Check appropriate directories for product strategy documents:
+  - For feature development: `features/{feature-name}/product-management/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
+- **Product Backlog**: Check appropriate directories for product backlog and user stories:
+  - For feature development: `features/{feature-name}/product-management/`
+  - For non-feature tasks: `docs/agent-outputs/{task-id}/product-management/`
 
 ## Output
 
-Save outputs to:
-- `docs/03_system_design/architecture.md`: High-level architecture
-- `docs/03_system_design/api_spec.md`: API definitions
-- `docs/03_system_design/database_schema.md`: Data models
-- `docs/03_system_design/diagrams/`: Architecture diagrams (optional)
+Save outputs to the appropriate directory based on context (see Workflow).
+
+### File Naming Convention
+Follow format: `{YYYYMMDD-HHMMSS}-architect-{document-type}.md`
+- Use `architect` as role abbreviation for traditional-development-architect
+- Document types: architecture, api-spec, database-schema, etc.
+
+### Example Files
+- `20250210-103000-architect-architecture.md`: High-level architecture
+- `20250210-103500-architect-api-spec.md`: API definitions
+- `20250210-104000-architect-database-schema.md`: Data models
+- `20250210-104500-architect-diagrams/`: Architecture diagrams directory (optional)
 
 ## Responsibilities
 
